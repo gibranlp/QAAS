@@ -1,0 +1,1 @@
+ENV{ID_PART_TABLE_UUID}=="bdd9b3a5-5260-4660-a398-7dd4ad81f858", GROUP="win10disk"
