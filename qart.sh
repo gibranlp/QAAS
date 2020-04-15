@@ -80,15 +80,15 @@ function f_base () {
 )
 
 for packet in "${packets[@]}"; do
-    echo "Instalando --> ${packet}" #Loop para instalar todos los paquetes
+    echo "Instalando --> ${packet}" #Loop para instalar todos los paquetes pacman
     sudo pacman -S "${packet}" --noconfirm --needed
 done
 
-sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist # Utilizar los 5 mirrors más rápidos segun la localización
 
-sudo pacman -Syyu --noconfirm --needed
+sudo pacman -Syyu --noconfirm --needed # actualizar todos los paquetes
 
-sudo sed -i "s/-j2/-j$(nproc)/;s/^#MAKEFLAGS/MAKEFLAGS/" /etc/makepkg.conf
+sudo sed -i "s/-j2/-j$(nproc)/;s/^#MAKEFLAGS/MAKEFLAGS/" /etc/makepkg.conf # utilizar todos los cores del procesador para compilar
 ## ------------------Programas de Python -----------------------------##########
 
 pip_packets=(
@@ -120,52 +120,51 @@ done
 ## -------------------Instalar ZSH -----------------------------------##########
 
 sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-/home/$USER/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-/home/$USER/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 ## --------------- Configuraciones y archivos ------------------------##########
 
 sudo systemctl enable lightdm.service # Habiltar lightdm
 
 ## Creando directorios
-mkdir ~/.config/qtile
-mkdir ~/.config/ranger
-mkdir ~/.config/rofi
-mkdir ~/Pictures/screenshots
+mkdir /home/$USER/.config/qtile
+mkdir /home/$USER/.config/ranger
+mkdir /home/$USER/.config/rofi
+mkdir /home/$USER/Pictures/screenshots
 
 ## Creando enlaces simbólicos
 cd
 rm -rf .Xdefaults
-ln -s ~/git/.Xdefaults .Xdefaults
+ln -s /home/$USER/git/.Xdefaults .Xdefaults
 rm -rf .zshrc
-ln -s ~/git/.zshrc .zshrc
+ln -s /home/$USER/git/.zshrc .zshrc
 
-cd ~/.config/qtile
+cd /home/$USER/.config/qtile
 rm -rf config.py
-ln -s ~/git/.config/qtile/config_desktop.py config.py
+ln -s /home/$USER/git/.config/qtile/config_desktop.py config.py
 rm -rf autostart
-ln -s ~/git/.config/qtile/autostart_laptop.sh autostart.sh
+ln -s /home/$USER/git/.config/qtile/autostart_laptop.sh autostart.sh
 chmod +x autostart.sh
 
-cd ~/.config/ranger
+cd /home/$USER/.config/ranger
 rm -rf rc.conf
-ln -s ~/git/.config/ranger/rc.conf rc.conf
+ln -s /home/$USER/git/.config/ranger/rc.conf rc.conf
 
-cd ~/.config/rofi
+cd /home/$USER/.config/rofi
 rm -rf config
-ln -s ~/git/.config/rofi/config config
+ln -s /home/$USER/git/.config/rofi/config config
 rm -rf config.rasi
-ln -s ~/git/.config/rofi/config.rasi config.rasi
+ln -s /home/$USER/git/.config/rofi/config.rasi config.rasi
 rm -rf config.wpgtk
-ln -s ~/git/.config/rofi/config.wpgtk config.wpgtk
+ln -s /home/$USER/git/.config/rofi/config.wpgtk config.wpgtk
 
-cd ~/git/
-cp -a .themes ~/.themes
-cp -a .icons ~/.icons
+cd /home/$USER/git/
+cp -a .themes /home/$USER/.themes
+cp -a .icons /home/$USER/.icons
 
-#chmod +x ~/git/keyboard/keyboard_activate.sh
-#chmod +x ~/git/keyboard/keyboard_deactivate.sh
-
+#chmod +x /home/$USER/git/keyboard/keyboard_activate.sh
+#chmod +x /home/$USER/git/keyboard/keyboard_deactivate.sh
 
 }
 
