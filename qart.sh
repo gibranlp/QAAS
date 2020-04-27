@@ -104,7 +104,7 @@ for aur_packet in "${aur_packets[@]}"; do
 done
 ## -------------------Instalar ZSH -----------------------------------##########
 
-sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+#sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-/home/$USER/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-/home/$USER/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
@@ -137,35 +137,35 @@ mkdir /home/$USER/Pictures/screenshots
 ## Creando enlaces simbólicos
 cd
 rm -rf .Xdefaults
-ln -s /home/$USER/QAAS/.Xdefaults .Xdefaults
+ln -s /home/$USER/QAAS/dotfiles/.Xdefaults .Xdefaults
 rm -rf .zshrc
-ln -s /home/$USER/QAAS/.zshrc .zshrc
+ln -s /home/$USER/QAAS/dotfiles/.zshrc .zshrc
 
 cd /home/$USER/.config/qtile
 rm -rf config.py
-ln -s /home/$USER/QAAS/.config/qtile/config_desktop.py config.py
+ln -s /home/$USER/QAAS/dotfiles/.config/qtile/config_desktop.py config.py
 rm -rf autostart
-ln -s /home/$USER/QAAS/.config/qtile/autostart_laptop.sh autostart.sh
+ln -s /home/$USER/QAAS/dotfiles/.config/qtile/autostart_laptop.sh autostart.sh
 chmod +x autostart.sh
 
 cd /home/$USER/.config/ranger
 rm -rf rc.conf
-ln -s /home/$USER/QAAS/.config/ranger/rc.conf rc.conf
+ln -s /home/$USER/QAAS/dotfiles/.config/ranger/rc.conf rc.conf
 
 cd /home/$USER/.config/rofi
 rm -rf config
-ln -s /home/$USER/QAAS/.config/rofi/config config
+ln -s /home/$USER/QAAS/dotfiles/.config/rofi/config config
 rm -rf config.rasi
-ln -s /home/$USER/QAAS/.config/rofi/config.rasi config.rasi
+ln -s /home/$USER/QAAS/dotfiles/.config/rofi/config.rasi config.rasi
 rm -rf config.wpgtk
-ln -s /home/$USER/QAAS/.config/rofi/config.wpgtk config.wpgtk
+ln -s /home/$USER/QAAS/dotfiles/.config/rofi/config.wpgtk config.wpgtk
 
-cd /home/$USER/QAAS/
+cd /home/$USER/QAAS/dotfiles/
 cp -a .themes /home/$USER/.themes
 cp -a .icons /home/$USER/.icons
 
-chmod +x /home/$USER/QAAS/keyboard/keyboard_activate.sh
-chmod +x /home/$USER/QAAS/keyboard/keyboard_deactivate.sh
+chmod +x /home/$USER/QAAS/dotfiles/keyboard/keyboard_activate.sh
+chmod +x /home/$USER/QAAS/dotfiles/keyboard/keyboard_deactivate.sh
 
 }
 

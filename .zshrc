@@ -1,0 +1,1 @@
+/home/gibranlp/QAAS/dotfiles/.zshrc
