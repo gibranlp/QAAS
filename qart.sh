@@ -122,11 +122,14 @@ for pip_packet in "${pip_packets[@]}"; do
   echo "Instalando --> ${pip_packet}"
   sudo pip install "${pip_packet}"
 done
+}
 
 
 ## --------------- Configuraciones y archivos ------------------------##########
-
 sudo systemctl enable lightdm.service # Habiltar lightdm
+function f_files () {
+
+
 
 ## Creando directorios
 mkdir /home/$USER/.config/qtile
@@ -143,7 +146,7 @@ ln -s /home/$USER/QAAS/dotfiles/.zshrc
 cd /home/$USER/.config/qtile
 rm -rf config.py
 ln -s /home/$USER/QAAS/dotfiles/.config/qtile/config_desktop.py config.py
-rm -rf autostart
+rm -rf autostart.sh
 ln -s /home/$USER/QAAS/dotfiles/.config/qtile/autostart_desktop.sh autostart.sh
 chmod +x autostart.sh
 
@@ -182,12 +185,15 @@ echo -e "\n########################"
 echo "[=]  Menú Principal     "
 echo "########################"
 PS3='Selecciona una opción: '
-options=("[=]Base" "[=]Salir" )
+options=("[=]Base" "[=]Files" "[=]Salir" )
 select opt in "${options[@]}"
 do
   case $opt in
     "[=]Base")
       f_base
+      ;;
+    "[=]Files")
+      f_files
       ;;
     "[=]Salir")
       break
