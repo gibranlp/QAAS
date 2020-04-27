@@ -137,28 +137,27 @@ mkdir /home/$USER/Pictures/screenshots
 ## Creando enlaces simbólicos
 cd
 rm -rf .Xdefaults
-ln -s /home/$USER/QAAS/dotfiles/.Xdefaults .Xdefaults
+ln -s /home/$USER/QAAS/dotfiles/.Xdefaults
 rm -rf .zshrc
-ln -s /home/$USER/QAAS/dotfiles/.zshrc .zshrc
-
+ln -s /home/$USER/QAAS/dotfiles/.zshrc
 cd /home/$USER/.config/qtile
 rm -rf config.py
 ln -s /home/$USER/QAAS/dotfiles/.config/qtile/config_desktop.py config.py
 rm -rf autostart
-ln -s /home/$USER/QAAS/dotfiles/.config/qtile/autostart_laptop.sh autostart.sh
+ln -s /home/$USER/QAAS/dotfiles/.config/qtile/autostart_desktop.sh autostart.sh
 chmod +x autostart.sh
 
 cd /home/$USER/.config/ranger
 rm -rf rc.conf
-ln -s /home/$USER/QAAS/dotfiles/.config/ranger/rc.conf rc.conf
+ln -s /home/$USER/QAAS/dotfiles/.config/ranger/rc.conf
 
 cd /home/$USER/.config/rofi
 rm -rf config
 ln -s /home/$USER/QAAS/dotfiles/.config/rofi/config config
 rm -rf config.rasi
-ln -s /home/$USER/QAAS/dotfiles/.config/rofi/config.rasi config.rasi
+ln -s /home/$USER/QAAS/dotfiles/.config/rofi/config.rasi
 rm -rf config.wpgtk
-ln -s /home/$USER/QAAS/dotfiles/.config/rofi/config.wpgtk config.wpgtk
+ln -s /home/$USER/QAAS/dotfiles/.config/rofi/config.wpgtk
 
 cd /home/$USER/QAAS/dotfiles/
 cp -a .themes /home/$USER/.themes
