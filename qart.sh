@@ -137,35 +137,35 @@ mkdir /home/$USER/Pictures/screenshots
 ## Creando enlaces simbólicos
 cd
 rm -rf .Xdefaults
-ln -s /home/$USER/git/.Xdefaults .Xdefaults
+ln -s /home/$USER/QAAS/.Xdefaults .Xdefaults
 rm -rf .zshrc
-ln -s /home/$USER/git/.zshrc .zshrc
+ln -s /home/$USER/QAAS/.zshrc .zshrc
 
 cd /home/$USER/.config/qtile
 rm -rf config.py
-ln -s /home/$USER/git/.config/qtile/config_desktop.py config.py
+ln -s /home/$USER/QAAS/.config/qtile/config_desktop.py config.py
 rm -rf autostart
-ln -s /home/$USER/git/.config/qtile/autostart_laptop.sh autostart.sh
+ln -s /home/$USER/QAAS/.config/qtile/autostart_laptop.sh autostart.sh
 chmod +x autostart.sh
 
 cd /home/$USER/.config/ranger
 rm -rf rc.conf
-ln -s /home/$USER/git/.config/ranger/rc.conf rc.conf
+ln -s /home/$USER/QAAS/.config/ranger/rc.conf rc.conf
 
 cd /home/$USER/.config/rofi
 rm -rf config
-ln -s /home/$USER/git/.config/rofi/config config
+ln -s /home/$USER/QAAS/.config/rofi/config config
 rm -rf config.rasi
-ln -s /home/$USER/git/.config/rofi/config.rasi config.rasi
+ln -s /home/$USER/QAAS/.config/rofi/config.rasi config.rasi
 rm -rf config.wpgtk
-ln -s /home/$USER/git/.config/rofi/config.wpgtk config.wpgtk
+ln -s /home/$USER/QAAS/.config/rofi/config.wpgtk config.wpgtk
 
-cd /home/$USER/git/
+cd /home/$USER/QAAS/
 cp -a .themes /home/$USER/.themes
 cp -a .icons /home/$USER/.icons
 
-#chmod +x /home/$USER/git/keyboard/keyboard_activate.sh
-#chmod +x /home/$USER/git/keyboard/keyboard_deactivate.sh
+chmod +x /home/$USER/QAAS/keyboard/keyboard_activate.sh
+chmod +x /home/$USER/QAAS/keyboard/keyboard_deactivate.sh
 
 }
 
