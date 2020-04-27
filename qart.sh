@@ -96,7 +96,7 @@ makepkg -si && cd
 rm -rf yay
 yay
 
-aur_packets=('rxvt-unicode-pixbuf' 'tusk' 'ocs-url' 'minder-git' 'typora' 'onlyoffice-bin' 'fontpreview-git' 'dragon-drag-and-drop' 'mailspring' 'rxvt-unicode-pixbuf' 'spotify' 'whatsapp-nativefier-dark')
+aur_packets=('rxvt-unicode-pixbuf' 'ocs-url' 'onlyoffice-bin' 'fontpreview-git' 'dragon-drag-and-drop' 'mailspring' 'spotify' 'whatsapp-nativefier-dark' 'boost-note-bin')
 
 for aur_packet in "${aur_packets[@]}"; do
       echo "Instalando --> ${aur_packet}"
