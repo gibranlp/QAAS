@@ -84,26 +84,11 @@ for packet in "${packets[@]}"; do
     sudo pacman -S "${packet}" --noconfirm --needed
 done
 
-sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist # Utilizar los 5 mirrors más rápidos segun la localización
+#sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist # Utilizar los 5 mirrors más rápidos segun la #localización
 
 sudo pacman -Syyu --noconfirm --needed # actualizar todos los paquetes
 
 sudo sed -i "s/-j2/-j$(nproc)/;s/^#MAKEFLAGS/MAKEFLAGS/" /etc/makepkg.conf # utilizar todos los cores del procesador para compilar
-## ------------------Programas de Python -----------------------------##########
-
-pip_packets=(
-  'pywal'
-  'psutil'
-  'fontawesome'
-  'xdg'
-  'iwlib'
-)
-
-for pip_packet in "${pip_packets[@]}"; do
-  echo "Instalando --> ${pip_packet}"
-  sudo pip install "${pip_packet}"
-done
-
 ## ------------------Instalar Yay ------------------------------------##########
 
 git clone https://aur.archlinux.org/yay.git && cd yay
@@ -122,6 +107,22 @@ done
 sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-/home/$USER/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-/home/$USER/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+## ------------------Programas de Python -----------------------------##########
+
+pip_packets=(
+  'pywal'
+  'psutil'
+  'fontawesome'
+  'xdg'
+  'iwlib'
+)
+
+for pip_packet in "${pip_packets[@]}"; do
+  echo "Instalando --> ${pip_packet}"
+  sudo pip install "${pip_packet}"
+done
+
 
 ## --------------- Configuraciones y archivos ------------------------##########
 
