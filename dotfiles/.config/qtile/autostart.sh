@@ -20,7 +20,7 @@
 
 # Funcion para cambiar el wallpaper aleatoriamente
 function rand_wall (){
-  dir='/home/gibranlp/MEGA/wallPapers/'
+  dir='/home/gibranlp/Cloud/wallPapers/'
   wal -a 85 -i "${dir[RANDOM % ${#dir[@]}]}" -q  &
   qtile-cmd -o cmd -f restart &
 }
