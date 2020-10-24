@@ -22,12 +22,20 @@ import os
 import re
 import socket
 import subprocess
-from libqtile.config import Key, Screen, Group, Match, Drag, Click
+from libqtile.config import Key, Screen, Group, Match, Drag, Click, Rule
 from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
 from libqtile.widget import Spacer
 import subprocess
 import json
+
+##### STARTUP APPLICATIONS #####
+
+@hook.subscribe.startup_once
+def start_once():
+    home = os.path.expanduser('~')
+    subprocess.call([home + '/.config/qtile/autostart.sh'])
+
 
 ##### PYWAL GENERATED PALETTE IS USED HERE #####
 with open('/home/gibranlp/.cache/wal/colors.json') as json_file:
@@ -69,29 +77,16 @@ def app_or_group(group, app):
             qtile.cmd_spawn(app)
     return f
 
-##### GROUPS #####
-
-groups = [
-    Group("1", exclusive=True,init=True,persist=True, matches=[Match(wm_class=['URxvt', 'Nm-applet','MEGASync', 'thunar', 'Thunar', 'Com.github.aimproxy.dotfonts','Lightdm-gtk-greeter-settings','Blueberry.py', 'gnome-disks', 'Gnome-disks'])],position=1,layout="monadtall",label=""),
-    Group("2", exclusive=True, matches=[Match(wm_class=['Tusk', 'Zoom','zoom','telegram-desktop-bin', 'whatsapp-nativefier-d40211','Hexchat','TelegramDesktop','MEGAsync'])],position=5,layout="monadtall",label=""),
-    Group("3", exclusive=True, matches=[Match(wm_class=['vlc','Mailspring','mailspring','MEGAsync','firefoxdeveloperedition','firefox','Filezilla','transmission-gtk','Transmission-gtk'])],position=2,layout="monadtall",label=""),
-    Group("4", exclusive=True, matches=[Match(wm_class=['vlc','Atom', 'atom', 'Typora','Evince', 'MEGAsync','DesktopEditors'])],position=3,layout="monadtall",label=""),
-    Group("5", exclusive=True, matches=[Match(wm_class=['Gimp-2.10','Inkscape','feh', 'Com.github.phase1geo.minder', 'MEGAsync'])],position=4,layout="monadtall",label=""),
-    Group("6", exclusive=True, matches=[Match(wm_class=['vlc','VirtualBox Manager', 'VirtualBox Machine'])],position=6,layout="monadtall",label=""),
-    Group("7", exclusive=False, init=True,matches=[Match(wm_class=['Spotify','spotify'])],position=8,layout="monadtall",label="")]
-
-
-#### SHORTCUTS ####
+#### Shortcuts  ####
 
 def init_keys():
     keys = [
-
+            Key([mod],"Return",lazy.function(app_or_group('1', 'urxvt'))),
             Key([mod, "shift"], "Return", lazy.spawncmd()),
             Key([mod], "q",lazy.window.kill()), # Kill Window
             Key([mod], "r",lazy.restart()), # Restart Qtile
             Key([mod, "shift"], "q",lazy.shutdown()), # Logout
-            Key([mod, "control"], "k",lazy.layout.section_up()),# Move up a section in treetab
-            Key([mod, "control"], "j",lazy.layout.section_down()), # Move down a section in treetab
+            Key([mod], "Escape", lazy.spawn('xkill')),
 
             #### Monadtall Layout Keybindings ####
             Key([mod], "Tab",lazy.layout.down()), # Change focus of windows down
@@ -103,16 +98,6 @@ def init_keys():
             Key([mod], "Up", lazy.layout.down()),
             Key([mod], "Down", lazy.layout.up()),
 
-
-            Key([mod], "i", lazy.layout.grow()),
-            Key([mod], "m", lazy.layout.shrink()),
-            Key([mod], "n", lazy.layout.normalize()),
-            Key([mod], "o", lazy.layout.maximize()),
-            Key([mod, "shift"], "space", lazy.layout.flip()),
-
-            Key([mod], "Left", lazy.group.prevgroup()),
-            Key([mod], "Right", lazy.group.nextgroup()),
-
             #### Brightness
             Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 5")),
             Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 5")),
@@ -122,14 +107,9 @@ def init_keys():
             Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q set Master 5%-")),
             Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -q set Master 5%+")),
 
-            # Switch groups
-	        Key([mod], 'Left', lazy.screen.prev_group(skip_managed=True, )),
-	        Key([mod], 'Right', lazy.screen.next_group(skip_managed=True, )),
-	        Key([mod], 'Escape', lazy.screen.togglegroup()),
-
             #### Media Control
-            Key([mod], "v", lazy.spawn('/home/gibranlp/MEGA/computerStuff/keyboard/keyboard_activate.sh')),
-            Key([mod], "b", lazy.spawn('/home/gibranlp/MEGA/computerStuff/keyboard/keyboard_deactivate.sh')),
+            #Key([mod], "v", lazy.spawn('/home/gibranlp/MEGA/computerStuff/keyboard/keyboard_activate.sh')),
+            #Key([mod], "b", lazy.spawn('/home/gibranlp/MEGA/computerStuff/keyboard/keyboard_deactivate.sh')),
             Key([], "XF86AudioPlay", lazy.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")),
             Key([], "XF86AudioNext", lazy.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next")),
             Key([], "XF86AudioPrev", lazy.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous")),
@@ -138,9 +118,21 @@ def init_keys():
             ### Window hotkeys
             Key([alt], "f", lazy.window.toggle_fullscreen()),
             Key([alt, "shift"], "f", lazy.window.toggle_floating()),
+            Key([mod], "space", lazy.next_layout()),
+
+            # Resize windows
+            Key([mod, "shift"], "Up", lazy.layout.grow()),
+            Key([mod, "shift"], "Down", lazy.layout.shrink()),
+            Key([mod, "shift"], "space", lazy.layout.flip()),
+
+            # Change focus
+            Key([mod], "Up", lazy.layout.up()),
+            Key([mod], "Down", lazy.layout.down()),
+            Key([mod], "Left", lazy.layout.left()),
+            Key([mod], "Right", lazy.layout.right()),
 
             ### Screenshots
-            Key([], "Print", lazy.spawn("scrot -e 'mv $f /home/gibranlp/Pictures/screenshots/'")),
+            Key([], "Print", lazy.spawn("scrot -e 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'")),
 
             ##### GROUPS (DESKTOPS) #####
 
@@ -151,11 +143,9 @@ def init_keys():
             ## Group 2 (Social: Whatsapp, Telegram, )
             Key([mod, "shift"],"w",lazy.function(app_or_group('2', 'whatsapp-nativefier'))),
             Key([mod, "shift"],"t",lazy.function(app_or_group('2', 'telegram'))),
-            Key([mod],"z",lazy.function(app_or_group('2', 'zoom'))),
 
             ## Group 3 (WEB: Firefox, Mail )(Admin: Mail, notes, social)
             Key([mod],"f",lazy.function(app_or_group('3', 'firefox'))),
-            Key([mod, "shift"],"f",lazy.function(app_or_group('3', 'firefox-developer-edition'))),
             Key([mod],"t",lazy.function(app_or_group('3', 'tusk'))),
             Key([mod],"g",lazy.function(app_or_group('3', 'mailspring'))),
 
@@ -182,6 +172,24 @@ def init_keys():
             keys.append(Key([mod, 'shift'], i.name, lazy.window.togroup(i.name)))
     return keys
 
+
+##### GROUPS #####
+
+groups = [
+    Group("1",position=1,matches=[Match(wm_class=['URxvt', 'Nm-applet','MEGASync', 'thunar', 'Thunar', 'Com.github.aimproxy.dotfonts','Lightdm-gtk-greeter-settings','Blueberry.py', 'gnome-disks', 'Gnome-disks'])],layout="monadtall",label=""),
+
+    Group("2",position=2,matches=[Match(wm_class=['Tusk', 'Zoom','zoom','telegram-desktop-bin', 'whatsapp-nativefier-d40211','whatsapp-nativefier-d52542','Hexchat','TelegramDesktop','MEGAsync'])],layout="monadtall",label=""),
+
+    Group("3",position=3,matches=[Match(wm_class=['vlc','Mailspring','mailspring','MEGAsync','firefox','Filezilla','transmission-gtk','Transmission-gtk'])],layout="monadtall",label=""),
+
+    Group("4",position=4,matches=[Match(wm_class=['vlc','Atom', 'atom', 'Typora','Evince', 'MEGAsync','DesktopEditors'])],layout="monadtall",label=""),
+
+    Group("5",position=5,matches=[Match(wm_class=['Gimp-2.10','Inkscape','feh', 'Com.github.phase1geo.minder', 'MEGAsync'])],layout="monadtall",label=""),
+
+    Group("6",position=6,matches=[Match(wm_class=['vlc','VirtualBox Manager', 'VirtualBox Machine'])],layout="monadtall",label=""),
+
+    Group("7",position=7,matches=[Match(wm_class=['Spotify','spotify'])],layout="max",label="")]
+
 ##### LAYOUTS #####
 
 def init_floating_layout():
@@ -207,9 +215,9 @@ def init_layouts():
             #layout.Matrix(single_margin=10,border_normal=colors[16],border_focus=colors[17],**layout_theme),
             #layout.Zoomy(**layout_theme),
             layout.MonadTall(single_margin=10,border_normal=colors[16],border_focus=colors[17],**layout_theme),
-            #layout.Max(**layout_theme),
-            layout.TreeTab(font = "Fira Code",sections = ["<Treetab/>"],section_fontsize = 15,bg_color = colors[16],active_bg = colors[3],active_fg = colors[16],inactive_bg = colors[17],inactive_fg = colors[16],padding_y = 5,section_top = 10,panel_width = 250,**layout_theme),]
-            #layout.Floating(**layout_theme)]
+            layout.Max(**layout_theme),
+            layout.TreeTab(font = "Fira Code",sections = ["<Treetab/>"],section_fontsize = 15,bg_color = colors[16],active_bg = colors[3],active_fg = colors[16],inactive_bg = colors[17],inactive_fg = colors[16],padding_y = 5,section_top = 10,panel_width = 250,**layout_theme),
+            layout.Floating(**layout_theme)]
 
 ##### WIDGETS #####
 
@@ -220,38 +228,39 @@ def init_widgets_list_top():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list_top = [
                 widget.TextBox(text="",background=colors[16],foreground=colors[17],fontshadow=colors[1]),
-                widget.TextBox(font="Arial",foreground= colors[3],text="◢",fontsize= 50,padding=0),
+                widget.TextBox(font="Arial",foreground= colors[5],text="◢",fontsize= 50,padding=0),
                 widget.GroupBox(
                         disable_drag=True,
-                        hide_unused=True,
+                        hide_unused=False,
                         fontshadow=colors[16],
-                        margin_y = 0,
+                        margin_y = 2,
                         margin_x = 0,
-                        padding_y = 2,
-                        padding_x = 2,
-                        borderwidth = 5,
-                        active = colors[16], #All groups
-                        inactive = colors[2],
+                        padding_y = 0,
+                        padding_x = 5,
+                        borderwidth = 0,
+                        active = colors[0],
+                        inactive = colors[0],
                         rounded = False,
-                        highlight_method = "block",
-                        this_current_screen_border = colors[4],
+                        highlight_method = "text",
+                        this_current_screen_border = colors[17],
                         this_screen_border = colors[3],
-                        #other_current_screen_border = colors[16],
-                        #other_screen_border = colors[16],
+                        other_current_screen_border = colors[16],
+                        other_screen_border = colors[16],
                         foreground = colors[16],
-                        background = colors[3]
+                        background = colors[5]
                         ),
-                widget.TextBox(font="Arial",foreground= colors[3],text="◤ ",fontsize= 50,padding=-3),
+                widget.TextBox(font="Arial",foreground= colors[5],text="◤ ",fontsize= 50,padding=-3),
                 widget.Notify(default_timeout=10,foreground_low= colors[17],foreground_urgent= colors[9],foreground=colors[17],background = colors[16],fontshadow=colors[1]),
                 widget.Sep(linewidth = 0,padding = 5,foreground = colors[17],background=colors[16]),
                 widget.WindowName(foreground = colors[17],background = colors[16],padding=5, fontshadow=colors[1]),
-                widget.TextBox(font="Arial",foreground= colors[0],background=colors[1],text="◤ ",fontsize=50,padding=-3),
-                widget.Systray(icon_size=20,background=colors[1],foreground=colors[16]),
+                widget.TextBox(font="Arial",text='◢',background=colors[16],foreground=colors[1],padding=-4,fontsize=64),
+                widget.TextBox(text="",padding=5,foreground=colors[16],background=colors[1],fontshadow=colors[17],fontsize=14),
+                widget.Mpris2(name='spotify',objname='org.mpris.MediaPlayer2.spotify',scroll_chars=30,display_metadata=['xesam:artist','xesam:title'],background=colors[1],foreground=colors[16],fontshadow=colors[1],scroll_interval=0.5,scroll_wait_intervals=500,stop_pause_text='<pause/>'),
                 widget.TextBox(text='◢',background = colors[1],foreground = colors[3],padding=-3,fontsize=65),
                 widget.TextBox(text="",padding = 5,foreground=colors[16],background=colors[3],fontshadow=colors[1],fontsize=12),
-                widget.CheckUpdates(distro='Arch',colour_have_updates=colors[16],colour_no_updates=colors[16],fontshadow=colors[1],execute='urxvt -e sh -c "sudo pacman -Syu --noconfirm"',foreground=colors[16],background=colors[3]),
+                widget.CheckUpdates(distro='Arch',update_interval=3600,colour_have_updates=colors[16],colour_no_updates=colors[16],fontshadow=colors[1],execute='urxvt -e sh -c "sudo pacman -Syu --noconfirm"',foreground=colors[16],background=colors[3]),
                 widget.TextBox(font="Arial",text='◢',background=colors[3],foreground=colors[7],padding=-4,fontsize=64),
-                widget.Pomodoro(background=colors[7],color_active=colors[16],color_inactive=colors[16],fontshadow=colors[1],color_break=colors[4],length_long_break=15,length_pomodori=45,length_short_break=5,notification_on=True,num_pomodori=2,prefix_inactive='<start/>',prefix_paused='<pause/>'),
+                widget.Systray(icon_size=20,background=colors[7],foreground=colors[16]),
                 widget.TextBox(font="Arial",text='◢',background=colors[7],foreground=colors[16],padding=-4,fontsize=64),
                 widget.TextBox(text=" ",foreground=colors[3],background=colors[16],padding=0,fontshadow=colors[2],fontsize=12),
                 widget.Volume(channel='Master',background=colors[16],foreground=colors[17]),
@@ -263,16 +272,11 @@ def init_widgets_list_top():
 def init_widgets_list_bot():
     widgets_list_bot = [
                 widget.Spacer(length=bar.STRETCH,),
-                widget.Prompt(prompt="{0}@{1}: ".format(os.environ["USER"], socket.gethostname())),
-                widget.TextBox(font="Arial",text='◢',background=colors[16],foreground=colors[1],padding=-4,fontsize=64),
-                widget.TextBox(text="",padding = 5,foreground=colors[16],background=colors[1],fontshadow=colors[17],fontsize=15),
-                widget.Mpris2(name='Spotify',objname='org.mpris.MediaPlayer2.spotify',scroll_chars=20,display_metadata=['xesam:artist','xesam:title'],background=colors[1],foreground=colors[16],fontshadow=colors[17],scroll_wait_intervals=0,scroll_interval=0.0,stop_pause_text='<pause/>'),
-                widget.TextBox(font="Arial",text="◢",background = colors[1],foreground=colors[2],padding=-1,fontsize=40),
-                widget.Wlan(interface="wlp3s0",foreground=colors[16],background=colors[2],padding=5),
-                #widget.NetGraph(interface = "enp3s0",foreground=colors[16],background=colors[2],padding=5),
-                widget.NetGraph(interface = "wlp3s0",foreground=colors[16],background=colors[2],padding=5),
-                #widget.Net(interface = "enp3s0",foreground=colors[16],background=colors[2],padding=5),
-                widget.Net(interface = "wlp3s0",foreground=colors[16],background=colors[2],padding=5),
+                widget.TextBox(font="Arial",text="◢",background = colors[0],foreground=colors[1],padding=-1,fontsize=40),
+                widget.YahooWeather(background = colors[0],foreground=colors[2],woeid=235058),
+                widget.TextBox(font="Arial",text="◢",background = colors[0],foreground=colors[2],padding=-1,fontsize=40),
+                widget.NetGraph(interface = "enp6s0",border_color= colors[0],graph_color= colors[0],foreground=colors[16],background=colors[2],padding=5),
+                widget.Net(interface = "enp6s0",foreground=colors[16],background=colors[2],padding=5),
                 widget.TextBox(font="Arial",text="◢",background = colors[2],foreground=colors[6],padding=-1,fontsize=40),
                 widget.DF(measure='G',Partition='/',update_interval=60,foreground=colors[16],background=colors[6],padding=5,visible_on_warn=False,),
                 widget.TextBox(font="Arial",text="◢",background = colors[6],foreground=colors[7],padding=-1,fontsize=40),
@@ -319,7 +323,7 @@ def init_mouse():
 if __name__ in ["config", "__main__"]:
     mod = "mod4"
     alt = "mod1"                                   # Sets mod key to SUPER/WINDOWS
-    myTerm = "urxvt"                                  # Terminal
+    myTerm = "xterm"                                  # Terminal
     myConfig = "/home/gibranlp/.config/qtile/config.py"    # Qtile config file location
 
     colors = init_colors()
@@ -327,7 +331,22 @@ if __name__ in ["config", "__main__"]:
     mouse = init_mouse()
     #group_names = init_group_names()
     #groups = init_groups()
-    floating_layout = init_floating_layout()
+    floating_layout = layout.Floating(float_rules=[
+        {'wmclass': 'confirm'},
+        {'wmclass': 'dialog'},
+        {'wmclass': 'download'},
+        {'wmclass': 'error'},
+        {'wmclass': 'file_progress'},
+        {'wmclass': 'notification'},
+        {'wmclass': 'splash'},
+        {'wmclass': 'toolbar'},
+        {'wmclass': 'confirmreset'},  # gitk
+        {'wmclass': 'makebranch'},  # gitk
+        {'wmclass': 'maketag'},  # gitk
+        {'wname': 'branchdialog'},  # gitk
+        {'wname': 'pinentry'},  # GPG key password entry
+        {'wmclass': 'ssh-askpass'},  # ssh-askpass
+    ])
     layout_theme = init_layout_theme()
     border_args = init_border_args()
     layouts = init_layouts()
@@ -337,20 +356,5 @@ if __name__ in ["config", "__main__"]:
     widgets_list_bot = init_widgets_list_bot()
     widgets_screen_top = init_widgets_screen_top()
     widgets_screen_bot = init_widgets_screen_bot()
-
-
-##### SETS GROUPS KEYBINDINGS #####
-
-
-
-##### STARTUP APPLICATIONS #####
-
-@hook.subscribe.startup_once
-def start_once():
-    home = os.path.expanduser('~')
-    subprocess.call([home + '/.config/qtile/autostart.sh'])
-
-##### NEEDED FOR SOME JAVA APPS #####
-
 #wmname = "LG3D"
 wmname = "qtile"
