@@ -323,7 +323,7 @@ def init_mouse():
 if __name__ in ["config", "__main__"]:
     mod = "mod4"
     alt = "mod1"                                   # Sets mod key to SUPER/WINDOWS
-    myTerm = "xterm"                                  # Terminal
+    myTerm = "urxvt"                                  # Terminal
     myConfig = "/home/gibranlp/.config/qtile/config.py"    # Qtile config file location
 
     colors = init_colors()
