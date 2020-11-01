@@ -58,13 +58,13 @@ function rofi(){
   FILE=~/.config/rofi
     if [ -d "$FILE" ]; then
       cp ~/QAAS/dotfiles/.config/rofi/config ~/.config/rofi/config
-      cp ~/QAAS/dotfiles/.config/rofi/config ~/.config/rofi/config.rasi
-      cp ~/QAAS/dotfiles/.config/rofi/config ~/.config/rofi/config.wpgtk
+      cp ~/QAAS/dotfiles/.config/rofi/config.rasi ~/.config/rofi/config.rasi
+      cp ~/QAAS/dotfiles/.config/rofi/config.wpgtk ~/.config/rofi/config.wpgtk
     else
       mkdir ~/.config/rofi
       cp ~/QAAS/dotfiles/.config/rofi/config ~/.config/rofi/config
-      cp ~/QAAS/dotfiles/.config/rofi/config ~/.config/rofi/config.rasi
-      cp ~/QAAS/dotfiles/.config/rofi/config ~/.config/rofi/config.wpgtk
+      cp ~/QAAS/dotfiles/.config/rofi/config.rasi ~/.config/rofi/config.rasi
+      cp ~/QAAS/dotfiles/.config/rofi/config.wpgtk ~/.config/rofi/config.wpgtk
     fi
 }
 

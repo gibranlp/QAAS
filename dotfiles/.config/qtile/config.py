@@ -147,19 +147,20 @@ def init_keys():
             ## Group 3 (WEB: Firefox, Mail )(Admin: Mail, notes, social)
             Key([mod],"f",lazy.function(app_or_group('3', 'firefox'))),
             Key([mod],"t",lazy.function(app_or_group('3', 'tusk'))),
-            Key([mod],"g",lazy.function(app_or_group('3', 'mailspring'))),
+            Key([mod],"m",lazy.function(app_or_group('3', 'mailspring'))),
 
             ## Group 4 (Code/Write/Office: Atom, typora, onlyofice)
-            Key([mod],"o",lazy.function(app_or_group("4", "desktopeditors"))),
-            Key([mod, "shift"],"c",lazy.function(app_or_group('4', 'typora'))),
+            Key([mod],"o",lazy.function(app_or_group("4", 'desktopeditors'))),
+            Key([mod],"y",lazy.function(app_or_group('4', 'typora'))),
             Key([mod],"a",lazy.function(app_or_group('4', 'atom'))),
 
             ## Group 5 (Design: Gimp, Inkscape, feh)
-            Key([mod],"p",lazy.function(app_or_group('5', 'gimp'))),
+            Key([mod],"g",lazy.function(app_or_group('5', 'gimp'))),
             Key([mod, "shift"],"m",lazy.function(app_or_group('5', 'com.github.phase1geo.minder'))),
 
-            ## Group 6 (Virtual Stuff)
+            ## Group 6 (Virtual Stuff games)
             Key([mod],"v",lazy.function(app_or_group('6', 'virtualbox'))),
+            Key([mod],"b",lazy.function(app_or_group('6', '/home/gibranlp/Albion/./Albion-Online'))),
 
             ## Group 7 (Música)
             Key([mod],"s",lazy.function(app_or_group('7', 'spotify'))),
@@ -176,9 +177,9 @@ def init_keys():
 ##### GROUPS #####
 
 groups = [
-    Group("1",position=1,matches=[Match(wm_class=['URxvt', 'Nm-applet','Nextcloud', 'thunar', 'Thunar','Albion Online Launcher', 'gnome-disks', 'Gnome-disks'])],layout="monadtall",label=""),
+    Group("1",position=1,matches=[Match(wm_class=['URxvt', 'Nm-applet','Nextcloud', 'thunar', 'Thunar', 'gnome-disks', 'Gnome-disks'])],layout="monadtall",label=""),
 
-    Group("2",position=2,matches=[Match(wm_class=['Zoom','zoom','telegram-desktop-bin', 'whatsapp-nativefier-d40211','whatsapp-nativefier-d52542','Hexchat','TelegramDesktop','Nextcloud'])],layout="monadtall",label=""),
+    Group("2",position=2,matches=[Match(wm_class=['Zoom','zoom','telegram-desktop-bin', 'whatsapp-nativefier','TelegramDesktop','Nextcloud'])],layout="monadtall",label=""),
 
     Group("3",position=3,matches=[Match(wm_class=['vlc','Mailspring','mailspring','Nextcloud','firefox','Filezilla','transmission-gtk','Transmission-gtk'])],layout="monadtall",label=""),
 
@@ -186,9 +187,9 @@ groups = [
 
     Group("5",position=5,matches=[Match(wm_class=['Gimp-2.10','Inkscape','feh', 'Com.github.phase1geo.minder', 'Nextcloud'])],layout="monadtall",label=""),
 
-    Group("6",position=6,matches=[Match(wm_class=['vlc','VirtualBox Manager', 'VirtualBox Machine'])],layout="monadtall",label=""),
+    Group("6",position=6,matches=[Match(wm_class=['vlc','VirtualBox Manager', 'VirtualBox Machine', 'Albion Online Launcher'])],layout="monadtall",label=""),
 
-    Group("7",position=7,matches=[Match(wm_class=['Spotify','spotify'])],layout="max",label="")]
+    Group("7",position=7,matches=[Match(wm_class=['Spotify','spotify'])],layout="monadtall",label="")]
 
 ##### LAYOUTS #####
 
