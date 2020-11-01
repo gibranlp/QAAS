@@ -24,9 +24,8 @@ function rand_wall (){
   wal -a 85 -i "${dir[RANDOM % ${#dir[@]}]}" -q  &
   qtile-cmd -o cmd -f restart &
 }
-
-rand_wall &
 setxkbmap -layout us -variant intl &
 picom &
 numlockx on &
-megasync &
+nextcloud &
+rand_wall &

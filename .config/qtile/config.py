@@ -118,8 +118,8 @@ def init_keys():
 
 
             #### Media Control
-            Key([mod], "v", lazy.spawn('/home/gibranlp/MEGA/computerStuff/keyboard/keyboard_activate.sh')),
-            Key([mod], "b", lazy.spawn('/home/gibranlp/MEGA/computerStuff/keyboard/keyboard_deactivate.sh')),
+            Key([mod], "v", lazy.spawn('/home/gibranlp/Cloud/computerStuff/keyboard/keyboard_activate.sh')),
+            Key([mod], "b", lazy.spawn('/home/gibranlp/Cloud/computerStuff/keyboard/keyboard_deactivate.sh')),
             Key([], "XF86AudioPlay", lazy.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")),
             Key([], "XF86AudioNext", lazy.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next")),
             Key([], "XF86AudioPrev", lazy.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous")),
@@ -187,11 +187,11 @@ def init_keys():
 ##### GROUPS #####
 
 groups = [
-    Group("1", exclusive=True,init=True,persist=True, matches=[Match(wm_class=['URxvt', 'Nm-applet','MEGASync', 'thunar', 'Thunar', 'Com.github.aimproxy.dotfonts','Lightdm-gtk-greeter-settings','Blueberry.py', 'gnome-disks', 'Gnome-disks'])],position=1,layout="monadtall",label=""),
-    Group("2", exclusive=True, matches=[Match(wm_class=['Tusk', 'Zoom','zoom','telegram-desktop-bin', 'whatsapp-nativefier-d40211','whatsapp-nativefier-d52542','Hexchat','TelegramDesktop','MEGAsync'])],position=5,layout="monadtall",label=""),
-    Group("3", exclusive=True, matches=[Match(wm_class=['vlc','Mailspring','mailspring','MEGAsync','firefox','Filezilla','transmission-gtk','Transmission-gtk'])],position=2,layout="monadtall",label=""),
-    Group("4", exclusive=True, matches=[Match(wm_class=['vlc','Atom', 'atom', 'Typora','Evince', 'MEGAsync','DesktopEditors'])],position=3,layout="monadtall",label=""),
-    Group("5", exclusive=True, matches=[Match(wm_class=['Gimp-2.10','Inkscape','feh', 'Com.github.phase1geo.minder', 'MEGAsync'])],position=4,layout="monadtall",label=""),
+    Group("1", exclusive=True,init=True,persist=True, matches=[Match(wm_class=['URxvt', 'Nm-applet','Nextcloud', 'thunar', 'Thunar', 'Com.github.aimproxy.dotfonts','Lightdm-gtk-greeter-settings','Blueberry.py', 'gnome-disks', 'Gnome-disks'])],position=1,layout="monadtall",label=""),
+    Group("2", exclusive=True, matches=[Match(wm_class=['Tusk', 'Zoom','zoom','telegram-desktop-bin', 'whatsapp-nativefier-d40211','whatsapp-nativefier-d52542','Hexchat','TelegramDesktop','Nextcloud'])],position=5,layout="monadtall",label=""),
+    Group("3", exclusive=True, matches=[Match(wm_class=['vlc','Mailspring','mailspring','Nextcloud','firefox','Filezilla','transmission-gtk','Transmission-gtk'])],position=2,layout="monadtall",label=""),
+    Group("4", exclusive=True, matches=[Match(wm_class=['vlc','Atom', 'atom', 'Typora','Evince', 'Nextcloud','DesktopEditors'])],position=3,layout="monadtall",label=""),
+    Group("5", exclusive=True, matches=[Match(wm_class=['Gimp-2.10','Inkscape','feh', 'Com.github.phase1geo.minder', 'Nextcloud'])],position=4,layout="monadtall",label=""),
     Group("6", exclusive=True, matches=[Match(wm_class=['vlc','VirtualBox Manager', 'VirtualBox Machine'])],position=6,layout="monadtall",label=""),
     Group("7", exclusive=False, init=True,matches=[Match(wm_class=['Spotify','spotify'])],position=7,layout="monadtall",label="")]
 
@@ -315,7 +315,7 @@ def init_screens():
 
 @hook.subscribe.client_new
 def floating(window):
-    floating_types = ['notification', 'toolbar', 'splash', 'dialog','MEGAsync','Gcr-prompter']
+    floating_types = ['notification', 'toolbar', 'splash', 'dialog','Nextcloud','Gcr-prompter']
     transient = window.window.get_wm_transient_for()
     if window.window.get_wm_type() in floating_types or transient:
         window.floating = True

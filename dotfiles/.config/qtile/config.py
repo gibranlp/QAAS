@@ -176,15 +176,15 @@ def init_keys():
 ##### GROUPS #####
 
 groups = [
-    Group("1",position=1,matches=[Match(wm_class=['URxvt', 'Nm-applet','MEGASync', 'thunar', 'Thunar', 'Com.github.aimproxy.dotfonts','Lightdm-gtk-greeter-settings','Blueberry.py', 'gnome-disks', 'Gnome-disks'])],layout="monadtall",label=""),
+    Group("1",position=1,matches=[Match(wm_class=['URxvt', 'Nm-applet','Nextcloud', 'thunar', 'Thunar','Albion Online Launcher', 'gnome-disks', 'Gnome-disks'])],layout="monadtall",label=""),
 
-    Group("2",position=2,matches=[Match(wm_class=['Tusk', 'Zoom','zoom','telegram-desktop-bin', 'whatsapp-nativefier-d40211','whatsapp-nativefier-d52542','Hexchat','TelegramDesktop','MEGAsync'])],layout="monadtall",label=""),
+    Group("2",position=2,matches=[Match(wm_class=['Zoom','zoom','telegram-desktop-bin', 'whatsapp-nativefier-d40211','whatsapp-nativefier-d52542','Hexchat','TelegramDesktop','Nextcloud'])],layout="monadtall",label=""),
 
-    Group("3",position=3,matches=[Match(wm_class=['vlc','Mailspring','mailspring','MEGAsync','firefox','Filezilla','transmission-gtk','Transmission-gtk'])],layout="monadtall",label=""),
+    Group("3",position=3,matches=[Match(wm_class=['vlc','Mailspring','mailspring','Nextcloud','firefox','Filezilla','transmission-gtk','Transmission-gtk'])],layout="monadtall",label=""),
 
-    Group("4",position=4,matches=[Match(wm_class=['vlc','Atom', 'atom', 'Typora','Evince', 'MEGAsync','DesktopEditors'])],layout="monadtall",label=""),
+    Group("4",position=4,matches=[Match(wm_class=['vlc','Atom', 'atom', 'Typora','Evince', 'Nextcloud','DesktopEditors'])],layout="monadtall",label=""),
 
-    Group("5",position=5,matches=[Match(wm_class=['Gimp-2.10','Inkscape','feh', 'Com.github.phase1geo.minder', 'MEGAsync'])],layout="monadtall",label=""),
+    Group("5",position=5,matches=[Match(wm_class=['Gimp-2.10','Inkscape','feh', 'Com.github.phase1geo.minder', 'Nextcloud'])],layout="monadtall",label=""),
 
     Group("6",position=6,matches=[Match(wm_class=['vlc','VirtualBox Manager', 'VirtualBox Machine'])],layout="monadtall",label=""),
 
@@ -272,15 +272,15 @@ def init_widgets_list_top():
 def init_widgets_list_bot():
     widgets_list_bot = [
                 widget.Spacer(length=bar.STRETCH,),
-                widget.TextBox(font="Arial",text="◢",background = colors[0],foreground=colors[1],padding=-1,fontsize=40),
-                widget.YahooWeather(background = colors[0],foreground=colors[2],woeid=235058),
+                #widget.TextBox(font="Arial",text="◢",background = colors[0],foreground=colors[1],padding=-1,fontsize=40),
+                #widget.YahooWeather(background = colors[0],foreground=colors[2],woeid=235058),
                 widget.TextBox(font="Arial",text="◢",background = colors[0],foreground=colors[2],padding=-1,fontsize=40),
-                #widget.NetGraph(interface = "enp6s0",border_color= colors[0],graph_color= colors[0],foreground=colors[16],background=colors[2],padding=5),
-                #widget.Net(interface = "enp6s0",foreground=colors[16],background=colors[2],padding=5),
+                widget.NetGraph(interface = "enp6s0",border_color= colors[0],graph_color= colors[0],foreground=colors[16],background=colors[2],padding=5),
+                widget.Net(interface = "enp6s0",foreground=colors[16],background=colors[2],padding=5),
                 widget.TextBox(font="Arial",text="◢",background = colors[2],foreground=colors[6],padding=-1,fontsize=40),
                 widget.DF(measure='G',Partition='/',update_interval=60,foreground=colors[16],background=colors[6],padding=5,visible_on_warn=False,),
                 widget.TextBox(font="Arial",text="◢",background = colors[6],foreground=colors[7],padding=-1,fontsize=40),
-                #widget.ThermalSensor(background=colors[7], foreground=colors[16]),
+                widget.ThermalSensor(background=colors[7], foreground=colors[16]),
                 widget.TextBox(font="Arial",text="◢",background = colors[7],foreground=colors[8],padding=-1,fontsize=40),
                 widget.CurrentLayout(background=colors[8],foreground=colors[16]),
                 widget.TextBox(font="Arial",text="◢",background = colors[8],foreground=colors[9],padding=-1,fontsize=40),
@@ -306,7 +306,7 @@ def init_screens():
 
 @hook.subscribe.client_new
 def floating(window):
-    floating_types = ['notification', 'toolbar', 'splash', 'dialog','MEGAsync','Gcr-prompter']
+    floating_types = ['notification', 'toolbar', 'splash', 'dialog','Nextcloud','Gcr-prompter']
     transient = window.window.get_wm_transient_for()
     if window.window.get_wm_type() in floating_types or transient:
         window.floating = True
