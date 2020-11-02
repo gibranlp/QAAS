@@ -27,6 +27,6 @@ function rand_wall (){
 setxkbmap -layout us -variant intl &
 picom &
 numlockx on &
-nm-applet &
 nextcloud &
+nm-applet &
 rand_wall &

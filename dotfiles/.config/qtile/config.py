@@ -147,8 +147,6 @@ def init_keys():
 
             ## Group 3 (WEB: Firefox, Mail )(Admin: Mail, notes, social)
             Key([mod],"f",lazy.function(app_or_group('3', 'firefox'))),
-            Key([mod],"t",lazy.function(app_or_group('3', 'tusk'))),
-
 
             ## Group 4 (Code/Write/Office: Atom, typora, onlyofice)
             Key([mod],"o",lazy.function(app_or_group("4", 'desktopeditors'))),
