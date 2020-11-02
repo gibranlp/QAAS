@@ -13,7 +13,7 @@ function i_base () {
     'gst-plugins-base'
     'gst-plugins-ugly'
     'alsa-plugins'
-    'otf-fira-code'
+    'ttf-fira-code'
     'pulseaudio'
     'pulseaudio-alsa'
     'pavucontrol'
