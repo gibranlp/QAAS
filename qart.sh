@@ -61,6 +61,7 @@ function f_base () {
     'qtile'
     'lshw'
     'ttf-font-awesome'
+    'gnome-keyring'
     'scrot'
     'rofi'
     'python-pip'

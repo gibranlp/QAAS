@@ -24,6 +24,8 @@ function home(){
   cp ~/QAAS/dotfiles/rand ~/rand
   cd
   chmod +x rand
+  sudo cp ~/Cloud/gibranlp/identidad/logo/logo.png /usr/share/pixmaps/glp-icon.png
+  sudo cp ~/Cloud/wallPapers/login.png /usr/share/backgrounds/anarchy/login.png
 }
 
 function qtile(){
