@@ -22,10 +22,12 @@ function home(){
   cp ~/QAAS/dotfiles/.Xdefaults ~/.Xdefaults
   cp ~/QAAS/dotfiles/.zshrc ~/.zshrc
   cp ~/QAAS/dotfiles/rand ~/rand
+  sudo cp -R ~/QAAS/.themes/Kripton /usr/share/themes
   cd
   chmod +x rand
   sudo cp ~/Cloud/gibranlp/identidad/logo/logo.png /usr/share/pixmaps/glp-icon.png
   sudo cp ~/Cloud/wallPapers/login.png /usr/share/backgrounds/anarchy/login.png
+  sudo
 }
 
 function qtile(){
