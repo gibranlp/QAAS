@@ -27,6 +27,15 @@ function home(){
   sudo cp ~/Cloud/gibranlp/identidad/logo/logo.png /usr/share/pixmaps/glp-icon.png
   sudo cp ~/Cloud/wallPapers/login.png /usr/share/backgrounds/anarchy/login.png
   sudo cp -R ~/QAAS/.themes/Kripton /usr/share/themes
+
+  FILE=~/.themes
+    if [ -d "$FILE" ]; then
+      cp -R ~/QAAS/.themes/Kripton ~/.themes
+    else
+      mkdir ~/.themes
+      cp -R ~/QAAS/.themes/Kripton /usr/share/themes
+    fi
+
 }
 
 function qtile(){

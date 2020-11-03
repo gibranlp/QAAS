@@ -84,9 +84,10 @@ def init_keys():
             Key([mod],"Return",lazy.function(app_or_group('1', 'urxvt'))),
             Key([mod, "shift"], "Return", lazy.spawncmd()),
             Key([mod], "q",lazy.window.kill()), # Kill Window
-            Key([mod], "r",lazy.restart()), # Restart Qtile
+            Key([mod, "shift"], "r",lazy.restart()), # Restart Qtile
             Key([mod, "shift"], "q",lazy.shutdown()), # Logout
             Key([mod], "Escape", lazy.spawn('xkill')),
+            Key([mod],"r",lazy.function(app_or_group('1', '/home/gibranlp/./rand'))),
 
             #### Monadtall Layout Keybindings ####
             Key([mod], "Tab",lazy.layout.down()), # Change focus of windows down
@@ -141,7 +142,7 @@ def init_keys():
             Key([mod],"e",lazy.function(app_or_group("1", "thunar"))),
 
             ## Group 2 (Social: Whatsapp, Telegram, )
-            Key([mod, "shift"],"w",lazy.function(app_or_group('2', 'whatsapp-nativefier'))),
+            Key([mod, "shift"],"w",lazy.function(app_or_group('2', 'whatsdesk'))),
             Key([mod, "shift"],"t",lazy.function(app_or_group('2', 'telegram'))),
             Key([mod],"m",lazy.function(app_or_group('2', 'mailspring'))),
 
