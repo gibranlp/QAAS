@@ -87,7 +87,7 @@ def init_keys():
             Key([mod, "shift"], "r",lazy.restart()), # Restart Qtile
             Key([mod, "shift"], "q",lazy.shutdown()), # Logout
             Key([mod], "Escape", lazy.spawn('xkill')),
-            Key([mod],"r",lazy.function(app_or_group('1', '/home/gibranlp/./rand'))),
+            Key([mod], "r",lazy.spawn('/home/gibranlp/./rand')),
 
             #### Monadtall Layout Keybindings ####
             Key([mod], "Tab",lazy.layout.down()), # Change focus of windows down
@@ -141,6 +141,7 @@ def init_keys():
             Key([mod], "Return", lazy.spawn(myTerm)),
             Key([mod],"e",lazy.function(app_or_group("1", "thunar"))),
 
+
             ## Group 2 (Social: Whatsapp, Telegram, )
             Key([mod, "shift"],"w",lazy.function(app_or_group('2', 'whatsdesk'))),
             Key([mod, "shift"],"t",lazy.function(app_or_group('2', 'telegram'))),
@@ -149,6 +150,7 @@ def init_keys():
 
             ## Group 3 (WEB: Firefox, Mail )(Admin: Mail, notes, social)
             Key([mod],"f",lazy.function(app_or_group('3', 'firefox'))),
+            Key([mod, "shift"],"s",lazy.function(app_or_group('3', 'simplenote'))),
 
             ## Group 4 (Code/Write/Office: Atom, typora, onlyofice)
             Key([mod],"o",lazy.function(app_or_group("4", 'desktopeditors'))),
@@ -182,7 +184,7 @@ groups = [
 
     Group("2",position=2,matches=[Match(wm_class=['Zoom','zoom','telegram-desktop-bin', 'whatsapp-nativefier','TelegramDesktop','Nextcloud', 'Mailspring', 'mailspring', 'Discord'])],layout="monadtall",label=""),
 
-    Group("3",position=3,matches=[Match(wm_class=['vlc', 'Nextcloud','firefox','Filezilla','transmission-gtk','Transmission-gtk'])],layout="monadtall",label=""),
+    Group("3",position=3,matches=[Match(wm_class=['vlc', 'Nextcloud','firefox','Filezilla','transmission-gtk','Transmission-gtk', 'Simplenote'])],layout="monadtall",label=""),
 
     Group("4",position=4,matches=[Match(wm_class=['vlc','Atom', 'atom', 'Typora','Evince', 'Nextcloud','DesktopEditors'])],layout="monadtall",label=""),
 
