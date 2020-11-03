@@ -19,6 +19,7 @@
 
 #------------------------------------------------------------------------#
 function home(){
+  cp -R ~/QAAS/dotfiles/.oh-my-zsh ~/.oh-my-zsh
   cp ~/QAAS/dotfiles/.Xdefaults ~/.Xdefaults
   cp ~/QAAS/dotfiles/.zshrc ~/.zshrc
   cp ~/QAAS/dotfiles/rand ~/rand

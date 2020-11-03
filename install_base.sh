@@ -38,6 +38,7 @@ function i_base () {
     'lxappearance'
     'lxsession'
     'numlockx'
+    'unzip'
 )
 
 for packet in "${packets[@]}"; do
