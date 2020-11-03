@@ -22,9 +22,6 @@ function home(){
   #cp -R ~/QAAS/dotfiles/.oh-my-zsh ~/.oh-my-zsh
   cp ~/QAAS/dotfiles/.Xdefaults ~/.Xdefaults
   cp ~/QAAS/dotfiles/.zshrc ~/.zshrc
-  cp ~/QAAS/dotfiles/rand ~/rand
-  cd
-  chmod +x rand
   sudo cp ~/Cloud/gibranlp/identidad/logo/logo.png /usr/share/pixmaps/glp-icon.png
   sudo cp ~/Cloud/wallPapers/login.png /usr/share/backgrounds/anarchy/login.png
   sudo cp -R ~/QAAS/.themes/Kripton /usr/share/themes
@@ -36,6 +33,14 @@ function home(){
       mkdir ~/.themes
       cp -R ~/QAAS/.themes/Kripton /usr/share/themes
     fi
+
+    FILE=/opt/bin
+      if [ -d "$FILE" ]; then
+        sudo cp ~/QAAS/dotfiles/rand /opt/bin/rand
+      else
+        sudo mkdir /opt/bin
+        sudo cp ~/QAAS/dotfiles/rand /opt/bin/rand
+      fi
 
 }
 

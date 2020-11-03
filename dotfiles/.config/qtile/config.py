@@ -87,7 +87,7 @@ def init_keys():
             Key([mod, "shift"], "r",lazy.restart()), # Restart Qtile
             Key([mod, "shift"], "q",lazy.shutdown()), # Logout
             Key([mod], "Escape", lazy.spawn('xkill')),
-            Key([mod], "r",lazy.spawn('/home/gibranlp/./rand')),
+            Key([mod], "r",lazy.spawn('rand')),
 
             #### Monadtall Layout Keybindings ####
             Key([mod], "Tab",lazy.layout.down()), # Change focus of windows down
