@@ -18,15 +18,9 @@
 ## ¡Aprende y Diviertete!
 #------------------------------------------------------------------------#
 
-# Funcion para cambiar el wallpaper aleatoriamente
-function rand_wall (){
-  dir='/home/gibranlp/Cloud/wallPapers/'
-  wal -a 85 -i "${dir[RANDOM % ${#dir[@]}]}" -q  &
-  qtile-cmd -o cmd -f restart &
-}
 setxkbmap -layout us -variant intl &
 picom &
 numlockx on &
 nextcloud &
 nm-applet &
-rand_wall &
+rand &
