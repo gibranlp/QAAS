@@ -16,6 +16,7 @@ function i_base () {
     'ttf-fira-code'
     'telegram-desktop'
     'rxvt-unicode'
+    'urxvt-perls'
     'cups'
     'cups-pdf'
     'pulseaudio'

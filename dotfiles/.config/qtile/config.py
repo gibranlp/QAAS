@@ -147,10 +147,11 @@ def init_keys():
             Key([mod, "shift"],"t",lazy.function(app_or_group('2', 'telegram'))),
             Key([mod],"m",lazy.function(app_or_group('2', 'mailspring'))),
             Key([mod, "shift"],"d",lazy.function(app_or_group('2', 'discord'))),
+            Key([mod, "shift"],"s",lazy.function(app_or_group('2', 'simplenote'))),
 
             ## Group 3 (WEB: Firefox, Mail )(Admin: Mail, notes, social)
             Key([mod],"f",lazy.function(app_or_group('3', 'firefox'))),
-            Key([mod, "shift"],"s",lazy.function(app_or_group('3', 'simplenote'))),
+
 
             ## Group 4 (Code/Write/Office: Atom, typora, onlyofice)
             Key([mod],"o",lazy.function(app_or_group("4", 'desktopeditors'))),
@@ -182,9 +183,9 @@ def init_keys():
 groups = [
     Group("1",position=1,matches=[Match(wm_class=['URxvt', 'Nm-applet','Nextcloud', 'thunar', 'Thunar', 'gnome-disks', 'Gnome-disks'])],layout="monadtall",label=""),
 
-    Group("2",position=2,matches=[Match(wm_class=['Zoom','zoom','telegram-desktop-bin', 'whatsapp-nativefier','TelegramDesktop','Nextcloud', 'Mailspring', 'mailspring', 'Discord'])],layout="monadtall",label=""),
+    Group("2",position=2,matches=[Match(wm_class=['Zoom','zoom','telegram-desktop-bin', 'whatsapp-nativefier','TelegramDesktop','Nextcloud', 'Mailspring', 'mailspring', 'Discord', 'Simplenote'])],layout="monadtall",label=""),
 
-    Group("3",position=3,matches=[Match(wm_class=['vlc', 'Nextcloud','firefox','Filezilla','transmission-gtk','Transmission-gtk', 'Simplenote'])],layout="monadtall",label=""),
+    Group("3",position=3,matches=[Match(wm_class=['vlc', 'Nextcloud','firefox','Filezilla','transmission-gtk','Transmission-gtk', 'Typora','DesktopEditors'])],layout="monadtall",label=""),
 
     Group("4",position=4,matches=[Match(wm_class=['vlc','Atom', 'atom', 'Typora','Evince', 'Nextcloud','DesktopEditors'])],layout="monadtall",label=""),
 
