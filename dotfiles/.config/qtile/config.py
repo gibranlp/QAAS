@@ -145,6 +145,7 @@ def init_keys():
             Key([mod, "shift"],"w",lazy.function(app_or_group('2', 'whatsdesk'))),
             Key([mod, "shift"],"t",lazy.function(app_or_group('2', 'telegram'))),
             Key([mod],"m",lazy.function(app_or_group('2', 'mailspring'))),
+            Key([mod, "shift"],"d",lazy.function(app_or_group('2', 'discord'))),
 
             ## Group 3 (WEB: Firefox, Mail )(Admin: Mail, notes, social)
             Key([mod],"f",lazy.function(app_or_group('3', 'firefox'))),
@@ -160,7 +161,7 @@ def init_keys():
 
             ## Group 6 (Virtual Stuff games)
             Key([mod],"v",lazy.function(app_or_group('6', 'virtualbox'))),
-            Key([mod],"b",lazy.function(app_or_group('6', '/home/gibranlp/Albion/./Albion-Online'))),
+            Key([mod],"b",lazy.function(app_or_group('6', '/home/gibranlp/albiononline/./Albion-Online'))),
 
             ## Group 7 (Música)
             Key([mod],"s",lazy.function(app_or_group('7', 'spotify'))),
@@ -179,7 +180,7 @@ def init_keys():
 groups = [
     Group("1",position=1,matches=[Match(wm_class=['URxvt', 'Nm-applet','Nextcloud', 'thunar', 'Thunar', 'gnome-disks', 'Gnome-disks'])],layout="monadtall",label=""),
 
-    Group("2",position=2,matches=[Match(wm_class=['Zoom','zoom','telegram-desktop-bin', 'whatsapp-nativefier','TelegramDesktop','Nextcloud', 'Mailspring', 'mailspring'])],layout="monadtall",label=""),
+    Group("2",position=2,matches=[Match(wm_class=['Zoom','zoom','telegram-desktop-bin', 'whatsapp-nativefier','TelegramDesktop','Nextcloud', 'Mailspring', 'mailspring', 'Discord'])],layout="monadtall",label=""),
 
     Group("3",position=3,matches=[Match(wm_class=['vlc', 'Nextcloud','firefox','Filezilla','transmission-gtk','Transmission-gtk'])],layout="monadtall",label=""),
 
