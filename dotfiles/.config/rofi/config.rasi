@@ -1,7 +1,4 @@
 configuration{
 	theme: "~/.cache/wal/colors-rofi-dark.rasi";
-	modi: "window,run,ssh,drun";
-	width: 20;
-	lines:5;
+	show-icons: true;
 }
-

@@ -88,6 +88,7 @@ def init_keys():
             Key([mod, "shift"], "q",lazy.shutdown()), # Logout
             Key([mod], "Escape", lazy.spawn('xkill')),
             Key([mod], "r",lazy.spawn('rand')),
+            Key([mod], "x",lazy.spawn('oblogout')),
 
             #### Monadtall Layout Keybindings ####
             Key([mod], "Tab",lazy.layout.down()), # Change focus of windows down
@@ -170,7 +171,7 @@ def init_keys():
             Key([mod],"s",lazy.function(app_or_group('7', 'spotify'))),
 
             ### Dmenu Run Launcher
-            Key([mod], "d",lazy.spawn("rofi -show drun")),]
+            Key([mod], "d",lazy.spawn("rofi -show run")),]
 
     for i in groups:
             keys.append(Key([mod], i.name, lazy.group[i.name].toscreen()))
@@ -350,7 +351,9 @@ if __name__ in ["config", "__main__"]:
         {'wmclass': 'maketag'},  # gitk
         {'wname': 'branchdialog'},  # gitk
         {'wname': 'pinentry'},  # GPG key password entry
-        {'wmclass': 'ssh-askpass'},  # ssh-askpass
+        {'wmclass': 'ssh-askpass'},
+        {'wmclass': 'oblogout'},
+        {'wmclass': 'Oblogout'},  # ssh-askpass
     ])
     layout_theme = init_layout_theme()
     border_args = init_border_args()
