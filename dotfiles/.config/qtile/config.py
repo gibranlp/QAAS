@@ -229,17 +229,17 @@ def init_widgets_defaults():
 def init_widgets_list_top():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list_top = [
-                widget.TextBox(text="", foreground=colors[0],fontshadow=colors[1]),
+                widget.TextBox(text="", foreground=colors[0],fontshadow=colors[1]),
                 widget.TextBox(foreground= colors[6],text="   ■",fontsize=19,padding=-2),
                 widget.GroupBox(
                         disable_drag=True, hide_unused=False, fontshadow=colors[7], margin_y=1, padding_x=5, borderwidth=0, active=colors[0],  inactive=colors[6], rounded=False, highlight_method="text", this_current_screen_border=colors[0], this_screen_border=colors[3], other_current_screen_border=colors[0], other_screen_border=colors[0], foreground=colors[7], background=colors[6]),
-                widget.TextBox(foreground= colors[6],text="■ ",fontsize=19,padding=-2),
+                widget.TextBox(background=colors[0],foreground=colors[0],text="■ ",fontsize=19,padding=-2),
                 widget.Notify(default_timeout=10,foreground_low=colors[7], foreground_urgent=colors[4], foreground=colors[7], background=colors[0], fontshadow=colors[4]),
                 widget.Sep(linewidth=0, padding=5, background=colors[0]),
                 widget.WindowName(foreground=colors[7], background=colors[0], padding=5, fontshadow=colors[1]),
                 widget.TextBox(text='■',background=colors[0],foreground=colors[1],padding=-2,fontsize=19),
                 widget.TextBox(text="", padding=5, foreground=colors[0], background=colors[1], fontshadow=colors[7], fontsize=14),
-                widget.Mpris2(name='spotify', objname='org.mpris.MediaPlayer2.spotify', scroll_chars=30, display_metadata=['xesam:artist','xesam:title'], background=colors[1], foreground=colors[0], scroll_interval=0.5, scroll_wait_intervals=500),
+                widget.Mpris2(name='spotify', objname='org.mpris.MediaPlayer2.spotify', scroll_chars=30, display_metadata=['xesam:artist','xesam:title '], background=colors[1], foreground=colors[0], scroll_interval=0.5, scroll_wait_intervals=500),
                 widget.TextBox(text='■', background=colors[1],foreground=colors[6],padding=-2,fontsize=19),
                 widget.TextBox(text="", padding=5, foreground=colors[0], background=colors[6], fontshadow=colors[1], fontsize=12),
                 widget.CheckUpdates(distro='Arch', no_update_string='0 Updates', display_format='Updates: {updates}', update_interval=60, colour_have_updates=colors[0], colour_no_updates=colors[0], fontshadow=colors[1], execute='urxvt -e sh -c "sudo pacman -Syu --noconfirm"', foreground=colors[0], background=colors[6]),
@@ -258,7 +258,10 @@ def init_widgets_list_bot():
                 widget.Spacer(length=bar.STRETCH,),
                 #widget.TextBox(text="■",background=colors[0], foreground=colors[1], padding=-2, fontsize=19),
                 #widget.YahooWeather(background=colors[1], foreground=colors[0], metric=True, update_interval=600, format='{location_city}: {condition_temp} °{units_temperature}', woeid='136973'),
-                widget.TextBox(text=" ■",background=colors[0], foreground=colors[2], padding=-2, fontsize=19),
+                widget.TextBox(text=" ■",background=colors[0], foreground=colors[4], padding=-2, fontsize=19),
+                widget.MemoryGraph(border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[4], padding=5),
+                widget.Memory(format='{MemUsed}M/{MemTotal}M',border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[4], padding=5, fontshadow=colors[1]),
+                widget.TextBox(text=" ■",background=colors[4], foreground=colors[2], padding=-2, fontsize=19),
                 widget.CPUGraph(interface="enp6s0", border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[2], padding=5,),
                 widget.CPU(format='CPU {freq_current}GHz {load_percent}%',border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[2], padding=5, fontshadow=colors[1]),
                 widget.TextBox(text=" ■", background=colors[2], foreground=colors[1], padding=-2, fontsize=19),
@@ -285,8 +288,8 @@ def init_widgets_screen_bot():
     return widgets_screen_bot
 
 def init_screens():
-    return [Screen(top=bar.Bar(widgets=init_widgets_screen_top(), opacity=0.90, size=20, background=colors[0]),
-        bottom=bar.Bar(widgets=init_widgets_screen_bot(), opacity=0.90, size=20, background=colors[0]))]
+    return [Screen(top=bar.Bar(widgets=init_widgets_screen_top(), opacity=1, size=20, background=colors[0]),
+        bottom=bar.Bar(widgets=init_widgets_screen_bot(), opacity=1, size=20, background=colors[0]))]
 
 ##### FLOATING WINDOWS #####
 
