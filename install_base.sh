@@ -44,7 +44,7 @@ function i_base () {
 )
 
 for packet in "${packets[@]}"; do
-    echo "Instalando --> ${packet}" #Loop para instalar todos los paquetes pacman
+    echo "Instalando --> ${packet}" 
     sudo pacman -S "${packet}" --noconfirm --needed
 done
 }
@@ -63,6 +63,7 @@ function i_pip(){
     'fontawesome'
     'xdg'
     'iwlib'
+    'ipc'
   )
 
   for pip_packet in "${pip_packets[@]}"; do
@@ -70,6 +71,8 @@ function i_pip(){
     sudo pip install "${pip_packet}"
   done
 }
+
+
 
 i_base
 i_yay

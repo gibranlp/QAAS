@@ -1,6 +1,6 @@
 function f_base () {
   packets=(
-    'base-devel' #utilidades para compilar paquetes
+    'base-devel'
     'git'
     'mesa'
     'alsa-utils'
@@ -39,11 +39,9 @@ function f_base () {
 )
 
 for packet in "${packets[@]}"; do
-    echo "Instalando --> ${packet}" #Loop para instalar todos los paquetes pacman
+    echo "Instalando --> ${packet}"
     sudo pacman -S "${packet}" --noconfirm --needed
 done
 }
 
 f_base
-
-

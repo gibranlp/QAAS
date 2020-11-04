@@ -97,7 +97,7 @@ makepkg -si && cd
 rm -rf yay
 yay
 
-aur_packets=('oblogout' 'ocs-url' 'onlyoffice-bin' 'fontpreview-git' 'dragon-drag-and-drop' 'mailspring' 'spotify' 'whatsapp-nativefier-dark' 'boost-note-bin')
+aur_packets=('urxvt-unicode-pixbuf' 'oblogout' 'ocs-url' 'onlyoffice-bin' 'dragon-drag-and-drop' 'mailspring' 'spotify' 'whatsdesk' 'typora')
 
 for aur_packet in "${aur_packets[@]}"; do
       echo "Instalando --> ${aur_packet}"
@@ -105,7 +105,7 @@ for aur_packet in "${aur_packets[@]}"; do
 done
 ## -------------------Instalar ZSH -----------------------------------##########
 
-#sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-/home/$USER/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-/home/$USER/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
@@ -117,6 +117,7 @@ pip_packets=(
   'fontawesome'
   'xdg'
   'iwlib'
+  'ipc'
 )
 
 for pip_packet in "${pip_packets[@]}"; do
