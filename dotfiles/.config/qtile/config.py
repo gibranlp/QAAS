@@ -262,7 +262,7 @@ def init_widgets_list_bot():
                 widget.MemoryGraph(border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[4], padding=5),
                 widget.Memory(format='{MemUsed}M/{MemTotal}M',border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[4], padding=5, fontshadow=colors[1]),
                 widget.TextBox(text=" ■",background=colors[4], foreground=colors[2], padding=-2, fontsize=19),
-                widget.CPUGraph(interface="enp6s0", border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[2], padding=5,),
+                widget.CPUGraph(border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[2], padding=5,),
                 widget.CPU(format='CPU {freq_current}GHz {load_percent}%',border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[2], padding=5, fontshadow=colors[1]),
                 widget.TextBox(text=" ■", background=colors[2], foreground=colors[1], padding=-2, fontsize=19),
                 widget.NetGraph(interface="enp6s0", border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[1], padding=5),
