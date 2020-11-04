@@ -218,13 +218,13 @@ def init_layouts():
             #layout.Zoomy(**layout_theme),
             layout.MonadTall(single_margin=10, border_normal=colors[0], border_focus=colors[7], **layout_theme),
             layout.Max(**layout_theme),
-            layout.TreeTab(font="Fira Code",sections=[""],section_fontsize=12, bg_color=colors[0], active_bg=colors[7], active_fg=colors[0], inactive_bg=colors[0], inactive_fg=colors[7],padding_y=5,panel_width=250, **layout_theme),
+            layout.TreeTab(font="Fira Code Medium",sections=[""],section_fontsize=14, bg_color=colors[0], active_bg=colors[7], active_fg=colors[0], inactive_bg=colors[0], inactive_fg=colors[7],padding_y=5,panel_width=250, **layout_theme),
             layout.Floating(**layout_theme)]
 
 ##### WIDGETS #####
 
 def init_widgets_defaults():
-    return dict(font="Fira Code",fontsize=14,padding=2,background=colors[0])
+    return dict(font="Fira Code Medium",fontsize=14,padding=2,background=colors[0])
 
 def init_widgets_list_top():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
@@ -288,8 +288,8 @@ def init_widgets_screen_bot():
     return widgets_screen_bot
 
 def init_screens():
-    return [Screen(top=bar.Bar(widgets=init_widgets_screen_top(), opacity=1, size=20, background=colors[0]),
-        bottom=bar.Bar(widgets=init_widgets_screen_bot(), opacity=1, size=20, background=colors[0]))]
+    return [Screen(top=bar.Bar(widgets=init_widgets_screen_top(), opacity=0.95, size=20, background=colors[0]),
+        bottom=bar.Bar(widgets=init_widgets_screen_bot(), opacity=0.95, size=20, background=colors[0]))]
 
 ##### FLOATING WINDOWS #####
 
