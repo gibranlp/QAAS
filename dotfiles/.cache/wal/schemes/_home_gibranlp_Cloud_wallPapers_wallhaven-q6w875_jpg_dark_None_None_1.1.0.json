@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/gibranlp/Cloud/wallPapers/wallhaven-q6w875.jpg",
+    "alpha": "85",
+    "special": {
+        "background": "#191310",
+        "foreground": "#d3dae0",
+        "cursor": "#d3dae0"
+    },
+    "colors": {
+        "color0": "#191310",
+        "color1": "#997751",
+        "color2": "#656F8E",
+        "color3": "#7887A4",
+        "color4": "#6BD3C9",
+        "color5": "#939CB0",
+        "color6": "#A9B5C8",
+        "color7": "#d3dae0",
+        "color8": "#93989c",
+        "color9": "#997751",
+        "color10": "#656F8E",
+        "color11": "#7887A4",
+        "color12": "#6BD3C9",
+        "color13": "#939CB0",
+        "color14": "#A9B5C8",
+        "color15": "#d3dae0"
+    }
+}

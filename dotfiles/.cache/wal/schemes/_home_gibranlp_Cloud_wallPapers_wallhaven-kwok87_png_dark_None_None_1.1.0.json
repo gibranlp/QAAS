@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/gibranlp/Cloud/wallPapers/wallhaven-kwok87.png",
+    "alpha": "85",
+    "special": {
+        "background": "#19163d",
+        "foreground": "#cbe6eb",
+        "cursor": "#cbe6eb"
+    },
+    "colors": {
+        "color0": "#19163d",
+        "color1": "#4BB122",
+        "color2": "#C4C32E",
+        "color3": "#186398",
+        "color4": "#555C8B",
+        "color5": "#C7508D",
+        "color6": "#1FB7D5",
+        "color7": "#cbe6eb",
+        "color8": "#8ea1a4",
+        "color9": "#4BB122",
+        "color10": "#C4C32E",
+        "color11": "#186398",
+        "color12": "#555C8B",
+        "color13": "#C7508D",
+        "color14": "#1FB7D5",
+        "color15": "#cbe6eb"
+    }
+}

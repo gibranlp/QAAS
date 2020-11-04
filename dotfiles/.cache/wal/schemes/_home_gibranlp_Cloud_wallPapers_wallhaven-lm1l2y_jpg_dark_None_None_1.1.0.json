@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/gibranlp/Cloud/wallPapers/wallhaven-lm1l2y.jpg",
+    "alpha": "85",
+    "special": {
+        "background": "#010101",
+        "foreground": "#c8c7e4",
+        "cursor": "#c8c7e4"
+    },
+    "colors": {
+        "color0": "#010101",
+        "color1": "#C69051",
+        "color2": "#2D5195",
+        "color3": "#635E9D",
+        "color4": "#90789E",
+        "color5": "#5A89AD",
+        "color6": "#C0B0A2",
+        "color7": "#c8c7e4",
+        "color8": "#8c8b9f",
+        "color9": "#C69051",
+        "color10": "#2D5195",
+        "color11": "#635E9D",
+        "color12": "#90789E",
+        "color13": "#5A89AD",
+        "color14": "#C0B0A2",
+        "color15": "#c8c7e4"
+    }
+}

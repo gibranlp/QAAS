@@ -1,0 +1,23 @@
+" Special
+let wallpaper  = "/home/gibranlp/Cloud/wallPapers/wallhaven-eymzjk.jpg"
+let background = "#371220"
+let foreground = "#a8d9d9"
+let cursor     = "#a8d9d9"
+
+" Colors
+let color0  = "#371220"
+let color1  = "#617489"
+let color2  = "#C1778A"
+let color3  = "#178D8E"
+let color4  = "#2F8B8C"
+let color5  = "#4F9391"
+let color6  = "#659E9E"
+let color7  = "#a8d9d9"
+let color8  = "#759797"
+let color9  = "#617489"
+let color10 = "#C1778A"
+let color11 = "#178D8E"
+let color12 = "#2F8B8C"
+let color13 = "#4F9391"
+let color14 = "#659E9E"
+let color15 = "#a8d9d9"

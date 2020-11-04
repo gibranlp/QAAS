@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/gibranlp/Cloud/wallPapers/wallhaven-ymd5kd.jpg",
+    "alpha": "85",
+    "special": {
+        "background": "#0A4E7C",
+        "foreground": "#c4eff4",
+        "cursor": "#c4eff4"
+    },
+    "colors": {
+        "color0": "#0A4E7C",
+        "color1": "#2AAED2",
+        "color2": "#4EB1D1",
+        "color3": "#32CBE6",
+        "color4": "#31D0ED",
+        "color5": "#4BD7F1",
+        "color6": "#5CE5F6",
+        "color7": "#c4eff4",
+        "color8": "#89a7aa",
+        "color9": "#2AAED2",
+        "color10": "#4EB1D1",
+        "color11": "#32CBE6",
+        "color12": "#31D0ED",
+        "color13": "#4BD7F1",
+        "color14": "#5CE5F6",
+        "color15": "#c4eff4"
+    }
+}

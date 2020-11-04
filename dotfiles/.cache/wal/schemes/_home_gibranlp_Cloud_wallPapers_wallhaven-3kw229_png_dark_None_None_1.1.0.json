@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/gibranlp/Cloud/wallPapers/wallhaven-3kw229.png",
+    "alpha": "85",
+    "special": {
+        "background": "#0e0f0e",
+        "foreground": "#c1d0c6",
+        "cursor": "#c1d0c6"
+    },
+    "colors": {
+        "color0": "#0e0f0e",
+        "color1": "#907252",
+        "color2": "#6E8478",
+        "color3": "#9A8F6B",
+        "color4": "#E0B164",
+        "color5": "#627F80",
+        "color6": "#6D968D",
+        "color7": "#c1d0c6",
+        "color8": "#87918a",
+        "color9": "#907252",
+        "color10": "#6E8478",
+        "color11": "#9A8F6B",
+        "color12": "#E0B164",
+        "color13": "#627F80",
+        "color14": "#6D968D",
+        "color15": "#c1d0c6"
+    }
+}

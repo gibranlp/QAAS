@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/gibranlp/Cloud/wallPapers/17.png",
+    "alpha": "85",
+    "special": {
+        "background": "#0f110d",
+        "foreground": "#c3e4cb",
+        "cursor": "#c3e4cb"
+    },
+    "colors": {
+        "color0": "#0f110d",
+        "color1": "#C8A171",
+        "color2": "#1D6583",
+        "color3": "#4C7A82",
+        "color4": "#D87C82",
+        "color5": "#50A08B",
+        "color6": "#72D5A1",
+        "color7": "#c3e4cb",
+        "color8": "#889f8e",
+        "color9": "#C8A171",
+        "color10": "#1D6583",
+        "color11": "#4C7A82",
+        "color12": "#D87C82",
+        "color13": "#50A08B",
+        "color14": "#72D5A1",
+        "color15": "#c3e4cb"
+    }
+}
