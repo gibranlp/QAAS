@@ -15,6 +15,8 @@ function i_base () {
     'alsa-plugins'
     'ttf-fira-code'
     'telegram-desktop'
+    'evince'
+    'filezilla'
     'rxvt-unicode'
     'urxvt-perls'
     'cups'
@@ -44,7 +46,7 @@ function i_base () {
 )
 
 for packet in "${packets[@]}"; do
-    echo "Instalando --> ${packet}" 
+    echo "Instalando --> ${packet}"
     sudo pacman -S "${packet}" --noconfirm --needed
 done
 }
