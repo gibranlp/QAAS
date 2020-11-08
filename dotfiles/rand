@@ -1,4 +1,4 @@
-!#/bin/sh
+#!/usr/bin/env bash
 # Funcion para cambiar el wallpaper aleatoriamente
 function rand_wall (){
   dir='/home/gibranlp/Cloud/wallPapers/'
