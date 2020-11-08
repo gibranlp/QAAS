@@ -41,6 +41,7 @@ function i_base () {
     'neofetch'
     'lxappearance'
     'lxsession'
+    'transmission-gtk'
     'numlockx'
     'unzip'
 )
