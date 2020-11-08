@@ -74,6 +74,7 @@ function i_pip(){
   done
 }
 
+# yay -S anydesk-bin betterlockscreen
 
 
 i_base
