@@ -57,7 +57,16 @@ function home(){
         sudo cp ~/QAAS/dotfiles/rand /opt/bin/rand
       fi
 
+      FILE=~/.icons
+        if [ -d "$FILE" ]; then
+          cp -R ~/QAAS/.icons/McMojave-cursors ~/.icons
+        else
+          mkdir ~/.themes
+          cp -R ~/QAAS/.icons/McMojave-cursors ~/.icons
+        fi
+
 }
+
 
 function qtile(){
   FILE=~/.config/qtile
@@ -104,6 +113,14 @@ function rofi(){
 function extras(){
   cp ~/Cloud/gibranlp/identidad/logo/logo.png ~/.face
   #cp -r /QAAS/dotfiles/.oh-my-zsh ~/.oh-my-zsh
+}
+
+function vim(){
+  mkdir -p ~/.vim/pack/vendor/start
+  git clone --depth 1 \
+  https://github.com/preservim/nerdtree.git \
+  ~/.vim/pack/vendor/start/nerdtree
+
 }
 
 

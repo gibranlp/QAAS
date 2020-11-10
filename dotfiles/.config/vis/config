@@ -1,0 +1,9 @@
+visualizer.spectrum.character=█
+visualizer.spectrum.bar.width=1
+visualizer.spectrum.bar.spacing=0
+visualizer.spectrum.smoothing.mode=sgs
+visualizer.spectrum.falloff.mode=top
+
+visualizer.ellipse.character=●
+
+visualizer.lorenz.character=░
