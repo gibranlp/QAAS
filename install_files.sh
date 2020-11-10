@@ -115,12 +115,6 @@ function extras(){
   #cp -r /QAAS/dotfiles/.oh-my-zsh ~/.oh-my-zsh
 }
 
-function vim(){
-
-
-}
-
-
 # Actual Program
 zsh
 home
