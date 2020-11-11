@@ -35,6 +35,7 @@ function i_base () {
     'gnome-keyring'
     'scrot'
     'rofi'
+    'surfraw'
     'python-pip'
     'pkgfile'
     'ranger'

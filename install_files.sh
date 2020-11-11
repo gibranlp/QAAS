@@ -51,10 +51,20 @@ function home(){
 
     FILE=/opt/bin
       if [ -d "$FILE" ]; then
-        sudo cp ~/QAAS/dotfiles/rand /opt/bin/rand
+        sudo cp ~/QAAS/dotfiles/rand /opt/bin/
+        sudo ln -s /opt/bin/rand /usr/bin/rand
+        sudo chmod 755 /opt/bin/rand
+        sudo cp ~/QAAS/dotfiles/wsearch /opt/bin/wsearch
+        sudo ln -s /opt/bin/wsearch /usr/bin/wsearch
+        sudo chmod 755 /opt/bin/wsearch
       else
         sudo mkdir /opt/bin
-        sudo cp ~/QAAS/dotfiles/rand /opt/bin/rand
+        sudo cp ~/QAAS/dotfiles/rand /opt/bin/
+        sudo ln -s /opt/bin/rand /usr/bin/rand
+        sudo chmod 755 /opt/bin/wsearch
+        sudo cp ~/QAAS/dotfiles/wsearch /opt/bin/wsearch
+        sudo ln -s /opt/bin/wsearch /usr/bin/wsearch
+        sudo chmod 755 /opt/bin/wsearch
       fi
 
       FILE=~/.icons
