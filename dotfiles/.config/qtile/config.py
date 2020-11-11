@@ -155,6 +155,7 @@ def init_keys():
 
             ## Group 3 (WEB: Firefox)(Admin: Mail, notes, social)
             Key([mod],"f",lazy.function(app_or_group('4', 'firefox'))),
+            Key([mod, "shift"],"f",lazy.spawn('wsearch')),
 
 
             ## Group 4 (Code/Write/Office: Atom, typora, onlyofice)
@@ -186,8 +187,8 @@ def init_keys():
 
 groups = [
     Group("1",position=1,matches=[Match(wm_class=['URxvt', 'urxvt', 'thunar', 'Thunar', 'gnome-disks', 'Gnome-disks', 'anydesk', 'Anydesk'])],layout="monadtall",label=""),
-    Group("2",position=2,matches=[Match(wm_class=['Zoom','zoom','Nextcloud', 'Mailspring', 'mailspring', 'Discord', 'Simplenote'])],layout="monadtall",label=""),
-    Group("3",position=3,matches=[Match(wm_class=['whatsdesk','telegram-desktop-bin', 'TelegramDesktop', 'transmission-gtk','Transmission-gtk', 'Typora', 'Discord', 'discord'])],layout="monadtall",label=""),
+    Group("2",position=2,matches=[Match(wm_class=['Zoom','zoom','Nextcloud', 'Mailspring', 'mailspring', 'Simplenote'])],layout="monadtall",label=""),
+    Group("3",position=3,matches=[Match(wm_class=['whatsdesk','telegram-desktop-bin', 'TelegramDesktop', 'transmission-gtk','Transmission-gtk', 'Discord', 'discord'])],layout="monadtall",label=""),
     Group("4",position=4,matches=[Match(wm_class=['firefox'])],layout="monadtall",label=""),
     Group("5",position=5,matches=[Match(wm_class=['Atom', 'atom', 'Filezilla', 'Typora','Evince', 'DesktopEditors'])],layout="monadtall",label=""),
     Group("6",position=6,matches=[Match(wm_class=['Gimp-2.10','Inkscape','feh', 'Com.github.phase1geo.minder', 'vlc' ])],layout="monadtall",label=""),
