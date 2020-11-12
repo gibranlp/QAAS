@@ -87,7 +87,8 @@ def init_keys():
             Key([mod, "shift"], "r",lazy.restart()), # Restart Qtile / Reiniciar Qtile
             Key([mod, "shift"], "q",lazy.shutdown()), # Logout / Cerrar sesión
             Key([mod], "Escape", lazy.spawn('xkill')), # Select window with mouse to kill / Cerrar ventana con el raton
-            Key([mod], "w",lazy.spawn('rand')), # Random Wallpaper / Papel tapiz aleatorio
+            Key([mod], "w",lazy.spawn('rand')),
+            Key([alt], "w",lazy.spawn('randw')), # Random Wallpaper / Papel tapiz aleatorio
             Key([mod], "x",lazy.spawn('oblogout')),
 
             ####  ####

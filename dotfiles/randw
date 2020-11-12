@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Funcion para cambiar el wallpaper aleatoriamente
+function rand_wall (){
+  dir='/home/gibranlp/Cloud/wallPapers/'
+  wal -a 85 -i "${dir[RANDOM % ${#dir[@]}]}" -q -l  &
+}
+
+rand_wall &
+qtile-cmd -o cmd -f restart &
