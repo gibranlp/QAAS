@@ -79,7 +79,7 @@ function i_pip(){
   done
 }
 
-# yay -S anydesk-bin betterlockscreen
+# yay -S anydesk-bin betterlockscreen python-haishoku python-colorthief visual-studio-code-bin
 
 
 i_base

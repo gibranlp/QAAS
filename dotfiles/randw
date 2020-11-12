@@ -2,7 +2,7 @@
 # Funcion para cambiar el wallpaper aleatoriamente
 function rand_wall (){
   dir='/home/gibranlp/Cloud/wallPapers/'
-  wal -a 85 -i "${dir[RANDOM % ${#dir[@]}]}" -q -l  &
+  wal --backend haishoku -a 85 -i "${dir[RANDOM % ${#dir[@]}]}" -q -l  &
 }
 
 rand_wall &
