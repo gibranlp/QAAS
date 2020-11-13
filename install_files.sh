@@ -31,7 +31,7 @@ function home(){
   #cp -R ~/QAAS/dotfiles/.oh-my-zsh ~/.oh-my-zsh
   cp ~/QAAS/dotfiles/.Xdefaults ~/.Xdefaults
   sudo cp ~/Cloud/gibranlp/identidad/logo/logo.png /usr/share/pixmaps/glp-icon.png
-  sudo cp ~/Cloud/wallPapers/login.png /usr/share/backgrounds/anarchy/login.png
+  sudo cp ~/Cloud/wallPapers/dark/login.png /usr/share/backgrounds/anarchy/login.png
   sudo cp -R ~/QAAS/.themes/Kripton /usr/share/themes
   FILE=~/.config/ranger
     if [ -d "$FILE" ]; then
@@ -54,23 +54,36 @@ function home(){
         sudo cp ~/QAAS/dotfiles/rand /opt/bin/rand
         sudo ln -s /opt/bin/rand /usr/bin/rand
         sudo chmod 755 /opt/bin/rand
+
         sudo cp ~/QAAS/dotfiles/randw /opt/bin/randw
         sudo ln -s /opt/bin/randw /usr/bin/randw
         sudo chmod 755 /opt/bin/randw
+        
         sudo cp ~/QAAS/dotfiles/wsearch /opt/bin/wsearch
         sudo ln -s /opt/bin/wsearch /usr/bin/wsearch
         sudo chmod 755 /opt/bin/wsearch
+
+        sudo cp ~/QAAS/dotfiles/wvis /opt/bin/wvis
+        sudo ln -s /opt/bin/wvis /usr/bin/wvis
+        sudo chmod 755 /opt/bin/wvis
       else
         sudo mkdir /opt/bin
+        
         sudo cp ~/QAAS/dotfiles/rand /opt/bin/
         sudo ln -s /opt/bin/rand /usr/bin/rand
         sudo chmod 755 /opt/bin/rand
+        
         sudo cp ~/QAAS/dotfiles/randw /opt/bin/randw
         sudo ln -s /opt/bin/randw /usr/bin/randw
         sudo chmod 755 /opt/bin/randw
+        
         sudo cp ~/QAAS/dotfiles/wsearch /opt/bin/wsearch
         sudo ln -s /opt/bin/wsearch /usr/bin/wsearch
         sudo chmod 755 /opt/bin/wsearch
+
+        sudo cp ~/QAAS/dotfiles/wvis /opt/bin/wvis
+        sudo ln -s /opt/bin/wvis /usr/bin/wvis
+        sudo chmod 755 /opt/bin/wvis
       fi
 
       FILE=~/.icons
@@ -82,6 +95,19 @@ function home(){
         fi
 
 }
+function vis(){
+  FILE=~/.config/vis
+    if [ -d "$FILE" ]; then
+      cp ~/.config/vis/colors/rainbow ~/.config/vis/colors/rainbow
+      cp -R ~/QAAS/dotfiles/.config/vis ~/.config/vis
+    else
+      mkdir ~/.config/vis
+      mkdir ~/.config/vis/colors
+      cp ~/.config/vis/colors/rainbow ~/.config/vis/colors/rainbow
+      cp -R ~/QAAS/dotfiles/.config/vis ~/.config/vis
+    fi
+}
+
 
 
 function qtile(){
@@ -138,3 +164,4 @@ qtile
 ranger
 rofi
 extras
+vis

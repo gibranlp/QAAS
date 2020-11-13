@@ -187,7 +187,7 @@ def init_keys():
 ##### GROUPS #####
 
 groups = [
-    Group("1",position=1,matches=[Match(wm_class=['URxvt', 'urxvt', 'thunar', 'Thunar', 'gnome-disks', 'Gnome-disks', 'anydesk', 'Anydesk'])],layout="monadtall",label=""),
+    Group("1",position=1,matches=[Match(wm_class=['URxvt', 'urxvt', 'thunar', 'Thunar', 'gnome-disks', 'Gnome-disks', 'anydesk', 'Anydesk'])],layout="matrix",label=""),
     Group("2",position=2,matches=[Match(wm_class=['Zoom','zoom','Nextcloud', 'Mailspring', 'mailspring', 'Simplenote'])],layout="monadtall",label=""),
     Group("3",position=3,matches=[Match(wm_class=['whatsdesk','telegram-desktop-bin', 'TelegramDesktop', 'transmission-gtk','Transmission-gtk', 'Discord', 'discord'])],layout="monadtall",label=""),
     Group("4",position=4,matches=[Match(wm_class=['firefox'])],layout="monadtall",label=""),
@@ -199,7 +199,7 @@ groups = [
 ##### LAYOUTS #####
 
 def init_floating_layout():
-    return layout.Floating(border_focus=colors[7])
+    return layout.Floating(border_normal=colors[0], border_focus=colors[7])
 
 def init_layout_theme():
     return {"fontsize":14,
@@ -218,12 +218,12 @@ def init_layouts():
             #layout.RatioTile(**layout_theme),
             #layout.VerticalTile(**layout_theme),
             #layout.Tile(shift_windows=True, **layout_theme),
-            #layout.Matrix(single_margin=10,border_normal=colors[0],border_focus=colors[7],**layout_theme),
+            layout.Matrix(single_margin=10,border_normal=colors[0],border_focus=colors[7],**layout_theme),
             #layout.Zoomy(**layout_theme),
             layout.MonadTall(single_margin=10, border_normal=colors[0], border_focus=colors[7], **layout_theme),
             layout.Max(**layout_theme),
             layout.TreeTab(font="Fira Code Medium",sections=["Tabs"],section_fontsize=14, bg_color=colors[0], active_bg=colors[7], active_fg=colors[0], inactive_bg=colors[0], inactive_fg=colors[7],padding_y=5,panel_width=250, **layout_theme),
-            layout.Floating(**layout_theme)]
+            layout.Floating(border_normal=colors[0], border_focus=colors[7],**layout_theme)]
 
 ##### WIDGETS #####
 
@@ -291,9 +291,9 @@ def init_widgets_bot():
 
 def init_screens():
     return [
-        Screen(top=bar.Bar(widgets=init_widgets_top(), opacity=0.95, size=20, background=colors[0]),
-        bottom=bar.Bar(widgets=init_widgets_bot(), opacity=0.95, size=20, background=colors[0])),
-        Screen(top=bar.Bar(widgets=init_widgets_top(), opacity=0.95, size=20, background=colors[0]))
+        Screen(top=bar.Bar(widgets=init_widgets_top(),  size=20, background=colors[0]),
+        bottom=bar.Bar(widgets=init_widgets_bot(), size=20, background=colors[0])),
+        Screen(top=bar.Bar(widgets=init_widgets_top(), size=20, background=colors[0]))
         ]
 
 ##### FLOATING WINDOWS #####
@@ -308,7 +308,7 @@ def floating(window):
 def init_mouse():
     return [Drag([mod], "Button1", lazy.window.set_position_floating(),      # Move floating windows
                  start=lazy.window.get_position()),
-            Drag([mod], "Button3", lazy.window.set_size_floating(),          # Resize floating windows
+            Drag([mod], "Button2", lazy.window.set_size_floating(),          # Resize floating windows
                  start=lazy.window.get_size()),
             Click([mod, "shift"], "Button1", lazy.window.bring_to_front())]  # Bring floating window to front
 
