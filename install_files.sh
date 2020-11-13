@@ -49,6 +49,16 @@ function home(){
       cp -R ~/QAAS/.themes/Kripton /usr/share/themes
     fi
 
+    FILE=~/Pictures/wallPapers
+    if [ -d "$FILE" ]; then
+      cp -R ~/QAAS/wallPapers/dark ~/Pictures/wallPapers
+      cp -R ~/QAAS/wallPapers/white ~/Pictures/wallPapers
+    else
+      mkdir ~/Pictures/wallPapers
+       cp -R ~/QAAS/wallPapers/dark ~/Pictures/wallPapers
+      cp -R ~/QAAS/wallPapers/white ~/Pictures/wallPapers
+    fi
+
     FILE=/opt/bin
       if [ -d "$FILE" ]; then
         sudo cp ~/QAAS/dotfiles/rand /opt/bin/rand
@@ -99,12 +109,12 @@ function vis(){
   FILE=~/.config/vis
     if [ -d "$FILE" ]; then
       cp ~/.config/vis/colors/rainbow ~/.config/vis/colors/rainbow
-      cp -R ~/QAAS/dotfiles/.config/vis ~/.config/vis
+      cp -R ~/QAAS/dotfiles/.config/vis ~/.config/
     else
       mkdir ~/.config/vis
       mkdir ~/.config/vis/colors
       cp ~/.config/vis/colors/rainbow ~/.config/vis/colors/rainbow
-      cp -R ~/QAAS/dotfiles/.config/vis ~/.config/vis
+      cp -R ~/QAAS/dotfiles/.config/vis ~/.config/
     fi
 }
 

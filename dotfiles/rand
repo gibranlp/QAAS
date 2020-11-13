@@ -1,32 +1,8 @@
 #!/usr/bin/env bash
 # Funcion para cambiar el wallpaper aleatoriamente
 function rand_wall (){
-  dir='/home/$USER/Pictures/wallPapers/dark/'
-  wal  -i "${dir[RANDOM % ${#dir[@]}]}" -q  &
+  dir='/home/gibranlp/Pictures/wallPapers/dark'
+   wal -i "${dir[RANDOM % ${#dir[@]}]}" -q 
 }
-
-function rand_vis (){
-
-source $HOME/.cache/wal/colors.sh
-
-#assign the variables in the wal scheme in vis' format
-cat > $HOME/.config/vis/colors/wal <<CONF
-$color1
-$color2
-$color3
-$color4
-$color5
-$color6
-$color7
-$color8
-$color9
-$color10
-$color11
-$color12
-CONF
-
-}
-
-rand_wall && rand_vis
-killall -USR1 vis &
+rand_wall &
 qtile-cmd -o cmd -f restart &
