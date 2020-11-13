@@ -159,10 +159,10 @@ def init_keys():
             Key([mod, "shift"],"f",lazy.spawn('wsearch')),
 
 
-            ## Group 4 (Code/Write/Office: Atom, typora, onlyofice)
+            ## Group 4 (Code/Write/Office: visual studio, typora, onlyofice)
             Key([mod],"o",lazy.function(app_or_group("5", 'desktopeditors'))),
             Key([mod],"y",lazy.function(app_or_group('5', 'typora'))),
-            Key([mod],"a",lazy.function(app_or_group('5', 'atom'))),
+            Key([mod],"c",lazy.function(app_or_group('5', 'code'))),
 
             ## Group 5 (Design: Gimp, Inkscape, feh)
             Key([mod],"g",lazy.function(app_or_group('6', 'gimp'))),
@@ -188,8 +188,8 @@ def init_keys():
 
 groups = [
     Group("1",position=1,matches=[Match(wm_class=['URxvt', 'urxvt', 'thunar', 'Thunar', 'gnome-disks', 'Gnome-disks', 'anydesk', 'Anydesk'])],layout="matrix",label=""),
-    Group("2",position=2,matches=[Match(wm_class=['Zoom','zoom','Nextcloud', 'Mailspring', 'mailspring', 'Simplenote'])],layout="monadtall",label=""),
-    Group("3",position=3,matches=[Match(wm_class=['whatsdesk','telegram-desktop-bin', 'TelegramDesktop', 'transmission-gtk','Transmission-gtk', 'Discord', 'discord'])],layout="monadtall",label=""),
+    Group("2",position=2,matches=[Match(wm_class=['Zoom','zoom', 'Mailspring', 'mailspring', 'Simplenote', 'transmission-gtk','Transmission-gtk'])],layout="monadtall",label=""),
+    Group("3",position=3,matches=[Match(wm_class=['whatsdesk','telegram-desktop-bin', 'TelegramDesktop', 'Discord', 'discord'])],layout="monadtall",label=""),
     Group("4",position=4,matches=[Match(wm_class=['firefox'])],layout="monadtall",label=""),
     Group("5",position=5,matches=[Match(wm_class=['Atom', 'atom', 'Filezilla', 'Typora','Evince', 'DesktopEditors'])],layout="monadtall",label=""),
     Group("6",position=6,matches=[Match(wm_class=['Gimp-2.10','Inkscape','feh', 'Com.github.phase1geo.minder', 'vlc' ])],layout="monadtall",label=""),
@@ -218,7 +218,7 @@ def init_layouts():
             #layout.RatioTile(**layout_theme),
             #layout.VerticalTile(**layout_theme),
             #layout.Tile(shift_windows=True, **layout_theme),
-            layout.Matrix(single_margin=10,border_normal=colors[0],border_focus=colors[7],**layout_theme),
+            #layout.Matrix(single_margin=10,border_normal=colors[0],border_focus=colors[7],**layout_theme),
             #layout.Zoomy(**layout_theme),
             layout.MonadTall(single_margin=10, border_normal=colors[0], border_focus=colors[7], **layout_theme),
             layout.Max(**layout_theme),
@@ -268,8 +268,8 @@ def init_widgets_list_bot():
                 widget.CPUGraph(border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[2], padding=5,),
                 widget.CPU(format='CPU {freq_current}GHz {load_percent}%',border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[2], padding=5, fontshadow=colors[7]),
                 widget.TextBox(text="◢", background=colors[2], foreground=colors[1], padding=-2, fontsize=45),
-                widget.NetGraph(interface="enp6s0", border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[1], padding=5),
-                widget.Net(interface="enp6s0", foreground=colors[0], background=colors[1],padding=5, fontshadow=colors[7]),
+                widget.NetGraph(interface="wlp3s0", border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[1], padding=5),
+                widget.Net(interface="wlp3s0", foreground=colors[0], background=colors[1],padding=5, fontshadow=colors[7]),
                 widget.TextBox(text="◢", background=colors[1], foreground=colors[3], padding=-2, fontsize=45),
                 widget.DF(measure='G', Partition='/', update_interval=60, foreground=colors[0], background=colors[3], padding=5, visible_on_warn=False, fontshadow=colors[7]),
                 widget.TextBox(text="◢",background = colors[3],foreground=colors[4],padding=-2,fontsize=45),

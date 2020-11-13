@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Funcion para cambiar el wallpaper aleatoriamente
 function rand_wall (){
-  dir='/home/gibranlp/Cloud/wallPapers/white/'
+  dir='/home/$USER/Pictures/wallPapers/white/'
   wal --backend haishoku -i "${dir[RANDOM % ${#dir[@]}]}" -q -l  &
 }
 function rand_vis (){
