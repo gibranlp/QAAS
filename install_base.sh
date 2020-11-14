@@ -21,6 +21,7 @@ function i_base () {
     'urxvt-perls'
     'cups'
     'cups-pdf'
+    'speedtest-cli'
     'gutenprint'
     'gtk3-print-backends'
     'nmap'
