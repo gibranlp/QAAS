@@ -50,6 +50,7 @@ function i_base () {
     'transmission-gtk'
     'numlockx'
     'unzip'
+    'hugo'
 )
 
 for packet in "${packets[@]}"; do
