@@ -36,21 +36,22 @@ def start_once():
     home = os.path.expanduser('~')
     subprocess.call([home + '/.config/qtile/autostart.sh'])
 
+@hook.subscribe.startup
+def start():
+    subprocess.call(['wvis'])
+
+
 
 ##### Import Pywal Palette / Importar la paleta generada por pywal #####
 with open('/home/gibranlp/.cache/wal/colors.json') as json_file:
     data = json.load(json_file)
     colorsarray = data['colors']
-    specialarray =data['special']
     val_list = list(colorsarray.values())
     def getList(val_list):
         return [*val_list]
-    val_list_special = list(specialarray.values())
-    def getList(val_list_special):
-        return [*val_list_special]
 
 def init_colors():
-    return [*val_list + val_list_special]
+    return [*val_list]
 
 ##### Window Functions / Funciones de las ventanas #####
 
@@ -250,7 +251,7 @@ def init_widgets_list_top():
                 widget.TextBox(text='◢', background=colors[2], foreground=colors[0], padding=-2,fontsize=45),
                 widget.TextBox(text=" ", foreground=colors[7], background=colors[0], padding=0, fontshadow=colors[4], fontsize=12),
                 widget.Volume(channel='Master', background=colors[0], foreground=colors[7], fontshadow=colors[4]),
-                widget.Sep(linewidth=0,padding=5, foreground=colors[17], background = colors[0]),
+                widget.Sep(linewidth=0,padding=5, foreground=colors[7], background = colors[0]),
                 widget.Clock(foreground=colors[7], background=colors[0], fontshadow=colors[4], format="[%A, %B %d - %H:%M]"),
                 widget.Systray(icon_size=20, background=colors[0], foreground=colors[0]),
               ]

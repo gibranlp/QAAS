@@ -51,6 +51,7 @@ function home(){
 
     FILE=~/Pictures/wallPapers
     if [ -d "$FILE" ]; then
+      rm -rf /Pictures/wallPapers
       cp -R ~/QAAS/wallPapers/dark ~/Pictures/wallPapers
       cp -R ~/QAAS/wallPapers/white ~/Pictures/wallPapers
     else

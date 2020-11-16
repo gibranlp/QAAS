@@ -25,5 +25,4 @@ nextcloud &
 nm-applet &
 kdeconnect-indicator &
 rand &
-wvis &
 
