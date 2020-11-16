@@ -73,6 +73,7 @@ function i_pip(){
     'xdg'
     'iwlib'
     'ipc'
+    'piwalfox'
   )
 
   for pip_packet in "${pip_packets[@]}"; do

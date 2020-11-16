@@ -38,7 +38,8 @@ def start_once():
 
 @hook.subscribe.startup
 def start():
-    subprocess.call(['wvis'])
+    home = os.path.expanduser('~')
+    subprocess.call([home + '/.config/qtile/alwaystart.sh'])
 
 
 
