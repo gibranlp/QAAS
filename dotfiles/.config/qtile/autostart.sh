@@ -23,4 +23,7 @@ picom &
 numlockx on &
 nextcloud &
 nm-applet &
+kdeconnect-indicator &
 rand &
+wvis &
+
