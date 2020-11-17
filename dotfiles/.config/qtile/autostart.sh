@@ -23,4 +23,6 @@ picom --config /home/gibranlp/.config/qtile/picom.conf &
 numlockx on &
 nextcloud &
 nm-applet &
+kdeconnect-indicator &
 rand &
+

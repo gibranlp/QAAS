@@ -51,6 +51,8 @@ function home(){
 
     FILE=~/Pictures/wallPapers
     if [ -d "$FILE" ]; then
+      rm -rf /Pictures/wallPapers
+      mkdir ~/Pictures/wallPapers
       cp -R ~/QAAS/wallPapers/dark ~/Pictures/wallPapers
       cp -R ~/QAAS/wallPapers/white ~/Pictures/wallPapers
     else
@@ -124,15 +126,19 @@ function qtile(){
   FILE=~/.config/qtile
     if [ -d "$FILE" ]; then
       cp ~/QAAS/dotfiles/.config/qtile/autostart.sh ~/.config/qtile/autostart.sh
+      cp ~/QAAS/dotfiles/.config/qtile/alwaystart.sh ~/.config/qtile/alwaystart.sh
       cd ~/.config/qtile/
       chmod +x autostart.sh
+      chmod +x alwaystart.sh
       cp ~/QAAS/dotfiles/.config/qtile/config.py ~/.config/qtile/config.py
       cp ~/QAAS/dotfiles/.config/qtile/picom.conf ~/.config/qtile/picom.conf
     else
       mkdir ~/.config/qtile
       cp ~/QAAS/dotfiles/.config/qtile/autostart.sh ~/.config/qtile/autostart.sh
+      cp ~/QAAS/dotfiles/.config/qtile/alwaystart.sh ~/.config/qtile/alwaystart.sh
       cd ~/.config/qtile/
       chmod +x autostart.sh
+      chmod +x alwaystart.sh
       cp ~/QAAS/dotfiles/.config/qtile/config.py ~/.config/qtile/config.py
       cp ~/QAAS/dotfiles/.config/qtile/picom.conf ~/.config/qtile/picom.conf
     fi

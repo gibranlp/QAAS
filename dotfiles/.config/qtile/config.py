@@ -36,21 +36,23 @@ def start_once():
     home = os.path.expanduser('~')
     subprocess.call([home + '/.config/qtile/autostart.sh'])
 
+@hook.subscribe.startup
+def start():
+    home = os.path.expanduser('~')
+    subprocess.call([home + '/.config/qtile/alwaystart.sh'])
+
+
 
 ##### Import Pywal Palette / Importar la paleta generada por pywal #####
 with open('/home/gibranlp/.cache/wal/colors.json') as json_file:
     data = json.load(json_file)
     colorsarray = data['colors']
-    specialarray =data['special']
     val_list = list(colorsarray.values())
     def getList(val_list):
         return [*val_list]
-    val_list_special = list(specialarray.values())
-    def getList(val_list_special):
-        return [*val_list_special]
 
 def init_colors():
-    return [*val_list + val_list_special]
+    return [*val_list]
 
 ##### Window Functions / Funciones de las ventanas #####
 
@@ -190,7 +192,7 @@ groups = [
     Group("1",position=1,matches=[Match(wm_class=['URxvt', 'urxvt', 'thunar', 'Thunar', 'gnome-disks', 'Gnome-disks', 'anydesk', 'Anydesk'])],layout="matrix",label=""),
     Group("2",position=2,matches=[Match(wm_class=['Zoom','zoom', 'Mailspring', 'mailspring', 'Simplenote', 'transmission-gtk','Transmission-gtk'])],layout="monadtall",label=""),
     Group("3",position=3,matches=[Match(wm_class=['whatsdesk','telegram-desktop-bin', 'TelegramDesktop', 'Discord', 'discord'])],layout="monadtall",label=""),
-    Group("4",position=4,matches=[Match(wm_class=['firefox'])],layout="monadtall",label=""),
+    Group("4",position=4,matches=[Match(wm_class=['firefox'])],layout="max",label=""),
     Group("5",position=5,matches=[Match(wm_class=['Atom', 'atom', 'Filezilla', 'Typora','Evince', 'DesktopEditors'])],layout="monadtall",label=""),
     Group("6",position=6,matches=[Match(wm_class=['Gimp-2.10','Inkscape','feh', 'Com.github.phase1geo.minder', 'vlc' ])],layout="monadtall",label=""),
     Group("7",position=7,matches=[Match(wm_class=['VirtualBox Manager', 'VirtualBox Machine', 'Albion Online Launcher'])],layout="monadtall",label=""),
@@ -250,7 +252,7 @@ def init_widgets_list_top():
                 widget.TextBox(text='◢', background=colors[2], foreground=colors[0], padding=-2,fontsize=45),
                 widget.TextBox(text=" ", foreground=colors[7], background=colors[0], padding=0, fontshadow=colors[4], fontsize=12),
                 widget.Volume(channel='Master', background=colors[0], foreground=colors[7], fontshadow=colors[4]),
-                widget.Sep(linewidth=0,padding=5, foreground=colors[17], background = colors[0]),
+                widget.Sep(linewidth=0,padding=5, foreground=colors[7], background = colors[0]),
                 widget.Clock(foreground=colors[7], background=colors[0], fontshadow=colors[4], format="[%A, %B %d - %H:%M]"),
                 widget.Systray(icon_size=20, background=colors[0], foreground=colors[0]),
               ]
@@ -268,8 +270,8 @@ def init_widgets_list_bot():
                 widget.CPUGraph(border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[2], padding=5,),
                 widget.CPU(format='CPU {freq_current}GHz {load_percent}%',border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[2], padding=5, fontshadow=colors[7]),
                 widget.TextBox(text="◢", background=colors[2], foreground=colors[1], padding=-2, fontsize=45),
-                widget.NetGraph(interface="wlp3s0", border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[1], padding=5),
-                widget.Net(interface="wlp3s0", foreground=colors[0], background=colors[1],padding=5, fontshadow=colors[7]),
+                widget.NetGraph(interface="enp6s0", border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[1], padding=5),
+                widget.Net(interface="enp6s0", foreground=colors[0], background=colors[1],padding=5, fontshadow=colors[7]),
                 widget.TextBox(text="◢", background=colors[1], foreground=colors[3], padding=-2, fontsize=45),
                 widget.DF(measure='G', Partition='/', update_interval=60, foreground=colors[0], background=colors[3], padding=5, visible_on_warn=False, fontshadow=colors[7]),
                 widget.TextBox(text="◢",background = colors[3],foreground=colors[4],padding=-2,fontsize=45),
