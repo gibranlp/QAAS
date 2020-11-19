@@ -249,11 +249,13 @@ def init_widgets_list_top():
                 widget.CheckUpdates(update_interval=60, distro='Arch', no_update_string='Up to date', display_format='Updates: {updates}', colour_have_updates=colors[0], colour_no_updates=colors[0], fontshadow=colors[1], execute='urxvt -e sh -c "sudo pacman -Syu --noconfirm"', foreground=colors[0], background=colors[6]),
                 widget.TextBox(text='◢', background=colors[6], foreground=colors[2], padding=-2,fontsize=45),
                 widget.Pomodoro(background=colors[2], foreground=colors[0], color_active=colors[0], color_break=colors[2], color_inactive=colors[0], fontshadow=colors[7], length_pomodori=50, length_short_break= 5, length_long_break=15, num_pomodori=3, prefix_break='Break',  prefix_inactive='Pomodoro', prefix_long_break='Long Break', prefix_paused='Pause' ),
-                widget.TextBox(text='◢', background=colors[2], foreground=colors[0], padding=-2,fontsize=45),
+                widget.TextBox(text='◢', background=colors[2], foreground=colors[5], padding=-2,fontsize=45),
+                widget.Battery(empty_char='', full_char='',background=colors[5], foreground=colors[0], fontshadow=colors[7], format='{char}{percent:2.0%}'),
+                widget.TextBox(text='◢', background=colors[5], foreground=colors[0], padding=-2,fontsize=45),
                 widget.TextBox(text=" ", foreground=colors[7], background=colors[0], padding=0, fontshadow=colors[4], fontsize=12),
                 widget.Volume(channel='Master', background=colors[0], foreground=colors[7], fontshadow=colors[4]),
                 widget.Sep(linewidth=0,padding=5, foreground=colors[7], background = colors[0]),
-                widget.Clock(foreground=colors[7], background=colors[0], fontshadow=colors[4], format="[%A, %B %d - %H:%M]"),
+                widget.Clock(foreground=colors[7], background=colors[0], fontshadow=colors[4], format="[%A, %B %d - %H:%M]", update_interval=1),
                 widget.Systray(icon_size=20, background=colors[0], foreground=colors[0]),
               ]
     return widgets_list_top
@@ -270,14 +272,15 @@ def init_widgets_list_bot():
                 widget.CPUGraph(border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[2], padding=5,),
                 widget.CPU(format='CPU {freq_current}GHz {load_percent}%',border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[2], padding=5, fontshadow=colors[7]),
                 widget.TextBox(text="◢", background=colors[2], foreground=colors[1], padding=-2, fontsize=45),
-                widget.NetGraph(interface="enp6s0", border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[1], padding=5),
-                widget.Net(interface="enp6s0", foreground=colors[0], background=colors[1],padding=5, fontshadow=colors[7]),
+                widget.NetGraph(interface="wlp3s0", border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[1], padding=5),
+                widget.Net(interface="wlp3s0", foreground=colors[0], background=colors[1],padding=5, fontshadow=colors[7]),
                 widget.TextBox(text="◢", background=colors[1], foreground=colors[3], padding=-2, fontsize=45),
                 widget.DF(measure='G', Partition='/', update_interval=60, foreground=colors[0], background=colors[3], padding=5, visible_on_warn=False, fontshadow=colors[7]),
                 widget.TextBox(text="◢",background = colors[3],foreground=colors[4],padding=-2,fontsize=45),
-                widget.CurrentLayoutIcon(background=colors[4], scale=0.7),
+                widget.CurrentLayoutIcon(background=colors[4], scale=0.7, foreground=colors[0], fontshadow=colors[7]),
                 widget.CurrentLayout(background=colors[4],foreground=colors[0], fontshadow=colors[7]),
                 widget.TextBox(text="◢",background = colors[4],foreground=colors[0],padding=-2,fontsize=45),
+                widget.KeyboardLayout(),
                 widget.CapsNumLockIndicator(foreground=colors[7],background=colors[0],padding=5, fontshadow=colors[4]),]
     return widgets_list_bot
 
