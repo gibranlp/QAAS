@@ -100,22 +100,20 @@ function home(){
 
       FILE=~/.icons
         if [ -d "$FILE" ]; then
-          cp -R ~/QAAS/.icons/McMojave-cursors ~/.icons
+          cp -R ~/QAAS/dotfiles/.icons/McMojave-cursors ~/.icons
         else
           mkdir ~/.themes
-          cp -R ~/QAAS/.icons/McMojave-cursors ~/.icons
+          cp -R ~/QAAS/dotfiles/.icons/McMojave-cursors ~/.icons
         fi
 
 }
 function vis(){
   FILE=~/.config/vis
     if [ -d "$FILE" ]; then
-      cp ~/.config/vis/colors/rainbow ~/.config/vis/colors/rainbow
       cp -R ~/QAAS/dotfiles/.config/vis ~/.config/
     else
       mkdir ~/.config/vis
       mkdir ~/.config/vis/colors
-      cp ~/.config/vis/colors/rainbow ~/.config/vis/colors/rainbow
       cp -R ~/QAAS/dotfiles/.config/vis ~/.config/
     fi
 }

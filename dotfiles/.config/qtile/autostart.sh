@@ -25,4 +25,5 @@ nextcloud &
 nm-applet &
 kdeconnect-indicator &
 rand &
+qtile-cmd -o cmd -f restart &
 

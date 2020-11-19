@@ -297,8 +297,8 @@ def init_widgets_bot():
 def init_screens():
     return [
         Screen(top=bar.Bar(widgets=init_widgets_top(),  size=20, background=colors[0]),
-        bottom=bar.Bar(widgets=init_widgets_bot(), size=20, background=colors[0])),
-        Screen(top=bar.Bar(widgets=init_widgets_top(), size=20, background=colors[0]))
+        bottom=bar.Bar(widgets=init_widgets_bot(), size=20, background=colors[0]))
+        #Screen(top=bar.Bar(widgets=init_widgets_top(), size=20, background=colors[0]))
         ]
 
 ##### FLOATING WINDOWS #####
