@@ -19,7 +19,7 @@
 #------------------------------------------------------------------------#
 
 setxkbmap -layout us -variant intl &
-picom --config /home/gibranlp/.config/qtile/picom.conf &
+picom --config ~/.config/qtile/picom.conf &
 numlockx on &
 nextcloud &
 nm-applet &
