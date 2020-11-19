@@ -250,13 +250,13 @@ def init_widgets_list_top():
                 widget.TextBox(text='◢', background=colors[6], foreground=colors[2], padding=-2,fontsize=45),
                 widget.Pomodoro(background=colors[2], foreground=colors[0], color_active=colors[0], color_break=colors[2], color_inactive=colors[0], fontshadow=colors[7], length_pomodori=50, length_short_break= 5, length_long_break=15, num_pomodori=3, prefix_break='Break',  prefix_inactive='Pomodoro', prefix_long_break='Long Break', prefix_paused='Pause' ),
                 widget.TextBox(text='◢', background=colors[2], foreground=colors[5], padding=-2,fontsize=45),
-                widget.Battery(empty_char='', full_char='',background=colors[5], foreground=colors[0], fontshadow=colors[7], format='{char}{percent:2.0%}'),
+                widget.Battery(notify_below=30, charge_char=' ', discharge_char=' ', empty_char='', full_char=' ',background=colors[5], foreground=colors[0], fontshadow=colors[7], format='{char}{percent:2.0%}', update_interval=5),
                 widget.TextBox(text='◢', background=colors[5], foreground=colors[0], padding=-2,fontsize=45),
                 widget.TextBox(text=" ", foreground=colors[7], background=colors[0], padding=0, fontshadow=colors[4], fontsize=12),
                 widget.Volume(channel='Master', background=colors[0], foreground=colors[7], fontshadow=colors[4]),
                 widget.Sep(linewidth=0,padding=5, foreground=colors[7], background = colors[0]),
-                widget.Clock(foreground=colors[7], background=colors[0], fontshadow=colors[4], format="[%A, %B %d - %H:%M]", update_interval=1),
                 widget.Systray(icon_size=20, background=colors[0], foreground=colors[0]),
+                widget.Clock(foreground=colors[7], background=colors[0], fontshadow=colors[4], format="|%Y|%b|%a %d|%H:%M|", update_interval=1),
               ]
     return widgets_list_top
 
@@ -297,8 +297,8 @@ def init_widgets_bot():
 def init_screens():
     return [
         Screen(top=bar.Bar(widgets=init_widgets_top(),  size=20, background=colors[0]),
-        bottom=bar.Bar(widgets=init_widgets_bot(), size=20, background=colors[0]))
-        #Screen(top=bar.Bar(widgets=init_widgets_top(), size=20, background=colors[0]))
+        bottom=bar.Bar(widgets=init_widgets_bot(), size=20, background=colors[0])),
+        Screen(top=bar.Bar(widgets=init_widgets_top(), size=20, background=colors[0]))
         ]
 
 ##### FLOATING WINDOWS #####
