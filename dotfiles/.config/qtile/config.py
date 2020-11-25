@@ -243,7 +243,7 @@ def init_widgets_list_top():
                 widget.WindowName(foreground=colors[7], background=colors[0], padding=5, fontshadow=colors[1]),
                 
                 widget.TextBox(text="◢", background=colors[0], foreground=colors[4], padding=-2, fontsize=45),
-                widget.Wlan(interface='enp6s0', format='{essid} {percent:2.0%}', disconnected_message='Unplugged', foreground=colors[0], background=colors[4], fontshadow=colors[1]),
+                widget.Wlan(interface='wlp3s0', format='{essid} {percent:2.0%}', disconnected_message='Unplugged', foreground=colors[0], background=colors[4], fontshadow=colors[1]),
                 #widget.KhalCalendar(foreground=colors[0], background=colors[1], fontshadow=colors[7]),
                 
                 widget.TextBox(text='◢', background=colors[4], foreground=colors[2], padding=-2,fontsize=45),
@@ -268,7 +268,7 @@ def init_widgets_list_bot():
                 #widget.YahooWeather(background=colors[1], foreground=colors[0], metric=True, update_interval=600, format='{location_city}: {condition_temp} °{units_temperature}', woeid='136973'),
                 widget.TextBox(text='◢',background=colors[0],foreground=colors[7],padding=-2,fontsize=45),
                 widget.TextBox(text="", padding=5, foreground=colors[0], background=colors[7], fontshadow=colors[7], fontsize=14),
-                widget.Mpris2(name='spotify', objname='org.mpris.MediaPlayer2.spotify', scroll_chars=30, display_metadata=['xesam:artist','xesam:title'], background=colors[7], foreground=colors[0], scroll_interval=0.5, scroll_wait_intervals=500, fontshadow=colors[4]),
+                widget.Mpris2(name='spotify', objname='org.mpris.MediaPlayer2.spotify', scroll_chars=50, display_metadata=['xesam:artist','xesam:title'], background=colors[7], foreground=colors[0], scroll_interval=0.5, scroll_wait_intervals=500, fontshadow=colors[4]),
                 widget.TextBox(text="◢",background=colors[7], foreground=colors[4], padding=-2, fontsize=45),
                 widget.MemoryGraph(type='linefill', fill_color=colors[7], border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[4], padding=5),
                 widget.Memory(format='{MemUsed}M/{MemTotal}M',border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[4], padding=5, fontshadow=colors[7]),
@@ -278,7 +278,6 @@ def init_widgets_list_bot():
                 widget.TextBox(text="◢", background=colors[2], foreground=colors[3], padding=-2, fontsize=45),
                 widget.DF(measure='G', Partition='/', update_interval=60, foreground=colors[0], background=colors[3], padding=5, visible_on_warn=False, fontshadow=colors[7]),
                 widget.TextBox(text="◢",background = colors[3],foreground=colors[4],padding=-2,fontsize=45),
-                widget.CurrentLayoutIcon(background=colors[4], scale=0.7, foreground=colors[0], fontshadow=colors[7]),
                 widget.CurrentLayout(background=colors[4],foreground=colors[0], fontshadow=colors[7]),
                 widget.TextBox(text="◢",background = colors[4],foreground=colors[0],padding=-2,fontsize=45),
                 widget.KeyboardLayout(foreground=colors[7],background=colors[0],padding=5, fontshadow=colors[4]),
