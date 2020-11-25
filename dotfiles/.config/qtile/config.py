@@ -257,7 +257,7 @@ def init_widgets_list_top():
                 widget.Volume(channel='Master', background=colors[0], foreground=colors[7], fontshadow=colors[4]),
                 widget.Sep(linewidth=0,padding=5, foreground=colors[7], background = colors[0]),
                 widget.Systray(icon_size=20, background=colors[0], foreground=colors[0]),
-                widget.Clock(foreground=colors[7], background=colors[0], fontshadow=colors[4], format="%b|%a %d|%H:%M4", update_interval=1),
+                widget.Clock(foreground=colors[7], background=colors[0], fontshadow=colors[4], format="%b|%a %d|%H:%M", update_interval=1),
               ]
     return widgets_list_top
 
