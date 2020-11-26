@@ -52,6 +52,8 @@ function i_base () {
     'unzip'
     'hugo'
     'slim'
+    'khal'
+    'vdirsyncer'
 )
 
 for packet in "${packets[@]}"; do
@@ -76,6 +78,7 @@ function i_pip(){
     'iwlib'
     'ipc'
     'piwalfox'
+    'python-dateutil'
   )
 
   for pip_packet in "${pip_packets[@]}"; do

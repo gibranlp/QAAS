@@ -243,15 +243,18 @@ def init_widgets_list_top():
                 widget.WindowName(foreground=colors[7], background=colors[0], padding=5, fontshadow=colors[1]),
                 
                 widget.TextBox(text="◢", background=colors[0], foreground=colors[4], padding=-2, fontsize=45),
-                widget.Wlan(interface='wlp9s0f3u1', format='{essid} {percent:2.0%}', disconnected_message='Unplugged', foreground=colors[0], background=colors[4], fontshadow=colors[1]),
-                widget.Net(interface='enp6s0', format='{interface}: {down} ↓↑ {up}'),
-                #widget.KhalCalendar(foreground=colors[0], background=colors[1], fontshadow=colors[7]),
+                ##### Network Interfaces ####
+                #widget.Wlan(interface='wlp9s0f3u1', format=' {essid} {percent:2.0%}', disconnected_message='Unplugged', foreground=colors[0], background=colors[4], fontshadow=colors[7]),
+                widget.Net(interface='enp6s0', format=' {down} ↓↑{up}', foreground=colors[0], background=colors[4], fontshadow=colors[7], use_bits=True),
                 
+                #widget.KhalCalendar(foreground=colors[0], background=colors[1], fontshadow=colors[7]),
                 widget.TextBox(text='◢', background=colors[4], foreground=colors[2], padding=-2,fontsize=45),
-                widget.Pomodoro(background=colors[2], foreground=colors[0], color_active=colors[0], color_break=colors[2], color_inactive=colors[0], fontshadow=colors[7], length_pomodori=50, length_short_break= 5, length_long_break=15, num_pomodori=3, prefix_break='Break',  prefix_inactive='Pomodoro', prefix_long_break='Long Break', prefix_paused='Pause' ),
+                widget.Pomodoro(background=colors[2], foreground=colors[0], color_active=colors[0], color_break=colors[2], color_inactive=colors[0], fontshadow=colors[7], length_pomodori=50, length_short_break= 5, length_long_break=15, num_pomodori=3, prefix_break='Break',  prefix_inactive='', prefix_long_break='Long Break', prefix_paused='' ),
                 
                 widget.TextBox(text='◢', background=colors[2], foreground=colors[5], padding=-2,fontsize=45),
-                widget.Battery(show_short_text=False, notify_below=30, charge_char=' ', discharge_char=' ', empty_char='', full_char=' ',background=colors[5], foreground=colors[0], fontshadow=colors[7], format='{char}{percent:2.0%}', update_interval=5),
+                
+                #### Battery for laptops ####
+                #widget.Battery(show_short_text=False, notify_below=30, charge_char=' ', discharge_char=' ', empty_char='', full_char=' ',background=colors[5], foreground=colors[0], fontshadow=colors[7], format='{char}{percent:2.0%}', update_interval=5),
                 
                 widget.TextBox(text='◢', background=colors[5], foreground=colors[0], padding=-2,fontsize=45),
                 widget.TextBox(text=" ", foreground=colors[7], background=colors[0], padding=0, fontshadow=colors[4], fontsize=12),
