@@ -31,8 +31,8 @@ function home(){
   #cp -R ~/QAAS/dotfiles/.oh-my-zsh ~/.oh-my-zsh
   cp ~/QAAS/dotfiles/.Xdefaults ~/.Xdefaults
   sudo cp ~/Cloud/gibranlp/identidad/logo/logo.png /usr/share/pixmaps/glp-icon.png
-  sudo cp ~/Cloud/wallPapers/dark/login.png /usr/share/backgrounds/anarchy/login.png
-  sudo cp -R ~/QAAS/.themes/Kripton /usr/share/themes
+  sudo cp ~/Pictures/wallPapers/login.png /usr/share/backgrounds/anarchy/login.png
+  sudo cp -R ~/QAAS/dotfiles/.themes/Kripton /usr/share/themes
   FILE=~/.config/ranger
     if [ -d "$FILE" ]; then
       cp ~/QAAS/dotfiles/.config/ranger/rc.conf ~/.config/ranger/rc.conf
@@ -42,11 +42,20 @@ function home(){
     fi
 
   FILE=~/.themes
+   if [ -d "$FILE" ]; then
+      cp -R ~/QAAS/dotfiles/.themes/Kripton ~/.themes
+   else
+      mkdir ~/.themes
+      cp -R ~/QAAS/dotfiles/.themes/Kripton /usr/share/themes
+   fi
+
+
+  FILE=~/.fonts
     if [ -d "$FILE" ]; then
-      cp -R ~/QAAS/.themes/Kripton ~/.themes
+      cp -R ~/QAAS/dotfiles/.fonts ~/.fonts
     else
       mkdir ~/.themes
-      cp -R ~/QAAS/.themes/Kripton /usr/share/themes
+      cp -R ~/QAAS/dotfiles/.fonts ~/.fonts
     fi
 
     FILE=~/Pictures/wallPapers

@@ -162,8 +162,8 @@ def init_keys():
 
 
             ## Group 4 (Code/Write/Office: visual studio, typora, onlyofice)
-            Key([mod],"o",lazy.function(app_or_group("5", 'desktopeditors'))),
-            Key([mod],"y",lazy.function(app_or_group('5', 'typora'))),
+            Key([mod],"o",lazy.function(app_or_group("5", 'libreoffice'))),
+            #Key([mod],"y",lazy.function(app_or_group('5', 'typora'))),
             Key([mod],"c",lazy.function(app_or_group('5', 'code'))),
 
             ## Group 5 (Design: Gimp, Inkscape, feh)
@@ -192,8 +192,8 @@ groups = [
     Group("1",position=1,matches=[Match(wm_class=['URxvt', 'urxvt', 'thunar', 'Thunar', 'gnome-disks', 'Gnome-disks', 'anydesk', 'Anydesk'])],layout="matrix",label=""),
     Group("2",position=2,matches=[Match(wm_class=['Zoom','zoom', 'Mailspring', 'mailspring', 'Simplenote', 'transmission-gtk','Transmission-gtk'])],layout="monadtall",label=""),
     Group("3",position=3,matches=[Match(wm_class=['whatsdesk','telegram-desktop-bin', 'TelegramDesktop', 'Discord', 'discord'])],layout="monadtall",label=""),
-    Group("4",position=4,matches=[Match(wm_class=['firefox'])],layout="max",label=""),
-    Group("5",position=5,matches=[Match(wm_class=['Atom', 'atom', 'Filezilla', 'Typora','Evince', 'DesktopEditors'])],layout="monadtall",label=""),
+    Group("4",position=4,matches=[Match(wm_class=['firefox'])],layout="monadtall",label=""),
+    Group("5",position=5,matches=[Match(wm_class=['Atom', 'atom', 'Filezilla', 'Typora','Evince', 'libreoffice'])],layout="monadtall",label=""),
     Group("6",position=6,matches=[Match(wm_class=['Gimp-2.10','Inkscape','feh', 'Com.github.phase1geo.minder', 'vlc' ])],layout="monadtall",label=""),
     Group("7",position=7,matches=[Match(wm_class=['VirtualBox Manager', 'VirtualBox Machine', 'Albion Online Launcher'])],layout="monadtall",label=""),
     Group("8",position=8,matches=[Match(wm_class=['Spotify','spotify'])],layout="monadtall",label="")]
@@ -222,8 +222,8 @@ def init_layouts():
             #layout.Tile(shift_windows=True, **layout_theme),
             #layout.Matrix(single_margin=10,border_normal=colors[0],border_focus=colors[7],**layout_theme),
             #layout.Zoomy(**layout_theme),
-            layout.MonadTall(single_margin=10, border_normal=colors[0], border_focus=colors[7], **layout_theme),
-            layout.Max(**layout_theme),
+            layout.MonadTall(single_margin=0, single_border_width=0, new_at_current=True, border_normal=colors[0], border_focus=colors[7], **layout_theme),
+            #layout.Max(**layout_theme),
             layout.TreeTab(font="Fira Code Medium",sections=["Tabs"],section_fontsize=14, bg_color=colors[0], active_bg=colors[7], active_fg=colors[0], inactive_bg=colors[0], inactive_fg=colors[7],padding_y=5,panel_width=250, **layout_theme),
             layout.Floating(border_normal=colors[0], border_focus=colors[7],**layout_theme)]
 
