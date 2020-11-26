@@ -51,6 +51,7 @@ function i_base () {
     'numlockx'
     'unzip'
     'hugo'
+    'slim'
 )
 
 for packet in "${packets[@]}"; do

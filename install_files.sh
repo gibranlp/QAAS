@@ -29,10 +29,13 @@ function zsh(){
 
 function home(){
   #cp -R ~/QAAS/dotfiles/.oh-my-zsh ~/.oh-my-zsh
+  cp -R ~/QAAS/dotfiles/.xinitrc ~/.xinitrc
   cp ~/QAAS/dotfiles/.Xdefaults ~/.Xdefaults
+  sudo cp -R ~/QAAS/dotfiles/.themes/darky_pink /usr/share/slim/themes/
   sudo cp ~/Cloud/gibranlp/identidad/logo/logo.png /usr/share/pixmaps/glp-icon.png
   sudo cp ~/Pictures/wallPapers/login.png /usr/share/backgrounds/anarchy/login.png
   sudo cp -R ~/QAAS/dotfiles/.themes/Kripton /usr/share/themes
+
   FILE=~/.config/ranger
     if [ -d "$FILE" ]; then
       cp ~/QAAS/dotfiles/.config/ranger/rc.conf ~/.config/ranger/rc.conf

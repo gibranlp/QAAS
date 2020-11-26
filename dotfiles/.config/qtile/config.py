@@ -243,7 +243,8 @@ def init_widgets_list_top():
                 widget.WindowName(foreground=colors[7], background=colors[0], padding=5, fontshadow=colors[1]),
                 
                 widget.TextBox(text="◢", background=colors[0], foreground=colors[4], padding=-2, fontsize=45),
-                widget.Wlan(interface='wlp3s0', format='{essid} {percent:2.0%}', disconnected_message='Unplugged', foreground=colors[0], background=colors[4], fontshadow=colors[1]),
+                widget.Wlan(interface='wlp9s0f3u1', format='{essid} {percent:2.0%}', disconnected_message='Unplugged', foreground=colors[0], background=colors[4], fontshadow=colors[1]),
+                widget.Net(interface='enp6s0', format='{interface}: {down} ↓↑ {up}'),
                 #widget.KhalCalendar(foreground=colors[0], background=colors[1], fontshadow=colors[7]),
                 
                 widget.TextBox(text='◢', background=colors[4], foreground=colors[2], padding=-2,fontsize=45),
@@ -298,7 +299,8 @@ def init_screens():
     return [
         Screen(top=bar.Bar(widgets=init_widgets_top(),  size=20, background=colors[0]),
         bottom=bar.Bar(widgets=init_widgets_bot(), size=20, background=colors[0])),
-        Screen(top=bar.Bar(widgets=init_widgets_top(), size=20, background=colors[0]))
+        Screen(top=bar.Bar(widgets=init_widgets_top(),  size=20, background=colors[0]),
+        bottom=bar.Bar(widgets=init_widgets_bot(), size=20, background=colors[0]))
         ]
 
 ##### FLOATING WINDOWS #####
