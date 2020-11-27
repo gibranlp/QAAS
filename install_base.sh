@@ -54,6 +54,7 @@ function i_base () {
     'slim'
     'khal'
     'vdirsyncer'
+    'bmon'
 )
 
 for packet in "${packets[@]}"; do

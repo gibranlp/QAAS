@@ -232,6 +232,12 @@ def init_layouts():
 def init_widgets_defaults():
     return dict(font="Fira Code Medium",fontsize=16,padding=2,background=colors[0])
 
+def netw(qtile):
+    qtile.cmd_spawn('network')
+
+def htop(qtile):
+    qtile.cmd_spawn('urxvt -e htop')
+
 def init_widgets_list_top():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list_top = [
@@ -244,16 +250,18 @@ def init_widgets_list_top():
                 
                 widget.TextBox(text="◢", background=colors[0], foreground=colors[4], padding=-2, fontsize=45),
                 ##### Network Interfaces ####
-                #widget.Wlan(interface='wlp9s0f3u1', format=' {essid} {percent:2.0%}', disconnected_message='Unplugged', foreground=colors[0], background=colors[4], fontshadow=colors[7]),
-                widget.Net(interface='enp6s0', format=' {down} ↓↑{up}', foreground=colors[0], background=colors[4], fontshadow=colors[7], use_bits=True),
+                widget.Wlan(interface='wlp1s0f0u2', format='{essid} {percent:2.0%}', disconnected_message='Unplugged', foreground=colors[0], background=colors[4], fontshadow=colors[7],mouse_callbacks={'Button1':netw}),
+                widget.Net(interface='wlp1s0f0u2', format=' {down} ↓↑{up}', foreground=colors[0], background=colors[4], fontshadow=colors[7], use_bits=True, mouse_callbacks={'Button1':netw}),
                 
-                #widget.KhalCalendar(foreground=colors[0], background=colors[1], fontshadow=colors[7]),
+                
                 widget.TextBox(text='◢', background=colors[4], foreground=colors[2], padding=-2,fontsize=45),
                 widget.Pomodoro(background=colors[2], foreground=colors[0], color_active=colors[0], color_break=colors[2], color_inactive=colors[0], fontshadow=colors[7], length_pomodori=50, length_short_break= 5, length_long_break=15, num_pomodori=3, prefix_break='Break',  prefix_inactive='', prefix_long_break='Long Break', prefix_paused='' ),
                 
                 widget.TextBox(text='◢', background=colors[2], foreground=colors[5], padding=-2,fontsize=45),
                 
                 #### Battery for laptops ####
+                widget.TextBox(text="", padding=5, foreground=colors[0], background=colors[5], fontshadow=colors[7], fontsize=14),
+                widget.KhalCalendar(lookahead=15, remindertime=60, foreground=colors[0], background=colors[5], fontshadow=colors[7]),
                 #widget.Battery(show_short_text=False, notify_below=30, charge_char=' ', discharge_char=' ', empty_char='', full_char=' ',background=colors[5], foreground=colors[0], fontshadow=colors[7], format='{char}{percent:2.0%}', update_interval=5),
                 
                 widget.TextBox(text='◢', background=colors[5], foreground=colors[0], padding=-2,fontsize=45),
@@ -277,8 +285,8 @@ def init_widgets_list_bot():
                 widget.MemoryGraph(type='linefill', fill_color=colors[7], border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[4], padding=5),
                 widget.Memory(format='{MemUsed}M/{MemTotal}M',border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[4], padding=5, fontshadow=colors[7]),
                 widget.TextBox(text="◢",background=colors[4], foreground=colors[2], padding=-2, fontsize=45),
-                widget.CPUGraph(type='linefill', fill_color=colors[7], border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[2], padding=5,),
-                widget.CPU(format='CPU {freq_current}GHz {load_percent}%',border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[2], padding=5, fontshadow=colors[7]),
+                widget.CPUGraph(type='linefill', fill_color=colors[7], border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[2], padding=5, mouse_callbacks={'Button1': htop}),
+                widget.CPU(format='CPU {freq_current}GHz {load_percent}%',border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[2], padding=5, fontshadow=colors[7], mouse_callbacks={'Button1': htop}),
                 widget.TextBox(text="◢", background=colors[2], foreground=colors[3], padding=-2, fontsize=45),
                 widget.DF(measure='G', Partition='/', update_interval=60, foreground=colors[0], background=colors[3], padding=5, visible_on_warn=False, fontshadow=colors[7]),
                 widget.TextBox(text="◢",background = colors[3],foreground=colors[4],padding=-2,fontsize=45),

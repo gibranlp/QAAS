@@ -90,10 +90,14 @@ function home(){
         sudo cp ~/QAAS/dotfiles/wvis /opt/bin/wvis
         sudo ln -s /opt/bin/wvis /usr/bin/wvis
         sudo chmod 755 /opt/bin/wvis
+
+        sudo cp ~/QAAS/network /opt/bin/network
+        sudo ln -s /opt/bin/network /usr/bin/network
+        sudo chmod 755 /opt/bin/network
       else
         sudo mkdir /opt/bin
         
-        sudo cp ~/QAAS/dotfiles/rand /opt/bin/
+        sudo cp ~/QAAS/dotfiles/rand /opt/bin/rand
         sudo ln -s /opt/bin/rand /usr/bin/rand
         sudo chmod 755 /opt/bin/rand
         
@@ -108,6 +112,10 @@ function home(){
         sudo cp ~/QAAS/dotfiles/wvis /opt/bin/wvis
         sudo ln -s /opt/bin/wvis /usr/bin/wvis
         sudo chmod 755 /opt/bin/wvis
+
+        sudo cp ~/QAAS/network /opt/bin/network
+        sudo ln -s /opt/bin/network /usr/bin/network
+        sudo chmod 755 /opt/bin/network
       fi
 
       FILE=~/.icons
