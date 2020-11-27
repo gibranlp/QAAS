@@ -16,6 +16,7 @@ function i_base () {
     'ttf-fira-code'
     'telegram-desktop'
     'evince'
+    'firefox'
     'filezilla'
     'rxvt-unicode'
     'urxvt-perls'
@@ -78,7 +79,7 @@ function i_pip(){
     'xdg'
     'iwlib'
     'ipc'
-    'piwalfox'
+    'pywalfox'
     'python-dateutil'
   )
 
@@ -88,7 +89,7 @@ function i_pip(){
   done
 }
 
-# yay -S anydesk-bin betterlockscreen python-haishoku python-colorthief visual-studio-code-bin
+# yay -S anydesk-bin betterlockscreen python-haishoku python-colorthief visual-studio-code-bin dnsutils
 
 
 i_base

@@ -91,7 +91,7 @@ function home(){
         sudo ln -s /opt/bin/wvis /usr/bin/wvis
         sudo chmod 755 /opt/bin/wvis
 
-        sudo cp ~/QAAS/network /opt/bin/network
+        sudo cp ~/QAAS/dotfiles/network /opt/bin/network
         sudo ln -s /opt/bin/network /usr/bin/network
         sudo chmod 755 /opt/bin/network
       else
@@ -113,7 +113,7 @@ function home(){
         sudo ln -s /opt/bin/wvis /usr/bin/wvis
         sudo chmod 755 /opt/bin/wvis
 
-        sudo cp ~/QAAS/network /opt/bin/network
+        sudo cp ~/QAAS/dotfiles/network /opt/bin/network
         sudo ln -s /opt/bin/network /usr/bin/network
         sudo chmod 755 /opt/bin/network
       fi
@@ -176,13 +176,11 @@ function rofi(){
   FILE=~/.config/rofi
     if [ -d "$FILE" ]; then
       cp ~/QAAS/dotfiles/.config/rofi/config ~/.config/rofi/config
-      cp ~/QAAS/dotfiles/.config/rofi/config.rasi ~/.config/rofi/config.rasi
-      cp ~/QAAS/dotfiles/.config/rofi/config.wpgtk ~/.config/rofi/config.wpgtk
+      cp ~/QAAS/dotfiles/.config/rofi/network.rasi ~/.config/rofi/network.rasi
     else
       mkdir ~/.config/rofi
       cp ~/QAAS/dotfiles/.config/rofi/config ~/.config/rofi/config
-      cp ~/QAAS/dotfiles/.config/rofi/config.rasi ~/.config/rofi/config.rasi
-      cp ~/QAAS/dotfiles/.config/rofi/config.wpgtk ~/.config/rofi/config.wpgtk
+      cp ~/QAAS/dotfiles/.config/rofi/network.rasi ~/.config/rofi/network.rasi
     fi
 }
 

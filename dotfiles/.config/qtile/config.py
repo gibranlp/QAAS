@@ -178,7 +178,7 @@ def init_keys():
             Key([mod],"s",lazy.function(app_or_group('8', 'spotify'))),
 
             ### Dmenu Run Launcher
-            Key([mod], "d",lazy.spawn("rofi -show run")),]
+            Key([mod], "d",lazy.spawn("rofi -theme '~/.cache/wal/colors-rofi-dark.rasi' -show run")),]
 
     for i in groups:
             keys.append(Key([mod], i.name, lazy.group[i.name].toscreen()))
@@ -250,8 +250,8 @@ def init_widgets_list_top():
                 
                 widget.TextBox(text="◢", background=colors[0], foreground=colors[4], padding=-2, fontsize=45),
                 ##### Network Interfaces ####
-                widget.Wlan(interface='wlp1s0f0u2', format='{essid} {percent:2.0%}', disconnected_message='Unplugged', foreground=colors[0], background=colors[4], fontshadow=colors[7],mouse_callbacks={'Button1':netw}),
-                widget.Net(interface='wlp1s0f0u2', format=' {down} ↓↑{up}', foreground=colors[0], background=colors[4], fontshadow=colors[7], use_bits=True, mouse_callbacks={'Button1':netw}),
+                widget.Wlan(interface='enp6s0', format=' {essid} {percent:2.0%}', disconnected_message='Unplugged', foreground=colors[0], background=colors[4], fontshadow=colors[7],mouse_callbacks={'Button1':netw}),
+                widget.Net(interface='enp6s0', format=' {down} ↓↑{up}', foreground=colors[0], background=colors[4], fontshadow=colors[7], use_bits=True, mouse_callbacks={'Button1':netw}),
                 
                 
                 widget.TextBox(text='◢', background=colors[4], foreground=colors[2], padding=-2,fontsize=45),
@@ -261,7 +261,7 @@ def init_widgets_list_top():
                 
                 #### Battery for laptops ####
                 widget.TextBox(text="", padding=5, foreground=colors[0], background=colors[5], fontshadow=colors[7], fontsize=14),
-                widget.KhalCalendar(lookahead=15, remindertime=60, foreground=colors[0], background=colors[5], fontshadow=colors[7]),
+                #widget.KhalCalendar(lookahead=15, remindertime=60, foreground=colors[0], background=colors[5], fontshadow=colors[7]),
                 #widget.Battery(show_short_text=False, notify_below=30, charge_char=' ', discharge_char=' ', empty_char='', full_char=' ',background=colors[5], foreground=colors[0], fontshadow=colors[7], format='{char}{percent:2.0%}', update_interval=5),
                 
                 widget.TextBox(text='◢', background=colors[5], foreground=colors[0], padding=-2,fontsize=45),
@@ -275,6 +275,7 @@ def init_widgets_list_top():
 
 def init_widgets_list_bot():
     widgets_list_bot = [
+                widget.DebugInfo(foreground=colors[7], background=colors[0], fontshadow=colors[2]),
                 widget.Spacer(length=bar.STRETCH,),
                 #widget.TextBox(text="◢",background=colors[0], foreground=colors[1], padding=-2, fontsize=45),
                 #widget.YahooWeather(background=colors[1], foreground=colors[0], metric=True, update_interval=600, format='{location_city}: {condition_temp} °{units_temperature}', woeid='136973'),
@@ -288,7 +289,7 @@ def init_widgets_list_bot():
                 widget.CPUGraph(type='linefill', fill_color=colors[7], border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[2], padding=5, mouse_callbacks={'Button1': htop}),
                 widget.CPU(format='CPU {freq_current}GHz {load_percent}%',border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[2], padding=5, fontshadow=colors[7], mouse_callbacks={'Button1': htop}),
                 widget.TextBox(text="◢", background=colors[2], foreground=colors[3], padding=-2, fontsize=45),
-                widget.DF(measure='G', Partition='/', update_interval=60, foreground=colors[0], background=colors[3], padding=5, visible_on_warn=False, fontshadow=colors[7]),
+                widget.DF(format='{p} ({uf}{m}|{r:.0f}%)', measure='G', Partition='/', update_interval=60, foreground=colors[0], background=colors[3], padding=5, visible_on_warn=False, fontshadow=colors[7]),
                 widget.TextBox(text="◢",background = colors[3],foreground=colors[4],padding=-2,fontsize=45),
                 widget.CurrentLayout(background=colors[4],foreground=colors[0], fontshadow=colors[7]),
                 widget.TextBox(text="◢",background = colors[4],foreground=colors[0],padding=-2,fontsize=45),

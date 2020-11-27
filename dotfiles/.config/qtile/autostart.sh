@@ -22,7 +22,6 @@ setxkbmap -layout us -variant intl &
 picom --config ~/.config/qtile/picom.conf &
 numlockx on &
 nextcloud &
-nm-applet &
 kdeconnect-indicator &
 rand &
 qtile-cmd -o cmd -f restart &
