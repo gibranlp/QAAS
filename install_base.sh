@@ -3,6 +3,7 @@
 function i_base () {
   packets=(
     'base-devel'
+    'htop'
     'git'
     'mesa'
     'alsa-utils'
