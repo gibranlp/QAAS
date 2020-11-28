@@ -17,7 +17,7 @@
 ## No sólo ejecutes este script, analiza o__O Investiga!
 ## ¡Aprende y Diviertete!
 #------------------------------------------------------------------------#
-
+ip addr show | awk '/inet.*brd/{print $NF; exit}' | tee ~/.config/qtile/actnet &
 setxkbmap -layout us -variant intl &
 picom --config ~/.config/qtile/picom.conf &
 numlockx on &

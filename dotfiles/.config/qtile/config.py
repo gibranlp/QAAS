@@ -90,16 +90,13 @@ def app_or_group(group, app):
 #### Shortcuts  ####
 
 def init_keys():
-    keys = [
-            Key([mod],"Return",lazy.function(app_or_group('1', 'urxvt'))),
+    keys = [           
             Key([mod], "q",lazy.window.kill()), # Kill Window / Cerrar ventana
-            Key([mod, "shift"], "l",lazy.spawn('betterlock --lock')),
             Key([mod, "shift"], "r",lazy.restart()), # Restart Qtile / Reiniciar Qtile
             Key([mod, "shift"], "q",lazy.shutdown()), # Logout / Cerrar sesión
             Key([mod], "Escape", lazy.spawn('xkill')), # Select window with mouse to kill / Cerrar ventana con el raton
             Key([mod], "w",lazy.spawn('rand')),
             Key([alt], "w",lazy.spawn('randw')), # Random Wallpaper / Papel tapiz aleatorio
-            Key([mod], "x",lazy.spawn('oblogout')),
 
             ####  ####
             Key([mod], "Tab",lazy.layout.down()), # Change focus of windows down
@@ -151,12 +148,14 @@ def init_keys():
 
             ## Group 1 (Tools, )
             Key([mod], "Return", lazy.spawn(myTerm)),
-            Key([mod],"e",lazy.function(app_or_group("1", "thunar"))),
+            Key([mod],"e",lazy.spawn('urxvt -e ranger')),
+            #Key([mod],"e",lazy.function(app_or_group("1", "thunar"))),
             Key([mod, "shift"],"a",lazy.function(app_or_group("1", "anydesk"))),
+             Key([mod, "shift"],"s",lazy.function(app_or_group('1', 'simplenote'))),
 
             ## Group 2 (Organization)
             Key([mod],"m",lazy.function(app_or_group('2', 'mailspring'))),
-            Key([mod, "shift"],"s",lazy.function(app_or_group('2', 'simplenote'))),
+           
 
             ## Group 2 (Social: Whatsapp, Telegram, )
             Key([mod, "shift"],"w",lazy.function(app_or_group('3', 'whatsdesk'))),
@@ -171,7 +170,6 @@ def init_keys():
 
             ## Group 4 (Code/Write/Office: visual studio, typora, onlyofice)
             Key([mod],"o",lazy.function(app_or_group("6", 'libreoffice'))),
-            #Key([mod],"y",lazy.function(app_or_group('5', 'typora'))),
             Key([mod],"c",lazy.function(app_or_group('5', 'code'))),
 
             ## Group 5 (Design: Gimp, Inkscape, feh)
@@ -197,15 +195,15 @@ def init_keys():
 ##### GROUPS #####
 
 groups = [
-    Group("1",position=1,matches=[Match(wm_class=['URxvt', 'urxvt','thunar', 'Thunar', 'gnome-disks', 'Gnome-disks', 'anydesk', 'Anydesk','feh'])],layout="matrix",label=""),
-    Group("2",position=2,matches=[Match(wm_class=['Zoom','zoom', 'Mailspring', 'mailspring', 'Simplenote', 'transmission-gtk','Transmission-gtk'])],layout="monadtall",label=""),
+    Group("1",position=1,matches=[Match(wm_class=['thunar', 'Thunar', 'gnome-disks', 'Gnome-disks', 'anydesk', 'Simplenote', 'Anydesk'])],layout="matrix",label=""),
+    Group("2",position=2,matches=[Match(wm_class=['Zoom','zoom', 'Mailspring', 'mailspring', 'transmission-gtk','Transmission-gtk'])],layout="monadtall",label=""),
     Group("3",position=3,matches=[Match(wm_class=['whatsdesk','telegram-desktop-bin', 'TelegramDesktop', 'Discord', 'discord'])],layout="monadtall",label=""),
     Group("4",position=4,matches=[Match(wm_class=['firefox'])],layout="monadtall",label=""),
-    Group("5",position=5,matches=[Match(wm_class=['Code', 'code', 'xfce4-terminal', 'urxvt','Filezilla'])],layout="monadtall",label=""),
+    Group("5",position=5,matches=[Match(wm_class=['Code', 'code','Filezilla'])],layout="monadtall",label=""),
     Group("6",position=6,matches=[Match(wm_class=['Gimp-2.10','Inkscape','Evince', 'libreoffice','Com.github.phase1geo.minder'])],layout="monadtall",label=""),
     Group("7",position=7,matches=[Match(wm_class=['Spotify','spotify'])],layout="monadtall",label=""),
     Group("8",position=8,matches=[Match(wm_class=['VirtualBox Manager', 'VirtualBox Machine', 'Albion Online Launcher'])],layout="monadtall",label=""),
-    Group("9",position=9,matches=[Match(wm_class=['vlc'])],layout="monadtall",label="")]
+    Group("9",position=9,layout="monadtall",label="")]
 
     
 ##### LAYOUTS #####
@@ -232,10 +230,10 @@ def init_layouts():
             #layout.Tile(shift_windows=True, **layout_theme),
             #layout.Matrix(single_margin=10,border_normal=colors[0],border_focus=colors[7],**layout_theme),
             #layout.Zoomy(**layout_theme),
-            layout.MonadTall(max_ratio=0.80,single_margin=0, single_border_width=0,ratio=0.8, border_normal=colors[0], border_focus=colors[7], **layout_theme),
+            layout.MonadTall(max_ratio=0.60,single_margin=0, single_border_width=0,ratio=0.8, border_normal=colors[0], border_focus=colors[7], **layout_theme),
             #layout.Max(**layout_theme),
-            layout.TreeTab(font="Fira Code Medium",sections=["Tabs"],section_fontsize=14, bg_color=colors[0], active_bg=colors[7], active_fg=colors[0], inactive_bg=colors[0], inactive_fg=colors[7],padding_y=5,panel_width=250, **layout_theme),
-            layout.Floating(border_normal=colors[0], border_focus=colors[7],**layout_theme)]
+            layout.TreeTab(font="Fira Code Medium",sections=["Tabs"],section_fontsize=14, bg_color=colors[0], active_bg=colors[7], active_fg=colors[0], inactive_bg=colors[0], inactive_fg=colors[7],padding_y=5,panel_width=250, **layout_theme)]
+            #layout.Floating(border_normal=colors[0], border_focus=colors[7],**layout_theme)]
 
 ##### WIDGETS #####
 
@@ -248,12 +246,15 @@ def netw(qtile):
 def htop(qtile):
     qtile.cmd_spawn('urxvt -e htop')
 
+def rangercli(qtile):
+    qtile.cmd_spawn('urxvt -e ranger')
+
 def init_widgets_list_top():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list_top = [
                 widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text=""),
                 widget.TextBox(foreground=colors[1],text="   ◢",fontsize=45,padding=-2),
-                widget.GroupBox(font='Font Awesome 5 Free',fontsize=15, disable_drag=True, hide_unused=False, fontshadow=colors[0], margin_y=1, padding_x=5, borderwidth=0, active=colors[7],  inactive=colors[1], rounded=False, highlight_method="text", this_current_screen_border=colors[0], this_screen_border=colors[3], other_current_screen_border=colors[0], other_screen_border=colors[0], foreground=colors[2], background=colors[1]),
+                widget.GroupBox(font='Font Awesome 5 Free',fontsize=14, disable_drag=True, hide_unused=False, fontshadow=colors[0], margin_y=1, padding_x=5, borderwidth=0, active=colors[7],  inactive=colors[1], rounded=False, highlight_method="text", this_current_screen_border=colors[0], this_screen_border=colors[3], other_current_screen_border=colors[0], other_screen_border=colors[0], foreground=colors[2], background=colors[1]),
                 
                 widget.TextBox(background=colors[0],foreground=colors[1],text="◤ ",fontsize=45,padding=-2),
                 widget.Notify(font='Font Awesome 5 Free',fontsize=15,fmt=" ",default_timeout=15, foreground=colors[3], background=colors[0], fontshadow=colors[2]),
@@ -284,7 +285,7 @@ def init_widgets_list_top():
                 widget.Volume(channel='Master', background=colors[0], foreground=colors[7], fontshadow=colors[2]),
                 widget.Sep(linewidth=0,padding=5, foreground=colors[7], background = colors[0]),
                 widget.Systray(icon_size=20, background=colors[0], foreground=colors[0]),
-                widget.Clock(foreground=colors[7], background=colors[0], fontshadow=colors[4], format="%b|%a %d|%H:%M", update_interval=1),
+                widget.Clock(foreground=colors[7], background=colors[0], format="%b%a %d|%H:%M", update_interval=1),
                 widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text=""),
               ]
     return widgets_list_top
@@ -303,13 +304,13 @@ def init_widgets_list_bot():
                 widget.TextBox(text="◢",background=colors[6], foreground=colors[2], padding=-2, fontsize=45),
                 widget.TextBox(font='Font Awesome 5 Free',fontsize=14,background=colors[2], foreground=colors[0],fontshadow=colors[7],text=""),
                 widget.Memory(format='RAM {MemUsed}Mb',border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[2], padding=5),
-                 widget.TextBox(text="◢",background=colors[2], foreground=colors[5], padding=-2, fontsize=45),
+                widget.TextBox(text="◢",background=colors[2], foreground=colors[5], padding=-2, fontsize=45),
                 widget.TextBox(font='Font Awesome 5 Free',fontsize=14,background=colors[5], foreground=colors[0],text="",fontshadow=colors[7]),
                 widget.CPU(format='CPU {load_percent}%',border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[5], mouse_callbacks={'Button1': htop}),
                 widget.CPUGraph(type='linefill', fill_color=colors[7], border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[5], padding=5, mouse_callbacks={'Button1': htop}),
                 widget.TextBox(text="◢", background=colors[5], foreground=colors[3], padding=-2, fontsize=45),
                 widget.TextBox(font='Font Awesome 5 Free',fontsize=14,background=colors[3], foreground=colors[0],fontshadow=colors[7],text=""),
-                widget.DF(format='{p} ({uf}{m}|{r:.0f}%)', measure='G', Partition='/', update_interval=60, foreground=colors[0], background=colors[3], padding=5, visible_on_warn=False),
+                widget.DF(format='{p} ({uf}{m}|{r:.0f}%)', measure='G', Partition='/', update_interval=60, foreground=colors[0], background=colors[3], padding=5, visible_on_warn=False,mouse_callbacks={'Button1':rangercli}),
                 widget.TextBox(text="◢",background = colors[3],foreground=colors[7],padding=-2,fontsize=45),
                 widget.TextBox(font='Font Awesome 5 Free',fontsize=14,background=colors[7], foreground=colors[0],fontshadow=colors[7],text=""),
                 widget.CurrentLayout(background=colors[7],foreground=colors[0], fontshadow=colors[7]),
