@@ -23,7 +23,7 @@ picom --config ~/.config/qtile/picom.conf &
 numlockx on &
 nextcloud &
 kdeconnect-indicator &
-ip addr show | awk '/inet.*brd/{print $NF; exit}' | tee ~/.config/qtile/actnet &
+pywalfox start &
 rand &
 qtile-cmd -o cmd -f restart &
 

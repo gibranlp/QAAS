@@ -20,4 +20,5 @@
 
 wvis &
 pywalfox update &
+ip addr show | awk '/inet.*brd/{print $NF; exit}' | tee ~/.config/qtile/actnet &
 
