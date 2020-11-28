@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
 
-## Author  : Aditya Shakya
-## Mail    : adi1090x@gmail.com
-## Github  : @adi1090x
-## Twitter : @adi1090x
-
-style="$($HOME/.config/rofi/applets/menu/style.sh)"
+## Author  : Gibran Ortega
+## Mail    : hello@gibranlp.dev
+## Github  : @gibranlp
 
 dir="$HOME/.config/rofi/network.rasi"
 rofi_command="rofi -theme $dir"
@@ -20,12 +17,12 @@ STATUS="$(nmcli radio wifi)"
 active=""
 urgent=""
 
-if (ping -c 1 archlinux.org || ping -c 1 google.com || ping -c 1 bitbucket.org || ping -c 1 github.com || ping -c 1 sourceforge.net) &>/dev/null; then
+if (ping -c 1 gibranlp.dev) &>/dev/null; then
 	if [[ $STATUS == *"enable"* ]]; then
         if [[ $IFACE == e* ]]; then
             connected=""
         else
-            connected=""
+            connected=""
         fi
 	active="-a 0"
 	SSID="﬉ $(iwgetid -r)"

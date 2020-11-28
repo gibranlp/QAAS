@@ -1,21 +1,20 @@
 /*
  *
- * Author  : Aditya Shakya
- * Mail    : adi1090x@gmail.com
- * Github  : @adi1090x
- * Twitter : @adi1090x
+ * Author  : gibranlp
+ * Mail    : info@gibranlp.dev
+ * Github  : @gibranlp
  *
  */
 
 configuration {
-	font:                      		"Comfortaa 14";
+	font:                      		"Fira Code 14";
     disable-history:                false;
     fullscreen:                     false;
 	hide-scrollbar: 				true;
 	sidebar-mode: 					false;
 }
 
-@import "~/.cache/wal/colors-rofi-dark.rasi"
+@import "~/.cache/wal/colors-rofi-light.rasi"
 
 * {
     background-color:               @background;
@@ -25,10 +24,10 @@ configuration {
 window {
     transparency:                   "real";
     border-radius:                  0px;
-    location:                       center;
-    width:                       	350px;
-    x-offset:                       0px;
-    y-offset:                       0px;
+    location:                       northeast;
+    width:                       	450px;
+    x-offset:                       -10px;
+    y-offset:                       30px;
 }
 
 prompt {
