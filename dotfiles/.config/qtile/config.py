@@ -41,6 +41,9 @@ def start():
     home = os.path.expanduser('~')
     subprocess.call([home + '/.config/qtile/alwaystart.sh'])
 
+@hook.subscribe.screen_change
+def restart_on_randr(qtile, ev):
+	qtile.cmd_restart()
 
 
 ##### Import Pywal Palette / Importar la paleta generada por pywal #####
@@ -53,6 +56,10 @@ with open('/home/gibranlp/.cache/wal/colors.json') as json_file:
 
 def init_colors():
     return [*val_list]
+
+
+with open('/home/gibranlp/.config/qtile/actnet', 'r') as file:
+    netact = file.read().replace('\n', '')
 
 ##### Window Functions / Funciones de las ventanas #####
 
@@ -243,33 +250,42 @@ def htop(qtile):
 def init_widgets_list_top():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list_top = [
-                widget.TextBox(font='Font Awesome 5 Free',fontsize=15,foreground=colors[7],fontshadow=colors[4],text=""),
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=15,foreground=colors[7],text=""),
                 widget.TextBox(foreground=colors[1],text="   ◢",fontsize=45,padding=-2),
                 widget.GroupBox(font='Font Awesome 5 Free',fontsize=15, disable_drag=True, hide_unused=False, fontshadow=colors[0], margin_y=1, padding_x=5, borderwidth=0, active=colors[7],  inactive=colors[1], rounded=False, highlight_method="text", this_current_screen_border=colors[0], this_screen_border=colors[3], other_current_screen_border=colors[0], other_screen_border=colors[0], foreground=colors[2], background=colors[1]),
                 
                 widget.TextBox(background=colors[0],foreground=colors[1],text="◤ ",fontsize=45,padding=-2),
-                widget.Notify(default_timeout=5, foreground_low=colors[2], foreground_urgent=colors[7], foreground=colors[7], background=colors[0], fontshadow=colors[1]),
-                widget.WindowName(foreground=colors[7], background=colors[0], padding=5, fontshadow=colors[1]),
+                widget.Notify(font='Font Awesome 5 Free',fontsize=15,fmt=" ",default_timeout=7, foreground=colors[3], background=colors[0], fontshadow=colors[2]),
+                widget.Notify(default_timeout=7, foreground_low=colors[3],foreground_urgent=colors[6], foreground=colors[7], background=colors[0]),
+                widget.Notify(font='Font Awesome 5 Free',fontsize=15,fmt=" - ",default_timeout=7, foreground=colors[3], background=colors[0], fontshadow=colors[2]),
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=15,foreground=colors[7],fontshadow=colors[4],text=""),
+                widget.WindowName(foreground=colors[7], background=colors[0], padding=5),
                 
-                widget.TextBox(text="◢", background=colors[0], foreground=colors[4], padding=-2, fontsize=45),
+                widget.TextBox(text="◢", background=colors[0], foreground=colors[6], padding=-2, fontsize=45),
                 ##### Network Interfaces ####
-                widget.Wlan(font='Font Awesome 5 Free',fontsize=15,interface='enp6s0', format=' {essid} {percent:2.0%}', disconnected_message='Unplugged', foreground=colors[0], background=colors[4], fontshadow=colors[7],mouse_callbacks={'Button1':netw}),
-                widget.Net(font='Font Awesome 5 Free',fontsize=15,interface='enp6s0', format=' {down} ↓↑{up}', foreground=colors[0], background=colors[4], fontshadow=colors[7], use_bits=True, mouse_callbacks={'Button1':netw}),
+                widget.Wlan(font='Font Awesome 5 Free',fontsize=15,interface=netact, format='', foreground=colors[0], background=colors[6], fontshadow=colors[7],mouse_callbacks={'Button1':netw}),
+                widget.Wlan(font='Font Awesome 5 Free',fontsize=15,interface=netact, format='{essid} {percent:2.0%}', disconnected_message='Unplugged', foreground=colors[0], background=colors[6], mouse_callbacks={'Button1':netw}),
+                widget.TextBox(text="◢", background=colors[6], foreground=colors[2], padding=-2, fontsize=45),
+                widget.Net(font='Font Awesome 5 Free',fontsize=15,interface=netact, format='↓', foreground=colors[0], background=colors[2], fontshadow=colors[7], use_bits=True, mouse_callbacks={'Button1':netw}),
+                widget.Net(interface=netact, format='{down}', foreground=colors[0], background=colors[2], use_bits=True, mouse_callbacks={'Button1':netw}),
+                widget.Net(font='Font Awesome 5 Free',fontsize=15,interface=netact, format='↑', foreground=colors[0], background=colors[2], fontshadow=colors[7], use_bits=True, mouse_callbacks={'Button1':netw}),
+                widget.Net(interface=netact, format='{up}', foreground=colors[0], background=colors[2], use_bits=True, mouse_callbacks={'Button1':netw}),
+                widget.TextBox(text='◢', background=colors[2], foreground=colors[3], padding=-2,fontsize=45),
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=15,background=colors[3],foreground=colors[0],text=""),
+                widget.Pomodoro(background=colors[3], foreground=colors[0], color_active=colors[0], color_break=colors[2], color_inactive=colors[0], length_pomodori=50, length_short_break= 5, length_long_break=15,
+                num_pomodori=3, prefix_break='Break',  prefix_inactive='start', prefix_long_break='Long Break', prefix_paused='' ),
                 
                 
-                widget.TextBox(text='◢', background=colors[4], foreground=colors[2], padding=-2,fontsize=45),
-                widget.Pomodoro(font='Font Awesome 5 Free',fontsize=15,background=colors[2], foreground=colors[0], color_active=colors[0], color_break=colors[2], color_inactive=colors[0], fontshadow=colors[7], length_pomodori=50, length_short_break= 5, length_long_break=15, num_pomodori=3, prefix_break='Break',  prefix_inactive='', prefix_long_break=' Break', prefix_paused='' ),
-                
-                widget.TextBox(text='◢', background=colors[2], foreground=colors[5], padding=-2,fontsize=45),
+                widget.TextBox(text='◢', background=colors[3], foreground=colors[7], padding=-2,fontsize=45),
                 
                 #### Battery for laptops ####
-                widget.TextBox(font='Font Awesome 5 Free',text="", padding=5, foreground=colors[0], background=colors[5], fontshadow=colors[7], fontsize=14),
-                #widget.KhalCalendar(lookahead=15, remindertime=60, foreground=colors[0], background=colors[5], fontshadow=colors[7]),
-                #widget.Battery(show_short_text=False, notify_below=30, charge_char=' ', discharge_char=' ', empty_char='', full_char=' ',background=colors[5], foreground=colors[0], fontshadow=colors[7], format='{char}{percent:2.0%}', update_interval=5),
+                widget.TextBox(font='Font Awesome 5 Free',text="", padding=5, foreground=colors[0], background=colors[7], fontshadow=colors[7], fontsize=14),
+                widget.KhalCalendar(lookahead=15, remindertime=60, foreground=colors[0], background=colors[7]),
+                #widget.Battery(show_short_text=False, notify_below=30, charge_char=' ', discharge_char=' ', empty_char='', full_char=' ',background=colors[7], foreground=colors[0],format='{char}{percent:2.0%}', update_interval=5),
                 
-                widget.TextBox(text='◢', background=colors[5], foreground=colors[0], padding=-2,fontsize=45),
-                widget.TextBox(text=" ", foreground=colors[7], background=colors[0], padding=0, fontshadow=colors[4], fontsize=12),
-                widget.Volume(channel='Master', background=colors[0], foreground=colors[7], fontshadow=colors[4]),
+                widget.TextBox(text='◢', background=colors[7], foreground=colors[0], padding=-2,fontsize=45),
+                widget.TextBox(font='Font Awesome 5 Free',text=" ", foreground=colors[7], background=colors[0], padding=0, fontshadow=colors[4], fontsize=15),
+                widget.Volume(channel='Master', background=colors[0], foreground=colors[7], fontshadow=colors[2]),
                 widget.Sep(linewidth=0,padding=5, foreground=colors[7], background = colors[0]),
                 widget.Systray(icon_size=20, background=colors[0], foreground=colors[0]),
                 widget.Clock(foreground=colors[7], background=colors[0], fontshadow=colors[4], format="%b|%a %d|%H:%M", update_interval=1),
@@ -283,23 +299,26 @@ def init_widgets_list_bot():
                 widget.Spacer(length=bar.STRETCH,),
                 #widget.TextBox(text="◢",background=colors[0], foreground=colors[1], padding=-2, fontsize=45),
                 #widget.YahooWeather(background=colors[1], foreground=colors[0], metric=True, update_interval=600, format='{location_city}: {condition_temp} °{units_temperature}', woeid='136973'),
-                widget.TextBox(text='◢',background=colors[0],foreground=colors[7],padding=-2,fontsize=45),
-                widget.TextBox(font='Font Awesome 5 Free',fontsize=15,text="", padding=5, foreground=colors[0], background=colors[7], fontshadow=colors[7]),
-                widget.Mpris2(name='spotify', objname='org.mpris.MediaPlayer2.spotify', scroll_chars=50, display_metadata=['xesam:artist','xesam:title'], background=colors[7], foreground=colors[0], scroll_interval=0.5, scroll_wait_intervals=500, fontshadow=colors[4]),
-                widget.TextBox(text="◢",background=colors[7], foreground=colors[4], padding=-2, fontsize=45),
-                widget.MemoryGraph(type='linefill', fill_color=colors[7], border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[4], padding=5),
-                widget.Memory(format='{MemUsed}M/{MemTotal}M',border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[4], padding=5, fontshadow=colors[7]),
-                widget.TextBox(text="◢",background=colors[4], foreground=colors[2], padding=-2, fontsize=45),
-                widget.CPUGraph(type='linefill', fill_color=colors[7], border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[2], padding=5, mouse_callbacks={'Button1': htop}),
-                widget.CPU(format='CPU {freq_current}GHz {load_percent}%',border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[2], padding=5, fontshadow=colors[7], mouse_callbacks={'Button1': htop}),
-                widget.TextBox(text="◢", background=colors[2], foreground=colors[3], padding=-2, fontsize=45),
-                widget.DF(font='Font Awesome 5 Free',fontsize=15, format=' {p} ({uf}{m}|{r:.0f}%)', measure='G', Partition='/', update_interval=60, foreground=colors[0], background=colors[3], padding=5, visible_on_warn=False, fontshadow=colors[7]),
-                widget.TextBox(text="◢",background = colors[3],foreground=colors[4],padding=-2,fontsize=45),
-                widget.CurrentLayout(background=colors[4],foreground=colors[0], fontshadow=colors[7]),
-                widget.TextBox(text="◢",background = colors[4],foreground=colors[0],padding=-2,fontsize=45),
-                widget.TextBox(font='Font Awesome 5 Free',fontsize=15,text="",foreground=colors[7],background=colors[0],padding=5, fontshadow=colors[4]),
+                widget.TextBox(text='◢',background=colors[0],foreground=colors[6],padding=-2,fontsize=45),
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=15,text="", padding=5, foreground=colors[0], background=colors[6], fontshadow=colors[7]),
+                widget.Mpris2(name='spotify', objname='org.mpris.MediaPlayer2.spotify', scroll_chars=50, display_metadata=['xesam:artist','xesam:title'], background=colors[6], foreground=colors[0], scroll_interval=0.5, scroll_wait_intervals=500),
+                widget.TextBox(text="◢",background=colors[6], foreground=colors[2], padding=-2, fontsize=45),
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,background=colors[2], foreground=colors[0],fontshadow=colors[7],text=""),
+                widget.Memory(format='RAM {MemUsed}Mb',border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[2], padding=5),
+                 widget.TextBox(text="◢",background=colors[2], foreground=colors[5], padding=-2, fontsize=45),
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,background=colors[5], foreground=colors[0],text="",fontshadow=colors[7]),
+                widget.CPU(format='CPU {load_percent}%',border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[5], mouse_callbacks={'Button1': htop}),
+                widget.CPUGraph(type='linefill', fill_color=colors[7], border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[5], padding=5, mouse_callbacks={'Button1': htop}),
+                widget.TextBox(text="◢", background=colors[5], foreground=colors[3], padding=-2, fontsize=45),
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,background=colors[3], foreground=colors[0],fontshadow=colors[7],text=""),
+                widget.DF(format='{p} ({uf}{m}|{r:.0f}%)', measure='G', Partition='/', update_interval=60, foreground=colors[0], background=colors[3], padding=5, visible_on_warn=False),
+                widget.TextBox(text="◢",background = colors[3],foreground=colors[7],padding=-2,fontsize=45),
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,background=colors[7], foreground=colors[0],fontshadow=colors[7],text=""),
+                widget.CurrentLayout(background=colors[7],foreground=colors[0], fontshadow=colors[7]),
+                widget.TextBox(text="◢",background = colors[7],foreground=colors[0],padding=-2,fontsize=45),
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=17,text="",foreground=colors[7],background=colors[0]),
                 widget.KeyboardLayout(foreground=colors[7],background=colors[0],padding=5, fontshadow=colors[4]),
-                widget.CapsNumLockIndicator(foreground=colors[7],background=colors[0],padding=5, fontshadow=colors[4]),]
+                widget.CapsNumLockIndicator(foreground=colors[7],background=colors[0],padding=5),]
     return widgets_list_bot
 
 

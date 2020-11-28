@@ -57,6 +57,7 @@ function i_base () {
     'khal'
     'vdirsyncer'
     'bmon'
+    'lm_sensors'
 )
 
 for packet in "${packets[@]}"; do
