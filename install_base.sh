@@ -59,6 +59,7 @@ function i_base () {
     'bmon'
     'lm_sensors'
     'vis'
+    'obconf'
 )
 
 for packet in "${packets[@]}"; do

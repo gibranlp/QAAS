@@ -142,14 +142,14 @@ def init_keys():
             Key([mod], "Right", lazy.layout.right()),
 
             ### Screenshots
-            Key([], "Print", lazy.spawn("scrot -e 'Archlp-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'")),
+            Key([], "Print", lazy.spawn("scrot -e '-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'")),
 
             ##### GROUPS (DESKTOPS) #####
 
             ## Group 1 (Tools, )
             Key([mod], "Return", lazy.spawn(myTerm)),
             Key([mod],"e",lazy.spawn('urxvt -e ranger')),
-            #Key([mod],"e",lazy.function(app_or_group("1", "thunar"))),
+            Key([mod],"x",lazy.spawn('urxvt -e betterlockscreen --lock')),
             Key([mod, "shift"],"a",lazy.function(app_or_group("1", "anydesk"))),
              Key([mod, "shift"],"s",lazy.function(app_or_group('1', 'simplenote'))),
 
@@ -184,7 +184,7 @@ def init_keys():
             Key([mod],"s",lazy.function(app_or_group('7', 'spotify'))),
 
             ### Dmenu Run Launcher
-            Key([mod], "d",lazy.spawn("rofi -theme '~/.cache/wal/colors-rofi-dark.rasi' -show run")),]
+            Key([mod], "d",lazy.spawn("rofi -theme '~/.cache/wal/colors-rofi-light.rasi' -show run")),]
 
     for i in groups:
             keys.append(Key([mod], i.name, lazy.group[i.name].toscreen()))
@@ -243,16 +243,44 @@ def init_widgets_defaults():
 def netw(qtile):
     qtile.cmd_spawn('network')
 
+def urx(qtile):
+    qtile.cmd_spawn('urxvt')
+
 def htop(qtile):
     qtile.cmd_spawn('urxvt -e htop')
 
 def rangercli(qtile):
     qtile.cmd_spawn('urxvt -e ranger')
 
+def lock(qtile):
+    qtile.cmd_spawn('urxvt -e betterlockscreen --lock')
+
+def rboot(qtile):
+    qtile.cmd_spawn('urxvt -e sudo reboot')
+
+def poff(qtile):
+    qtile.cmd_spawn('urxvt -e sudo poweroff')
+
+def lout(qtile):
+    qtile.cmd_spawn('rofi -e qtile-cmd -o cmd -f shutdown')
+
+def pav(qtile):
+    qtile.cmd_spawn('pavucontrol')
+
+def ran(qtile):
+    qtile.cmd_spawn('rand')
+
+def men(qtile):
+    qtile.cmd_spawn("rofi -theme '~/.cache/wal/colors-rofi-light.rasi' -show run")
+
 def init_widgets_list_top():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list_top = [
-                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text=""),
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':ran}),
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':men}),
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':urx}),
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':rangercli}),
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':wsh}),
                 widget.TextBox(foreground=colors[1],text="   ◢",fontsize=45,padding=-2),
                 widget.GroupBox(font='Font Awesome 5 Free',fontsize=14, disable_drag=True, hide_unused=False, fontshadow=colors[0], margin_y=1, padding_x=5, borderwidth=0, active=colors[7],  inactive=colors[1], rounded=False, highlight_method="text", this_current_screen_border=colors[0], this_screen_border=colors[3], other_current_screen_border=colors[0], other_screen_border=colors[0], foreground=colors[2], background=colors[1]),
                 
@@ -281,18 +309,21 @@ def init_widgets_list_top():
                 widget.KhalCalendar(lookahead=15, remindertime=60, foreground=colors[0], background=colors[7]),
                 #widget.Battery(show_short_text=False, notify_below=30, charge_char=' ', discharge_char=' ', empty_char='', full_char=' ',background=colors[7], foreground=colors[0],format='{char}{percent:2.0%}', update_interval=5),
                 widget.TextBox(text='◢', background=colors[7], foreground=colors[0], padding=-2,fontsize=45),
-                widget.TextBox(font='Font Awesome 5 Free',text=" ", foreground=colors[7], background=colors[0], padding=0, fontshadow=colors[4], fontsize=15),
+                widget.TextBox(font='Font Awesome 5 Free',text=" ", foreground=colors[7], background=colors[0], padding=0, fontshadow=colors[4], fontsize=15,mouse_callbacks={'Button1':pav}),
                 widget.Volume(channel='Master', background=colors[0], foreground=colors[7], fontshadow=colors[2]),
                 widget.Sep(linewidth=0,padding=5, foreground=colors[7], background = colors[0]),
                 widget.Systray(icon_size=20, background=colors[0], foreground=colors[0]),
-                widget.Clock(foreground=colors[7], background=colors[0], format="%b%a %d|%H:%M", update_interval=1),
-                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text=""),
+                widget.Clock(foreground=colors[7], background=colors[0], format="|%b %a %d| %H:%M ", update_interval=1),
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1': lout}),
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1': lock}),
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1': rboot}),
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1': poff}),
               ]
     return widgets_list_top
 
 def init_widgets_list_bot():
     widgets_list_bot = [
-                widget.DebugInfo(foreground=colors[7], background=colors[0], fontshadow=colors[2]),
+                #widget.DebugInfo(foreground=colors[7], background=colors[0], fontshadow=colors[2]),
                 widget.TextBox(font='Font Awesome 5 Free',fontsize=15,foreground=colors[7],fontshadow=colors[4],text=""),
                 widget.WindowName(foreground=colors[7], background=colors[0], padding=5),
                 widget.Spacer(length=bar.STRETCH,),
@@ -342,7 +373,7 @@ def init_screens():
 
 @hook.subscribe.client_new
 def floating(window):
-    floating_types = ['notification', 'toolbar', 'splash', 'dialog','Nextcloud','Gcr-prompter']
+    floating_types = ['notification', 'toolbar', 'splash', 'dialog','Nextcloud','Gcr-prompter','_NET_WM_WINDOW_TYPE_NORMAL']
     transient = window.window.get_wm_transient_for()
     if window.window.get_wm_type() in floating_types or transient:
         window.floating = True
@@ -369,6 +400,7 @@ if __name__ in ["config", "__main__"]:
     #groups = init_groups()
     floating_layout = layout.Floating(float_rules=[
         {'wmclass': 'confirm'},
+        {'wmclass': 'lxappearance'},
         {'wmclass': 'dialog'},
         {'wmclass': 'download'},
         {'wmclass': 'error'},
@@ -383,7 +415,9 @@ if __name__ in ["config", "__main__"]:
         {'wname': 'pinentry'},  # GPG key password entry
         {'wmclass': 'ssh-askpass'},
         {'wmclass': 'oblogout'},
-        {'wmclass': 'Oblogout'},  # ssh-askpass
+        {'wmclass': 'Oblogout'},
+        {'wmclass': 'Pavucontrol'},
+        {'wmclass': 'Obconf'},  # ssh-askpass
     ])
     layout_theme = init_layout_theme()
     border_args = init_border_args()
