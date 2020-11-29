@@ -178,11 +178,13 @@ function rofi(){
   FILE=~/.config/rofi
     if [ -d "$FILE" ]; then
       cp ~/QAAS/dotfiles/.config/rofi/config ~/.config/rofi/config
-      cp ~/QAAS/dotfiles/.config/rofi/network.rasi ~/.config/rofi/network.rasi
+      cp ~/QAAS/dotfiles/.config/rofi/menu.rasi ~/.config/rofi/menu.rasi
+      cp ~/QAAS/dotfiles/.config/rofi/websearch.rasi ~/.config/rofi/websearch.rasi
     else
       mkdir ~/.config/rofi
       cp ~/QAAS/dotfiles/.config/rofi/config ~/.config/rofi/config
-      cp ~/QAAS/dotfiles/.config/rofi/network.rasi ~/.config/rofi/network.rasi
+      cp ~/QAAS/dotfiles/.config/rofi/menu.rasi ~/.config/rofi/menu.rasi
+      cp ~/QAAS/dotfiles/.config/rofi/websearch.rasi ~/.config/rofi/websearch.rasi
     fi
 }
 

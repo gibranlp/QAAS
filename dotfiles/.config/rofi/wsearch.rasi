@@ -1,0 +1,22 @@
+/*
+ *
+ * Author  : gibranlp
+ * Mail    : info@gibranlp.dev
+ * Github  : @gibranlp
+ *
+ */
+
+
+
+configuration {
+  display-run: " ";
+  display-drun: "  ";
+  display-window: "  ";
+  drun-display-format: "{icon} {name}";
+  font: "Fira Code Medium 10";
+  modi: "window,run,drun";
+  show-icons: true;
+}
+
+@import "~/.cache/wal/colors-rofi-light.rasi"
+

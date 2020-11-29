@@ -184,7 +184,7 @@ def init_keys():
             Key([mod],"s",lazy.function(app_or_group('7', 'spotify'))),
 
             ### Dmenu Run Launcher
-            Key([mod], "d",lazy.spawn("rofi -theme '~/.cache/wal/colors-rofi-light.rasi' -show run")),]
+            Key([mod], "d",lazy.spawn("rofi -theme '~/.config/rofi/menu.rasi' -show drun")),]
 
     for i in groups:
             keys.append(Key([mod], i.name, lazy.group[i.name].toscreen()))
@@ -230,7 +230,7 @@ def init_layouts():
             #layout.Tile(shift_windows=True, **layout_theme),
             #layout.Matrix(single_margin=10,border_normal=colors[0],border_focus=colors[7],**layout_theme),
             #layout.Zoomy(**layout_theme),
-            layout.MonadTall(max_ratio=0.60,single_margin=0, single_border_width=0,ratio=0.8, border_normal=colors[0], border_focus=colors[7], **layout_theme),
+            layout.MonadTall(max_ratio=0.80,single_margin=0, single_border_width=0,ratio=0.8, border_normal=colors[0], border_focus=colors[7], **layout_theme),
             #layout.Max(**layout_theme),
             layout.TreeTab(font="Fira Code Medium",sections=["Tabs"],section_fontsize=14, bg_color=colors[0], active_bg=colors[7], active_fg=colors[0], inactive_bg=colors[0], inactive_fg=colors[7],padding_y=5,panel_width=250, **layout_theme)]
             #layout.Floating(border_normal=colors[0], border_focus=colors[7],**layout_theme)]
@@ -271,16 +271,20 @@ def ran(qtile):
     qtile.cmd_spawn('rand')
 
 def men(qtile):
-    qtile.cmd_spawn("rofi -theme '~/.cache/wal/colors-rofi-light.rasi' -show run")
+    qtile.cmd_spawn("rofi -theme '~/.config/rofi/menu.rasi' -show drun")
+
+def wsh(qtile):
+    qtile.cmd_spawn("wsearch")
+    
 
 def init_widgets_list_top():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list_top = [
-                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':ran}),
-                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':men}),
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':men}),
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':ran}),
                 widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':urx}),
                 widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':rangercli}),
-                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':wsh}),
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':wsh}),
                 widget.TextBox(foreground=colors[1],text="   ◢",fontsize=45,padding=-2),
                 widget.GroupBox(font='Font Awesome 5 Free',fontsize=14, disable_drag=True, hide_unused=False, fontshadow=colors[0], margin_y=1, padding_x=5, borderwidth=0, active=colors[7],  inactive=colors[1], rounded=False, highlight_method="text", this_current_screen_border=colors[0], this_screen_border=colors[3], other_current_screen_border=colors[0], other_screen_border=colors[0], foreground=colors[2], background=colors[1]),
                 

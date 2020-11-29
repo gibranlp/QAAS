@@ -1,0 +1,8 @@
+{
+    "SEARCH_ENGINE": "duckduckgo",
+    "BROWSER": "firefox",
+    "TERMINAL": [
+        "urxvt",
+        "--"
+    ]
+}

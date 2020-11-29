@@ -2,7 +2,7 @@ configuration {
 show-icons:         true;
 icon-theme:         "Papirus";
 rofi.modi:          window,run,ssh,drun
-rofi.width:         15
+rofi.width:         30
 rofi.lines:         10
 rofi.columns:       1
 rofi.font:          Font Awesome 14

@@ -1,4 +1,25 @@
-#!/bin/bash
-BROWSER=firefox
+#!/usr/bin/env bash
+browser="/usr/bin/firefox"
 
-surfraw -browser=$BROWSER $(sr -elvi | awk -F'-' '{print $1}' | sed '/:/d' | awk '{$1=$1};1' | rofi -theme '~/.cache/wal/colors-rofi-light.rasi' -kb-row-select "Tab" -kb-row-tab "Control+space" -dmenu -mesg ">>> Tab = Autocomplete" -i -p "Search: ")
+answerA=$(echo "${@:1}")
+answerB=$(echo "${@:2}")
+
+# Change what to display in rofi/dmenu
+# If both the first prompt and second prompt are not empty, it will finally open
+# the search in surfraw
+if [[ -z "$answerA" ]]; then
+	action=$(surfraw -elvi | awk -F'-' '{print $1}' | sed '/:/d' | awk '{$1=$1};1' |
+	        rofi -theme '~/.config/rofi/websearch.rasi' -dmenu -p "web: ")
+elif [[ -z "$answerB" ]]; then
+	action=$(echo "" | rofi -theme '~/.config/rofi/websearch.rasi' -dmenu -p "$answerA ")
+else
+	qtile-cmd -o group 4 -f toscreen
+    surfraw -browser=$browser $answerA
+    
+fi
+
+# If you leave the prompt empty it will close, otherwise displaying the prompt.
+case $action in
+	"") ;;
+	*) $0 $answerA $action ;;
+esac

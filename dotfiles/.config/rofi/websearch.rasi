@@ -1,0 +1,116 @@
+/*
+ *
+ * Author  : gibranlp
+ * Mail    : info@gibranlp.dev
+ * Github  : @gibranlp
+ *
+ */
+
+
+configuration {
+	font:							"Fira Code Medium 11";
+    show-icons:                     true;
+	icon-theme: 					"Papirus";
+    display-drun: 					"";
+    drun-display-format:            "{name}";
+    disable-history:                false;
+    fullscreen:                     false;
+	hide-scrollbar: 				true;
+	sidebar-mode: 					false;
+}
+
+@import "~/.cache/wal/colors-rofi-light.rasi"
+
+window {
+    background-color:               @background;
+    text-color:                     @foreground;
+	border:							0px;
+	border-color:					@active-background;
+    border-radius:                  0px;
+	height:							99%;
+	width:							15%;
+    location:                       west;
+    x-offset:                       0;
+    y-offset:                       14;
+}
+
+prompt {
+    enabled: 						true;
+	padding: 						0.30% 1% 0% -0.5%;
+	background-color: 				@active-foreground;
+	text-color: 					@background;
+	font:							"Fira Code Medium 11";
+}
+
+entry {
+    background-color:               @active-foreground;
+    text-color:                     @background;
+    placeholder-color:              @background;
+    expand:                         true;
+    horizontal-align:               0;
+    placeholder:                    "Search";
+    padding:                        0.10% 0% 0% 0%;
+    blink:                          true;
+}
+
+inputbar {
+	children: 						[ prompt, entry ];
+    background-color:               @active-foreground;
+    text-color:                     @background;
+    expand:                         false;
+	border:							0% 0% 0% 0%;
+    border-radius:                  0px;
+	border-color:					@active-foreground;
+    margin:                         0% 0% 0% 0%;
+    padding:                        1.5%;
+}
+
+listview {
+    background-color:               @background;
+    padding:                        0px;
+    columns:                        2;
+    lines:                          5;
+    spacing:                        0%;
+    cycle:                          false;
+    dynamic:                        true;
+    layout:                         vertical;
+}
+
+mainbox {
+    background-color:               @background;
+	border:							0% 0% 0% 0%;
+    border-radius:                  0% 0% 0% 0%;
+	border-color:					@active-foreground;
+    children:                       [ inputbar, listview ];
+    spacing:                       	0%;
+    padding:                        0%;
+}
+
+element {
+    background-color:               @active-foreground;
+    text-color:                     @active-background;
+    orientation:                    horizontal;
+    border-radius:                  0%;
+    padding:                        1% 0.5% 1% 0.5%;
+}
+
+element-icon {
+    size:                           30px;
+    border:                         0px;
+}
+
+element-text {
+    expand:                         true;
+    horizontal-align:               0;
+    vertical-align:                 0.5;
+    margin:                         0% 0.15% 0% 0.15%;
+    text-color:                     @foreground;
+}
+
+element-selected {
+    background-color:               @active-foreground;
+    text-color:                     @background;
+	border:							0% 0% 0% 0%;
+    border-radius:                  0px;
+    border-color:                  	@background;
+}
