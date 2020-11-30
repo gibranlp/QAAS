@@ -9,11 +9,6 @@
 
 configuration {
 	font:							"Fira Code Medium 11";
-    show-icons:                     true;
-	icon-theme: 					"Papirus";
-    display-drun: 					"";
-    drun-display-format:            "{name}";
-    disable-history:                false;
     fullscreen:                     false;
 	hide-scrollbar: 				true;
 	sidebar-mode: 					false;
@@ -27,11 +22,11 @@ window {
 	border:							0px;
 	border-color:					@active-background;
     border-radius:                  0px;
-	height:							99%;
-	width:							15%;
+	height:							20%;
+	width:							12%;
     location:                       west;
-    x-offset:                       0;
-    y-offset:                       14;
+    x-offset:                       -1px;
+    y-offset:                       0px;
 }
 
 prompt {
@@ -48,7 +43,7 @@ entry {
     placeholder-color:              @background;
     expand:                         true;
     horizontal-align:               0;
-    placeholder:                    "Search";
+    placeholder:                    "Search...";
     padding:                        0.10% 0% 0% 0%;
     blink:                          true;
 }

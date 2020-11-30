@@ -182,13 +182,13 @@ def init_keys():
             Key([mod],"b",lazy.function(app_or_group('8', '/home/gibranlp/albiononline/./Albion-Online'))),
 
             ## Group 7 (Música)
-            #Key([mod],"s",lazy.spawn('ncs')),
+            Key([mod],"s",lazy.function(ncsp)),
 
             ### Dmenu Run Launcher
             Key([mod], "d",lazy.spawn("rofi -theme '~/.config/rofi/menu.rasi' -show drun")),]
 
     for i in groups:
-            keys.append(Key([mod], i.name, lazy.group[i.name].toscreen(toggle=False)))
+            keys.append(Key([mod], i.name, lazy.group[i.name].toscreen()))
             keys.append(Key([mod, 'shift'], i.name, lazy.window.togroup(i.name)))
     return keys
 
@@ -277,6 +277,7 @@ def wsh(qtile):
     qtile.cmd_spawn("wsearch")
 
 def ncsp(qtile):
+    qtile.groups_map["7"].cmd_toscreen(toggle=False)
     qtile.cmd_spawn('urxvt -e ncspot')    
 
 def init_widgets_list_top():
