@@ -121,7 +121,7 @@ def init_keys():
             #Key([mod], "v", lazy.spawn('/home/gibranlp/MEGA/computerStuff/keyboard/keyboard_activate.sh')),
             #Key([mod], "b", lazy.spawn('/home/gibranlp/MEGA/computerStuff/keyboard/keyboard_deactivate.sh')),
             Key([], "XF86AudioPlay", lazy.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")),
-            Key([], "XF86AudioNext", lazy.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next")),
+            Key([], "XF86AudioNext", lazy.spawn("playerctl -p ncspot next")),
             Key([], "XF86AudioPrev", lazy.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous")),
             Key([], "XF86AudioStop", lazy.spawn("cmus-remote --stop")),
 
@@ -262,7 +262,7 @@ def poff(qtile):
     qtile.cmd_spawn('urxvt -e sudo poweroff')
 
 def lout(qtile):
-    qtile.cmd_spawn('rofi -e qtile-cmd -o cmd -f shutdown')
+    qtile.cmd_spawn('qtile-cmd -o cmd -f shutdown')
 
 def pav(qtile):
     qtile.cmd_spawn('pavucontrol')
@@ -285,7 +285,7 @@ def init_widgets_list_top():
                 widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':urx}),
                 widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':rangercli}),
                 widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':wsh}),
-                widget.TextBox(foreground=colors[1],text="   ◢",fontsize=45,padding=-2),
+                widget.TextBox(foreground=colors[1],text="◢",fontsize=45,padding=-2),
                 widget.GroupBox(font='Font Awesome 5 Free',fontsize=14, disable_drag=True, hide_unused=False, fontshadow=colors[0], margin_y=1, padding_x=5, borderwidth=0, active=colors[7],  inactive=colors[1], rounded=False, highlight_method="text", this_current_screen_border=colors[0], this_screen_border=colors[3], other_current_screen_border=colors[0], other_screen_border=colors[0], foreground=colors[2], background=colors[1]),
                 
                 widget.TextBox(background=colors[0],foreground=colors[1],text="◤ ",fontsize=45,padding=-2),
@@ -310,7 +310,7 @@ def init_widgets_list_top():
                 widget.TextBox(text='◢', background=colors[3], foreground=colors[7], padding=-2,fontsize=45),
                 #### Battery for laptops ####
                 widget.TextBox(font='Font Awesome 5 Free',text="", padding=5, foreground=colors[0], background=colors[7], fontshadow=colors[7], fontsize=14),
-                widget.KhalCalendar(lookahead=15, remindertime=60, foreground=colors[0], background=colors[7]),
+                #widget.KhalCalendar(lookahead=15, remindertime=60, foreground=colors[0], background=colors[7]),
                 #widget.Battery(show_short_text=False, notify_below=30, charge_char=' ', discharge_char=' ', empty_char='', full_char=' ',background=colors[7], foreground=colors[0],format='{char}{percent:2.0%}', update_interval=5),
                 widget.TextBox(text='◢', background=colors[7], foreground=colors[0], padding=-2,fontsize=45),
                 widget.TextBox(font='Font Awesome 5 Free',text=" ", foreground=colors[7], background=colors[0], padding=0, fontshadow=colors[4], fontsize=15,mouse_callbacks={'Button1':pav}),
@@ -336,6 +336,7 @@ def init_widgets_list_bot():
                 widget.TextBox(text='◢',background=colors[0],foreground=colors[6],padding=-2,fontsize=45),
                 widget.TextBox(font='Font Awesome 5 Free',fontsize=15,text="", padding=5, foreground=colors[0], background=colors[6], fontshadow=colors[7]),
                 widget.Mpris2(name='spotify', objname='org.mpris.MediaPlayer2.spotify', scroll_chars=50, display_metadata=['xesam:artist','xesam:title'], background=colors[6], foreground=colors[0], scroll_interval=0.5, scroll_wait_intervals=500),
+                widget.Mpris(name='ncspot', objname='org.mpris.MediaPlayer2.ncspot', scroll_chars=50, display_metadata=['xesam:artist','xesam:title'], background=colors[6], foreground=colors[0], scroll_interval=0.5, scroll_wait_intervals=500),
                 widget.TextBox(text="◢",background=colors[6], foreground=colors[2], padding=-2, fontsize=45),
                 widget.TextBox(font='Font Awesome 5 Free',fontsize=14,background=colors[2], foreground=colors[0],fontshadow=colors[7],text=""),
                 widget.Memory(format='RAM {MemUsed}Mb',border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[2], padding=5),
