@@ -17,6 +17,7 @@ function i_base () {
     'ttf-fira-code'
     'telegram-desktop'
     'evince'
+    'playerctl'
     'firefox'
     'filezilla'
     'rxvt-unicode'
