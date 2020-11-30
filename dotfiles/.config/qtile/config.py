@@ -165,9 +165,8 @@ def init_keys():
 
 
             ## Group 3 (WEB: Firefox)(Admin: Mail, notes, social)
-            Key([mod],"f",lazy.function(app_or_group('4', 'firefox'))),
-            Key([mod, "shift"],"f",lazy.spawn('wsearch')),
-
+            Key([mod, "shift"],"f",lazy.function(app_or_group('4', 'firefox'))),
+            Key([mod],"f",lazy.spawn('wsearch')),
 
             ## Group 4 (Code/Write/Office: visual studio, typora, onlyofice)
             Key([mod],"o",lazy.function(app_or_group("6", 'libreoffice'))),
