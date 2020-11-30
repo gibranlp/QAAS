@@ -81,9 +81,10 @@ def window_to_next_group(qtile):
 def app_or_group(group, app):
     def f(qtile):
         if qtile.groups_map[group].windows:
+            qtile.groups_map[group].cmd_toscreen(toggle=False)
             qtile.cmd_spawn(app)
         else:
-            qtile.groups_map[group].cmd_toscreen()
+            qtile.groups_map[group].cmd_toscreen(toggle=False)
             qtile.cmd_spawn(app)
     return f
 
@@ -120,10 +121,10 @@ def init_keys():
             #### Media Control
             #Key([mod], "v", lazy.spawn('/home/gibranlp/MEGA/computerStuff/keyboard/keyboard_activate.sh')),
             #Key([mod], "b", lazy.spawn('/home/gibranlp/MEGA/computerStuff/keyboard/keyboard_deactivate.sh')),
-            Key([], "XF86AudioPlay", lazy.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")),
+            Key([], "XF86AudioPlay", lazy.spawn("playerctl -p ncspot play-pause")),
             Key([], "XF86AudioNext", lazy.spawn("playerctl -p ncspot next")),
-            Key([], "XF86AudioPrev", lazy.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous")),
-            Key([], "XF86AudioStop", lazy.spawn("cmus-remote --stop")),
+            Key([], "XF86AudioPrev", lazy.spawn("playerctl -p ncspot previous")),
+            Key([], "XF86AudioStop", lazy.spawn("playerctl -p ncspot stop")),
 
             ### Window hotkeys
             Key([alt], "f", lazy.window.toggle_fullscreen()),
@@ -181,16 +182,15 @@ def init_keys():
             Key([mod],"b",lazy.function(app_or_group('8', '/home/gibranlp/albiononline/./Albion-Online'))),
 
             ## Group 7 (Música)
-            Key([mod],"s",lazy.function(app_or_group('7', 'spotify'))),
+            #Key([mod],"s",lazy.spawn('ncs')),
 
             ### Dmenu Run Launcher
             Key([mod], "d",lazy.spawn("rofi -theme '~/.config/rofi/menu.rasi' -show drun")),]
 
     for i in groups:
-            keys.append(Key([mod], i.name, lazy.group[i.name].toscreen()))
+            keys.append(Key([mod], i.name, lazy.group[i.name].toscreen(toggle=False)))
             keys.append(Key([mod, 'shift'], i.name, lazy.window.togroup(i.name)))
     return keys
-
 
 ##### GROUPS #####
 
@@ -201,7 +201,7 @@ groups = [
     Group("4",position=4,matches=[Match(wm_class=['firefox'])],layout="monadtall",label=""),
     Group("5",position=5,matches=[Match(wm_class=['Code', 'code','Filezilla'])],layout="monadtall",label=""),
     Group("6",position=6,matches=[Match(wm_class=['Gimp-2.10','Inkscape','Evince', 'libreoffice','Com.github.phase1geo.minder'])],layout="monadtall",label=""),
-    Group("7",position=7,matches=[Match(wm_class=['Spotify','spotify'])],layout="monadtall",label=""),
+    Group("7",position=7,layout="monadtall",label=""),
     Group("8",position=8,matches=[Match(wm_class=['VirtualBox Manager', 'VirtualBox Machine', 'Albion Online Launcher'])],layout="monadtall",label=""),
     Group("9",position=9,layout="monadtall",label="")]
 
@@ -253,7 +253,7 @@ def rangercli(qtile):
     qtile.cmd_spawn('urxvt -e ranger')
 
 def lock(qtile):
-    qtile.cmd_spawn('urxvt -e betterlockscreen --lock')
+    qtile.cmd_spawn('betterlockscreen --lock')
 
 def rboot(qtile):
     qtile.cmd_spawn('urxvt -e sudo reboot')
@@ -263,7 +263,7 @@ def poff(qtile):
 
 def lout(qtile):
     qtile.cmd_spawn('qtile-cmd -o cmd -f shutdown')
-
+    
 def pav(qtile):
     qtile.cmd_spawn('pavucontrol')
 
@@ -275,7 +275,9 @@ def men(qtile):
 
 def wsh(qtile):
     qtile.cmd_spawn("wsearch")
-    
+
+def ncsp(qtile):
+    qtile.cmd_spawn('urxvt -e ncspot')    
 
 def init_widgets_list_top():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
@@ -333,10 +335,9 @@ def init_widgets_list_bot():
                 widget.Spacer(length=bar.STRETCH,),
                 #widget.TextBox(text="◢",background=colors[0], foreground=colors[1], padding=-2, fontsize=45),
                 #widget.YahooWeather(background=colors[1], foreground=colors[0], metric=True, update_interval=600, format='{location_city}: {condition_temp} °{units_temperature}', woeid='136973'),
-                widget.TextBox(text='◢',background=colors[0],foreground=colors[6],padding=-2,fontsize=45),
-                widget.TextBox(font='Font Awesome 5 Free',fontsize=15,text="", padding=5, foreground=colors[0], background=colors[6], fontshadow=colors[7]),
-                widget.Mpris2(name='spotify', objname='org.mpris.MediaPlayer2.spotify', scroll_chars=50, display_metadata=['xesam:artist','xesam:title'], background=colors[6], foreground=colors[0], scroll_interval=0.5, scroll_wait_intervals=500),
-                widget.Mpris(name='ncspot', objname='org.mpris.MediaPlayer2.ncspot', scroll_chars=50, display_metadata=['xesam:artist','xesam:title'], background=colors[6], foreground=colors[0], scroll_interval=0.5, scroll_wait_intervals=500),
+                widget.TextBox(text='◢',background=colors[0],foreground=colors[6],padding=-2,fontsize=45,mouse_callbacks={'Button1': ncsp}),
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=15,text="", padding=5, foreground=colors[0], background=colors[6], fontshadow=colors[7], mouse_callbacks={'Button1': ncsp}),
+                widget.Mpris2(name='ncspot', objname='org.mpris.MediaPlayer2.ncspot', background=colors[6], foreground=colors[0], stop_pause_text= '', display_metadata=['xesam:artist','xesam:title'],scroll_interval=0.5, scroll_wait_intervals=1000),
                 widget.TextBox(text="◢",background=colors[6], foreground=colors[2], padding=-2, fontsize=45),
                 widget.TextBox(font='Font Awesome 5 Free',fontsize=14,background=colors[2], foreground=colors[0],fontshadow=colors[7],text=""),
                 widget.Memory(format='RAM {MemUsed}Mb',border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[2], padding=5),
