@@ -148,9 +148,9 @@ def init_keys():
             ##### GROUPS (DESKTOPS) #####
 
             ## Group 1 (Tools, )
-            Key([mod], "Return", lazy.spawn(myTerm)),
-            Key([mod],"e",lazy.spawn('urxvt -e ranger')),
-            Key([mod],"x",lazy.spawn('urxvt -e betterlockscreen --lock')),
+            Key([mod], "Return", lazy.function(urx)),
+            Key([mod],"e",lazy.function(rangercli)),
+            Key([mod],"x",lazy.spawn(lock)),
             Key([mod, "shift"],"a",lazy.function(app_or_group("1", "anydesk"))),
              Key([mod, "shift"],"s",lazy.function(app_or_group('1', 'simplenote'))),
 
@@ -229,7 +229,7 @@ def init_layouts():
             #layout.Tile(shift_windows=True, **layout_theme),
             #layout.Matrix(single_margin=10,border_normal=colors[0],border_focus=colors[7],**layout_theme),
             #layout.Zoomy(**layout_theme),
-            layout.MonadTall(max_ratio=0.80,single_margin=0, single_border_width=0,ratio=0.8, border_normal=colors[0], border_focus=colors[7], **layout_theme),
+            layout.MonadTall(max_ratio=0.80,single_margin=0, single_border_width=0,ratio=0.75, border_normal=colors[0], border_focus=colors[7], **layout_theme),
             #layout.Max(**layout_theme),
             layout.TreeTab(font="Fira Code Medium",sections=["Tabs"],section_fontsize=14, bg_color=colors[0], active_bg=colors[7], active_fg=colors[0], inactive_bg=colors[0], inactive_fg=colors[7],padding_y=5,panel_width=250, **layout_theme)]
             #layout.Floating(border_normal=colors[0], border_focus=colors[7],**layout_theme)]
@@ -273,6 +273,7 @@ def men(qtile):
     qtile.cmd_spawn("rofi -theme '~/.config/rofi/menu.rasi' -show drun")
 
 def wsh(qtile):
+    qtile.groups_map["4"].cmd_toscreen(toggle=False)
     qtile.cmd_spawn("wsearch")
 
 def ncsp(qtile):

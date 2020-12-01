@@ -96,6 +96,10 @@ function i_pip(){
 
 # yay -S anydesk-bin betterlockscreen python-haishoku python-colorthief visual-studio-code-bin dnsutils
 
+def i_post(){
+  pywalfox install
+
+}
 
 i_base
 i_yay
