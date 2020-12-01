@@ -273,8 +273,8 @@ def men(qtile):
     qtile.cmd_spawn("rofi -theme '~/.config/rofi/menu.rasi' -show drun")
 
 def wsh(qtile):
-    qtile.groups_map["4"].cmd_toscreen(toggle=False)
     qtile.cmd_spawn("wsearch")
+    #qtile.groups_map["4"].cmd_toscreen(toggle=False)
 
 def ncsp(qtile):
     qtile.groups_map["7"].cmd_toscreen(toggle=False)
@@ -302,23 +302,21 @@ def init_widgets_list_top():
                 widget.Wlan(font='Font Awesome 5 Free',fontsize=15,interface=netact, format='', foreground=colors[0], background=colors[6], fontshadow=colors[7],mouse_callbacks={'Button1':netw}),
                 widget.Wlan(interface=netact, format='{essid} {percent:2.0%}', disconnected_message='Unplugged', foreground=colors[0], background=colors[6], mouse_callbacks={'Button1':netw}),
                 widget.TextBox(text="◢", background=colors[6], foreground=colors[2], padding=-2, fontsize=45),
-                widget.Net(font='Font Awesome 5 Free',fontsize=15,interface=netact, format='↓', foreground=colors[0], background=colors[2], fontshadow=colors[7], use_bits=True, mouse_callbacks={'Button1':netw}),
-                widget.Net(interface=netact, format='{down}', foreground=colors[0], background=colors[2], use_bits=True, mouse_callbacks={'Button1':netw}),
-                widget.Net(font='Font Awesome 5 Free',fontsize=15,interface=netact, format='↑', foreground=colors[0], background=colors[2], fontshadow=colors[7], use_bits=True, mouse_callbacks={'Button1':netw}),
-                widget.Net(interface=netact, format='{up}', foreground=colors[0], background=colors[2], use_bits=True, mouse_callbacks={'Button1':netw}),
-                widget.TextBox(text='◢', background=colors[2], foreground=colors[3], padding=-2,fontsize=45),
-                widget.TextBox(font='Font Awesome 5 Free',fontsize=15,background=colors[3],foreground=colors[0],text=""),
-                widget.Pomodoro(background=colors[3], foreground=colors[0], color_active=colors[0], color_break=colors[2], color_inactive=colors[0], length_pomodori=50, length_short_break= 5, length_long_break=15,
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=15,text="", padding=5, foreground=colors[0], background=colors[2], fontshadow=colors[7], mouse_callbacks={'Button1': ncsp}),
+                widget.Mpris2(name='ncspot', objname='org.mpris.MediaPlayer2.ncspot', background=colors[2], foreground=colors[0], stop_pause_text= '', display_metadata=['xesam:artist','xesam:title'],scroll_interval=0.5, scroll_wait_intervals=1000),
+                widget.TextBox(text='◢', background=colors[2], foreground=colors[5], padding=-2,fontsize=45),
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=15,background=colors[5],foreground=colors[0],text=""),
+                widget.Pomodoro(background=colors[5], foreground=colors[0], color_active=colors[0], color_break=colors[2], color_inactive=colors[0], length_pomodori=50, length_short_break= 5, length_long_break=15,
                 num_pomodori=3, prefix_break='Break',  prefix_inactive='start', prefix_long_break='Long Break', prefix_paused='' ),
-                widget.TextBox(text='◢', background=colors[3], foreground=colors[7], padding=-2,fontsize=45),
+                widget.TextBox(text='◢', background=colors[5], foreground=colors[3], padding=-2,fontsize=45),
                 #### Battery for laptops ####
-                widget.TextBox(font='Font Awesome 5 Free',text="", padding=5, foreground=colors[0], background=colors[7], fontshadow=colors[7], fontsize=14),
+                widget.TextBox(font='Font Awesome 5 Free',text="", padding=5, foreground=colors[0], background=colors[3], fontshadow=colors[7], fontsize=14),
                 #widget.KhalCalendar(lookahead=15, remindertime=60, foreground=colors[0], background=colors[7]),
                 #widget.Battery(show_short_text=False, notify_below=30, charge_char=' ', discharge_char=' ', empty_char='', full_char=' ',background=colors[7], foreground=colors[0],format='{char}{percent:2.0%}', update_interval=5),
+                widget.TextBox(text='◢', background=colors[3], foreground=colors[7], padding=-2,fontsize=45),
+                widget.TextBox(font='Font Awesome 5 Free',text=" ", foreground=colors[0], background=colors[7], padding=0, fontsize=15,mouse_callbacks={'Button1':pav}),
+                widget.Volume(channel='Master', background=colors[7], foreground=colors[0], fontshadow=colors[7]),
                 widget.TextBox(text='◢', background=colors[7], foreground=colors[0], padding=-2,fontsize=45),
-                widget.TextBox(font='Font Awesome 5 Free',text=" ", foreground=colors[7], background=colors[0], padding=0, fontshadow=colors[4], fontsize=15,mouse_callbacks={'Button1':pav}),
-                widget.Volume(channel='Master', background=colors[0], foreground=colors[7], fontshadow=colors[2]),
-                widget.Sep(linewidth=0,padding=5, foreground=colors[7], background = colors[0]),
                 widget.Systray(icon_size=20, background=colors[0], foreground=colors[0]),
                 widget.Clock(foreground=colors[7], background=colors[0], format="|%b %a %d| %H:%M ", update_interval=1),
                 widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1': lout}),
@@ -337,8 +335,10 @@ def init_widgets_list_bot():
                 #widget.TextBox(text="◢",background=colors[0], foreground=colors[1], padding=-2, fontsize=45),
                 #widget.YahooWeather(background=colors[1], foreground=colors[0], metric=True, update_interval=600, format='{location_city}: {condition_temp} °{units_temperature}', woeid='136973'),
                 widget.TextBox(text='◢',background=colors[0],foreground=colors[6],padding=-2,fontsize=45,mouse_callbacks={'Button1': ncsp}),
-                widget.TextBox(font='Font Awesome 5 Free',fontsize=15,text="", padding=5, foreground=colors[0], background=colors[6], fontshadow=colors[7], mouse_callbacks={'Button1': ncsp}),
-                widget.Mpris2(name='ncspot', objname='org.mpris.MediaPlayer2.ncspot', background=colors[6], foreground=colors[0], stop_pause_text= '', display_metadata=['xesam:artist','xesam:title'],scroll_interval=0.5, scroll_wait_intervals=1000),
+                widget.Net(font='Font Awesome 5 Free',fontsize=15,interface=netact, format='↓', foreground=colors[0], background=colors[6], fontshadow=colors[7], use_bits=True, mouse_callbacks={'Button1':netw}),
+                widget.Net(interface=netact, format='{down}', foreground=colors[0], background=colors[6], use_bits=True, mouse_callbacks={'Button1':netw}),
+                widget.Net(font='Font Awesome 5 Free',fontsize=15,interface=netact, format='↑', foreground=colors[0], background=colors[6], fontshadow=colors[7], use_bits=True, mouse_callbacks={'Button1':netw}),
+                widget.Net(interface=netact, format='{up}', foreground=colors[0], background=colors[6], use_bits=True, mouse_callbacks={'Button1':netw}),
                 widget.TextBox(text="◢",background=colors[6], foreground=colors[2], padding=-2, fontsize=45),
                 widget.TextBox(font='Font Awesome 5 Free',fontsize=14,background=colors[2], foreground=colors[0],fontshadow=colors[7],text=""),
                 widget.Memory(format='RAM {MemUsed}Mb',border_color=colors[0], graph_color=colors[0], foreground=colors[0], background=colors[2], padding=5),
