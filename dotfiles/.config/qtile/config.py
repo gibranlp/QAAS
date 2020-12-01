@@ -303,16 +303,20 @@ def init_widgets_list_top():
                 widget.Wlan(interface=netact, format='{essid} {percent:2.0%}', disconnected_message='Unplugged', foreground=colors[0], background=colors[6], mouse_callbacks={'Button1':netw}),
                 widget.TextBox(text="◢", background=colors[6], foreground=colors[2], padding=-2, fontsize=45),
                 widget.TextBox(font='Font Awesome 5 Free',fontsize=15,text="", padding=5, foreground=colors[0], background=colors[2], fontshadow=colors[7], mouse_callbacks={'Button1': ncsp}),
-                widget.Mpris2(name='ncspot', objname='org.mpris.MediaPlayer2.ncspot', background=colors[2], foreground=colors[0], stop_pause_text= '', display_metadata=['xesam:artist','xesam:title'],scroll_interval=0.5, scroll_wait_intervals=1000),
+                widget.Mpris2(name='ncspot', objname='org.mpris.MediaPlayer2.ncspot', scroll_chars=25, background=colors[2], foreground=colors[0], stop_pause_text= '', display_metadata=['xesam:artist','xesam:title'],scroll_interval=0.5, scroll_wait_intervals=1000),
                 widget.TextBox(text='◢', background=colors[2], foreground=colors[5], padding=-2,fontsize=45),
                 widget.TextBox(font='Font Awesome 5 Free',fontsize=15,background=colors[5],foreground=colors[0],text=""),
                 widget.Pomodoro(background=colors[5], foreground=colors[0], color_active=colors[0], color_break=colors[2], color_inactive=colors[0], length_pomodori=50, length_short_break= 5, length_long_break=15,
                 num_pomodori=3, prefix_break='Break',  prefix_inactive='start', prefix_long_break='Long Break', prefix_paused='' ),
                 widget.TextBox(text='◢', background=colors[5], foreground=colors[3], padding=-2,fontsize=45),
                 #### Battery for laptops ####
-                widget.TextBox(font='Font Awesome 5 Free',text="", padding=5, foreground=colors[0], background=colors[3], fontshadow=colors[7], fontsize=14),
+                #widget.TextBox(font='Font Awesome 5 Free',text="", padding=5, foreground=colors[0], background=colors[3], fontshadow=colors[7], fontsize=14),
                 #widget.KhalCalendar(lookahead=15, remindertime=60, foreground=colors[0], background=colors[7]),
-                #widget.Battery(show_short_text=False, notify_below=30, charge_char=' ', discharge_char=' ', empty_char='', full_char=' ',background=colors[7], foreground=colors[0],format='{char}{percent:2.0%}', update_interval=5),
+                #widget.BitcoinTicker(),
+                widget.BatteryIcon(show_short_text=False, notify_below=30, charge_char=' ', discharge_char=' ', empty_char='', full_char=' ',background=colors[3], foreground=colors[0]),
+
+                widget.Battery(format='{percent:2.0%}', show_short_text=False,update_interval=5,background=colors[3], foreground=colors[0]),
+
                 widget.TextBox(text='◢', background=colors[3], foreground=colors[7], padding=-2,fontsize=45),
                 widget.TextBox(font='Font Awesome 5 Free',text=" ", foreground=colors[0], background=colors[7], padding=0, fontsize=15,mouse_callbacks={'Button1':pav}),
                 widget.Volume(channel='Master', background=colors[7], foreground=colors[0], fontshadow=colors[7]),

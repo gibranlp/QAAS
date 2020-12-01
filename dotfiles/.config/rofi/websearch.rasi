@@ -23,7 +23,7 @@ window {
 	border-color:					@active-background;
     border-radius:                  0px;
 	height:							20%;
-	width:							12%;
+	width:							15%;
     location:                       west;
     x-offset:                       -1px;
     y-offset:                       0px;
@@ -86,7 +86,7 @@ element {
     text-color:                     @active-background;
     orientation:                    horizontal;
     border-radius:                  0%;
-    padding:                        1% 0.5% 1% 0.5%;
+    padding:                        1% 0.5% 0% 0.5%;
 }
 
 element-icon {
