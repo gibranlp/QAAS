@@ -13,7 +13,7 @@ if [[ -z "$answerA" ]]; then
 elif [[ -z "$answerB" ]]; then
 	action=$(echo "" | rofi -theme '~/.config/rofi/websearch.rasi' -dmenu -p "$answerA ")
 else
-	#qtile-cmd -o group 4 -f toscreen
+	qtile-cmd -o group 4 -f toscreen
     surfraw -browser=$browser $answerA
     
 fi

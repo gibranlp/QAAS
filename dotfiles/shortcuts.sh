@@ -1,0 +1,1 @@
+"$(cat ~/shortcuts.conf | rofi -theme '~/.config/rofi/shortcuts.rasi' -i -dmenu -p 'shortcuts')"
