@@ -100,6 +100,10 @@ function home(){
         sudo cp ~/QAAS/dotfiles/screenshot /opt/bin/screenshot
         sudo ln -s /opt/bin/screenshot /usr/bin/screenshot
         sudo chmod 755 /opt/bin/screenshot
+
+        sudo cp ~/QAAS/dotfiles/shortcuts /opt/bin/shortcuts
+        sudo ln -s /opt/bin/shortcuts /usr/bin/shortcuts
+        sudo chmod 755 /opt/bin/shortcuts
       else
         sudo mkdir /opt/bin
         
@@ -126,6 +130,10 @@ function home(){
         sudo cp ~/QAAS/dotfiles/screenshot /opt/bin/screenshot
         sudo ln -s /opt/bin/screenshot /usr/bin/screenshot
         sudo chmod 755 /opt/bin/screenshot
+
+        sudo cp ~/QAAS/dotfiles/shortcuts /opt/bin/shortcuts
+        sudo ln -s /opt/bin/shortcuts /usr/bin/shortcuts
+        sudo chmod 755 /opt/bin/shortcuts
       fi
 
       FILE=~/.icons

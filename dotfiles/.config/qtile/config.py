@@ -96,6 +96,7 @@ def init_keys():
             Key([mod, "shift"], "r",lazy.restart()), # Restart Qtile / Reiniciar Qtile
             Key([mod, "shift"], "q",lazy.shutdown()), # Logout / Cerrar sesión
             Key([mod], "Escape", lazy.function(xk)), # Select window with mouse to kill / Cerrar ventana con el raton
+            Key([alt], "h",lazy.function(scuts)),
             Key([mod], "w",lazy.spawn('rand')),
             Key([alt], "w",lazy.spawn('randw')), # Random Wallpaper / Papel tapiz aleatorio
 
@@ -104,10 +105,10 @@ def init_keys():
             Key([mod, "shift"], "Tab",lazy.layout.up()), # Change focus of windows up
             Key([alt], "Tab", lazy.layout.swap_left()),
             Key([alt, "shift"], "Tab", lazy.layout.swap_right()),
-            Key([mod], "h", lazy.layout.left()),
-            Key([mod], "l", lazy.layout.right()),
-            Key([mod], "Up", lazy.layout.down()),
-            Key([mod], "Down", lazy.layout.up()),
+            #Key([mod], "h", lazy.layout.left()),
+            #Key([mod], "l", lazy.layout.right()),
+            #Key([mod], "Up", lazy.layout.down()),
+            #Key([mod], "Down", lazy.layout.up()),
 
             #### Brightness
             Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 5")),
@@ -283,6 +284,9 @@ def ncsp(qtile):
 def xk(qtile):
     qtile.cmd_spawn("xkill")
 
+def scuts(qtile):
+    qtile.cmd_spawn("shortcuts")
+
 
 def init_widgets_list_top():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
@@ -296,7 +300,7 @@ def init_widgets_list_top():
                 widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':ran}),
                 widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':xk}),
                 widget.Sep(padding=5,foreground=colors[7], linewidth=2),                        
-                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':ran}),
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':scuts}),
                 widget.TextBox(foreground=colors[1],text="◢",fontsize=45,padding=-2),
                 widget.GroupBox(font='Font Awesome 5 Free',fontsize=14, disable_drag=True, hide_unused=False, fontshadow=colors[0], margin_y=1, padding_x=5, borderwidth=0, active=colors[7],  inactive=colors[1], rounded=False, highlight_method="text", this_current_screen_border=colors[0], this_screen_border=colors[3], other_current_screen_border=colors[0], other_screen_border=colors[0], foreground=colors[2], background=colors[1]),
                 
