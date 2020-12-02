@@ -1,25 +1,25 @@
 #!/usr/bin/env bash
 browser="/usr/bin/firefox"
 
-answerA=$(echo "${@:1}")
-answerB=$(echo "${@:2}")
+engine=$(echo "${@:1}")
+search=$(echo "${@:2}")
 
 # Change what to display in rofi/dmenu
 # If both the first prompt and second prompt are not empty, it will finally open
 # the search in surfraw
-if [[ -z "$answerA" ]]; then
-	action=$(surfraw -elvi | awk -F'-' '{print $1}' | sed '/:/d' | awk '{$1=$1};1' |
-	        rofi -theme '~/.config/rofi/websearch.rasi' -dmenu -p "web: ")
-elif [[ -z "$answerB" ]]; then
-	action=$(echo "" | rofi -theme '~/.config/rofi/websearch.rasi' -dmenu -p "$answerA ")
+if [[ -z "$engine" ]]; then
+	surf=$(surfraw -elvi | awk -F'-' '{print $1}' | sed '/:/d' | awk '{$1=$1};1' |
+	        rofi -theme '~/.config/rofi/websearch.rasi' -dmenu -p "WEB: ")
+elif [[ -z "$search" ]]; then
+	surf=$(echo "" | rofi -theme '~/.config/rofi/websearch.rasi' -dmenu -p "$engine ")
 else
 	qtile-cmd -o group 4 -f toscreen
-    surfraw -browser=$browser $answerA
+    surfraw -browser=$browser $engine
     
 fi
 
 # If you leave the prompt empty it will close, otherwise displaying the prompt.
-case $action in
+case $surf in
 	"") ;;
-	*) $0 $answerA $action ;;
+	*) $0 $engine $surf ;;
 esac

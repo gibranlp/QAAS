@@ -95,7 +95,7 @@ def init_keys():
             Key([mod], "q",lazy.window.kill()), # Kill Window / Cerrar ventana
             Key([mod, "shift"], "r",lazy.restart()), # Restart Qtile / Reiniciar Qtile
             Key([mod, "shift"], "q",lazy.shutdown()), # Logout / Cerrar sesión
-            Key([mod], "Escape", lazy.spawn('xkill')), # Select window with mouse to kill / Cerrar ventana con el raton
+            Key([mod], "Escape", lazy.function(xk)), # Select window with mouse to kill / Cerrar ventana con el raton
             Key([mod], "w",lazy.spawn('rand')),
             Key([alt], "w",lazy.spawn('randw')), # Random Wallpaper / Papel tapiz aleatorio
 
@@ -143,7 +143,7 @@ def init_keys():
             Key([mod], "Right", lazy.layout.right()),
 
             ### Screenshots
-            Key([], "Print", lazy.spawn("scrot -e '-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'")),
+            Key([], "Print", lazy.spawn('screenshot')),
 
             ##### GROUPS (DESKTOPS) #####
 
@@ -278,16 +278,25 @@ def wsh(qtile):
 
 def ncsp(qtile):
     qtile.groups_map["7"].cmd_toscreen(toggle=False)
-    qtile.cmd_spawn('urxvt -e ncspot')    
+    qtile.cmd_spawn('urxvt -e ncspot')
+
+def xk(qtile):
+    qtile.cmd_spawn("xkill")
+
 
 def init_widgets_list_top():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list_top = [
                 widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':men}),
-                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':ran}),
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':wsh}),        
+                widget.Sep(padding=5,foreground=colors[7], linewidth=2),
                 widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':urx}),
                 widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':rangercli}),
-                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':wsh}),
+                widget.Sep(padding=5,foreground=colors[7], linewidth=2),                        
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':ran}),
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':xk}),
+                widget.Sep(padding=5,foreground=colors[7], linewidth=2),                        
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1':ran}),
                 widget.TextBox(foreground=colors[1],text="◢",fontsize=45,padding=-2),
                 widget.GroupBox(font='Font Awesome 5 Free',fontsize=14, disable_drag=True, hide_unused=False, fontshadow=colors[0], margin_y=1, padding_x=5, borderwidth=0, active=colors[7],  inactive=colors[1], rounded=False, highlight_method="text", this_current_screen_border=colors[0], this_screen_border=colors[3], other_current_screen_border=colors[0], other_screen_border=colors[0], foreground=colors[2], background=colors[1]),
                 
@@ -317,10 +326,12 @@ def init_widgets_list_top():
                 widget.TextBox(font='Font Awesome 5 Free',text=" ", foreground=colors[0], background=colors[7], padding=0, fontsize=15,mouse_callbacks={'Button1':pav}),
                 widget.Volume(channel='Master', background=colors[7], foreground=colors[0], fontshadow=colors[7]),
                 widget.TextBox(text='◢', background=colors[7], foreground=colors[0], padding=-2,fontsize=45),
-                widget.Systray(icon_size=20, background=colors[0], foreground=colors[0]),
-                widget.Clock(foreground=colors[7], background=colors[0], format="|%b %a %d| %H:%M ", update_interval=1),
-                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1': lout}),
+                widget.Clock(foreground=colors[7], background=colors[0], format="%b %a %d", update_interval=1),
+                widget.TextBox(text='◢', background=colors[0], foreground=colors[7], padding=-2,fontsize=45),
+                widget.Clock(foreground=colors[0], background=colors[7], format="%H:%M", update_interval=1),
+                widget.TextBox(text='◢', background=colors[7], foreground=colors[0], padding=-2,fontsize=45),
                 widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1': lock}),
+                widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1': lout}),
                 widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1': rboot}),
                 widget.TextBox(font='Font Awesome 5 Free',fontsize=14,foreground=colors[7],text="",mouse_callbacks={'Button1': poff}),
               ]
@@ -355,7 +366,10 @@ def init_widgets_list_bot():
                 widget.TextBox(text="◢",background = colors[7],foreground=colors[0],padding=-2,fontsize=45),
                 widget.TextBox(font='Font Awesome 5 Free',fontsize=17,text="",foreground=colors[7],background=colors[0]),
                 widget.KeyboardLayout(foreground=colors[7],background=colors[0],padding=5, fontshadow=colors[4]),
-                widget.CapsNumLockIndicator(foreground=colors[7],background=colors[0],padding=5),]
+                widget.TextBox(text="◢",background = colors[0],foreground=colors[7],padding=-2,fontsize=45),
+                widget.CapsNumLockIndicator(foreground=colors[0],background=colors[7],padding=5),
+                widget.TextBox(text="◢",background = colors[7],foreground=colors[0],padding=-2,fontsize=45),
+                widget.Systray(icon_size=20, background=colors[0], foreground=colors[7]),]
     return widgets_list_bot
 
 

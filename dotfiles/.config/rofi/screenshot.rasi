@@ -9,6 +9,8 @@
 
 configuration {
 	font:							"Fira Code Medium 11";
+    drun-display-format:            "{name}";
+    disable-history:                false;
     fullscreen:                     false;
 	hide-scrollbar: 				true;
 	sidebar-mode: 					false;
@@ -22,10 +24,10 @@ window {
 	border:							0px;
 	border-color:					@active-background;
     border-radius:                  0px;
-	height:							13%;
-	width:							30%;
-    location:                       center;
-    x-offset:                       -1px;
+	height:							21%;
+	width:							12%;
+    location:                       east;
+    x-offset:                       1px;
     y-offset:                       0px;
 }
 
@@ -43,8 +45,8 @@ entry {
     placeholder-color:              @background;
     expand:                         true;
     horizontal-align:               0;
-    placeholder:                    "Search...";
-    padding:                        0.10% 0% 0% 0%;
+    placeholder:                    "mode";
+    padding:                        0.30% 1% 0% -0.5%;
     blink:                          true;
 }
 
@@ -63,7 +65,7 @@ inputbar {
 listview {
     background-color:               @background;
     padding:                        0px;
-    columns:                        6;
+    columns:                        1;
     lines:                          5;
     spacing:                        0%;
     cycle:                          false;
@@ -87,11 +89,6 @@ element {
     orientation:                    horizontal;
     border-radius:                  0%;
     padding:                        1% 0.5% 1% 0.5%;
-}
-
-element-icon {
-    size:                           30px;
-    border:                         0px;
 }
 
 element-text {
