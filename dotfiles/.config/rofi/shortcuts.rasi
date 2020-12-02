@@ -24,8 +24,8 @@ window {
 	border:							0px;
 	border-color:					@active-background;
     border-radius:                  0px;
-	height:							90%;
-	width:							15%;
+	height:							60%;
+	width:							60%;
     location:                       west;
     x-offset:                       -1px;
     y-offset:                       0px;
@@ -45,7 +45,7 @@ entry {
     placeholder-color:              @background;
     expand:                         true;
     horizontal-align:               0;
-    placeholder:                    "Apps";
+    placeholder:                    "Search";
     padding:                        0.10% 0% 0% 0%;
     blink:                          true;
 }

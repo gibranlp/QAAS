@@ -62,6 +62,7 @@ function i_base () {
     'vis'
     'obconf'
     'viewnior'
+    'ntp'
 )
 
 for packet in "${packets[@]}"; do
@@ -98,7 +99,9 @@ function i_pip(){
 # yay -S anydesk-bin betterlockscreen python-haishoku python-colorthief visual-studio-code-bin dnsutils
 
 def i_post(){
-  pywalfox install
+  pywalfox install &
+  timedatectl set-timezone America/Cancun &
+  timedatectl set-ntp true &
 
 }
 
