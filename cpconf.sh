@@ -18,8 +18,4 @@
 ## ¡Aprende y Diviertete!
 
 #------------------------------------------------------------------------#
-function cpconfigs(){
-  cp ~/QAAS/dotfiles/.config/* -R ~/
-}
-
-cpconfigs
+sudo poweroff
