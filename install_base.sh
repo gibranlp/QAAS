@@ -98,13 +98,14 @@ function i_pip(){
 
 # yay -S anydesk-bin betterlockscreen python-haishoku python-colorthief visual-studio-code-bin dnsutils
 
-def i_post(){
+function i_post(){
   pywalfox install &
-  timedatectl set-timezone America/Cancun &
-  timedatectl set-ntp true &
+  sudo timedatectl set-timezone America/Cancun &
+  sudo timedatectl set-ntp true &
 
 }
 
 i_base
 i_yay
 i_pip
+i_post
