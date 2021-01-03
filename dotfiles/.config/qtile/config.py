@@ -425,28 +425,7 @@ if __name__ in ["config", "__main__"]:
     keys = init_keys()
     mouse = init_mouse()
     #group_names = init_group_names()
-    #groups = init_groups()
-    floating_layout = layout.Floating(float_rules=[
-        {'wmclass': 'confirm'},
-        {'wmclass': 'lxappearance'},
-        {'wmclass': 'dialog'},
-        {'wmclass': 'download'},
-        {'wmclass': 'error'},
-        {'wmclass': 'file_progress'},
-        {'wmclass': 'notification'},
-        {'wmclass': 'splash'},
-        {'wmclass': 'toolbar'},
-        {'wmclass': 'confirmreset'},  # gitk
-        {'wmclass': 'makebranch'},  # gitk
-        {'wmclass': 'maketag'},  # gitk
-        {'wname': 'branchdialog'},  # gitk
-        {'wname': 'pinentry'},  # GPG key password entry
-        {'wmclass': 'ssh-askpass'},
-        {'wmclass': 'oblogout'},
-        {'wmclass': 'Oblogout'},
-        {'wmclass': 'Pavucontrol'},
-        {'wmclass': 'Obconf'},  # ssh-askpass
-    ])
+    #groups = init_groups()    
     layout_theme = init_layout_theme()
     border_args = init_border_args()
     layouts = init_layouts()

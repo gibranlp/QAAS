@@ -1,11 +1,13 @@
 /*
- *
- * Author  : gibranlp
- * Mail    : info@gibranlp.dev
- * Github  : @gibranlp
- *
+ *  _______  _______  ______  _______  __        
+ * |       ||   _   ||   __ \|     __||  |.-----.
+ * |   -  _||       ||      <|__     ||  ||  _  |
+ * |_______||___|___||___|__||_______||__||   __|
+ *                                        |__|   
+ * QARSlp Qtile + Arch Ricing Script
+ * by: gibranlp <thisdoesnotwork@gibranlp.dev>
+ * MIT licence 
  */
-
 
 configuration {
 	font:							"Fira Code Medium 11";
@@ -19,7 +21,7 @@ configuration {
 	sidebar-mode: 					false;
 }
 
-@import "~/.cache/wal/colors-rofi-light.rasi"
+@import "~/.cache/wal/colors-rofi-dark.rasi"
 
 window {
     background-color:               @background;

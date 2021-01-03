@@ -63,6 +63,7 @@ function i_base () {
     'obconf'
     'viewnior'
     'ntp'
+    'pcmanfm'
 )
 
 for packet in "${packets[@]}"; do
